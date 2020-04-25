@@ -7,7 +7,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>태양광 솔루션 - 솔깃</title>
+<title>SOLGIT-솔깃한 정보 공유 플랫폼</title>
 <link href="css/styles.css" rel="stylesheet" />
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
@@ -17,20 +17,61 @@
 	crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
+<!-- 메인 페이지 설정 -->
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<a class="navbar-brand" href="index.html">솔깃(SolGit)</a>
-		
-		<!-- 네비게이션바 소환 -->
+
+		<!-- 툴바 소환 -->
 		<button class="btn btn-link btn-sm order-1 order-lg-0"
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
-		
-		<a class="navbar-brand" href="#">데이터 수집</a>
-		<a class="navbar-brand" href="#">예측 분석</a>
-		<a class="navbar-brand" href="#">커뮤니티</a>
-		<a class="navbar-brand" href="#">고객상담</a>
-		
+		<ul class="navbar-nav m-auto mr-md-0">
+			<li class="nav-item dropdown"><a class="navbar-brand"
+				id="userDropdown" href="#" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">데이터 수집</a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#">발전 이력 등록</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">발전 이력 갱신</a>
+				</div></li>
+		</ul>
+		<ul class="navbar-nav m-auto mr-md-0">
+			<li class="nav-item dropdown"><a class="navbar-brand"
+				id="userDropdown" href="#" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">예측 분석</a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#">기상예보</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">발전량 예측</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">수익량 예측</a>
+				</div></li>
+		</ul>
+		<ul class="navbar-nav m-auto mr-md-0">
+			<li class="nav-item dropdown"><a class="navbar-brand"
+				id="userDropdown" href="#" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">커뮤니티</a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#">공지사항</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">커뮤니티</a>
+				</div></li>
+		</ul>
+		<ul class="navbar-nav m-auto mr-md-0">
+			<li class="nav-item dropdown"><a class="navbar-brand"
+				id="userDropdown" href="#" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">고객상담</a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#">앱지원</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">FAQ</a>
+				</div></li>
+		</ul>
 		<!-- 툴바(검색)
 		<form
 			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -44,16 +85,18 @@
 				</div>
 			</div>
 		</form> -->
-		<!-- 툴바(설정, 로그아웃)-->
-		<ul class="navbar-nav ml-auto ml-md-0">
-			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="userDropdown" href="#"
-				role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+		<!-- 툴바 안 회원정보 탭(로그인, 회원가입 > 회원정보변경, 로그아웃)-->
+		<ul class="navbar-nav ml-auto mr-md-0">
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" id="userDropdown" href="#"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">Settings</a><a
-						class="dropdown-item" href="#">Activity Log</a>
+					<a class="dropdown-item" href="login.html">로그인</a> <a
+						class="dropdown-item" href="register.html">회원가입</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="login.html">Logout</a>
+					<a class="dropdown-item" href="login.html">로그아웃</a>
 				</div></li>
 		</ul>
 	</nav>
@@ -744,6 +787,7 @@
 			</footer>
 		</div>
 	</div>
+
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		crossorigin="anonymous"></script>
 	<script
