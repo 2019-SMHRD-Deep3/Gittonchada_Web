@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>SOLGIT-솔깃한 정보 공유 플랫폼</title>
+<link href="css/styles.css" rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+	crossorigin="anonymous"></script>
+</head>
+
+
+<!-- 모달을 열기 위한 버튼 -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+	data-target="#myModal">모달 보기 버튼</button>
+<!-- 모달 영역 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
+			</div>
+			<div class="modal-body">내용</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary">확인</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	// 모달 버튼에 이벤트를 건다.
+	$('#openModalBtn').on('click', function() {
+		$('#modalBox').modal('show');
+		console.log("click open");
+	});
+	// 모달 안의 취소 버튼에 이벤트를 건다.
+	$('#closeModalBtn').on('click', function() {
+		$('#modalBox').modal('hide');
+		console.log("click close");
+	});
+	$('#modalBox').on('show.bs.modal', function(e) {
+		console.log("show.bs.modal");
+	});
+	$('#modalBox').on('shown.bs.modal', function(e) {
+		console.log("shown.bs.modal");
+	});
+	$('#modalBox').on('hide.bs.modal', function(e) {
+		console.log("hide.bs.modal");
+	});
+	$('#modalBox').on('hidden.bs.modal', function(e) {
+		console.log("hidden.bs.modal");
+	});
+</script>
+
+
+
+<div id="layoutError_footer">
+	<footer class="py-4 bg-light mt-auto">
+		<div class="container-fluid">
+			<div class="d-flex align-items-center justify-content-between small">
+				<div class="text-muted">Copyright &copy; Your Website 2019</div>
+				<div>
+					<a href="#">Privacy Policy</a> &middot; <a href="#">Terms &amp;
+						Conditions</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+	crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+
+
+
+</body>
+</html>
