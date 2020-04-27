@@ -21,26 +21,83 @@
 		// new Date($.now())
 		var $now = new Date($.now());
 		var $cDate = $now.getFullYear() + "-" + ($now.getMonth() + 1) + "-" + $now.getDate() + " " + $now.getHours() + ":" + $now.getMinutes() + " ";
-		var $minTemp = data.main.temp_min;
-		var $maxTemp = data.main.temp_max;
-		var $cTemp = data.main.temp;
+		//위도
+		var $lat = data.coord.lat;
+		// 경도
+		var $lon = data.coord.lon;
+		// 기상 아이콘
 		var $wIcon = data.weather[0].icon;
+		// 날씨
+		var $weather = data.weather[0].description;
+		// 현재 기온
+		var $cTemp = data.main.temp;
+		// 최저 기온
+		var $minTemp = data.main.temp_min;
+		// 최고 기온
+		var $maxTemp = data.main.temp_max;
+		// 기압
+		var $pressure = data.main.pressure;
+		// 습도
+		var $humidity = data.main.humidity;
+		// 풍속
+		var $wSpeed = data.wind.speed;
+		// 풍향
+		var $wDeg = data.wind.deg;
 		
-		$('h2').prepend($cDate);
+		$('h4').prepend($cDate);
+		$('.lat').append($lat);
+		$('.lon').append($lon);
+		$('.cicon').append('<img src = "http://openweathermap.org/img/wn/' + $wIcon + '.png"/>')
+		$('.weather').append($weather);
 		$('.ctemp').append($cTemp);
 		$('.clowtemp').append($minTemp);
 		$('.chightemp').append($maxTemp);
-		$('.cicon').append('<img src = "http://openweathermap.org/img/wn/' + $wIcon + '.png"/>')
+		$('.pressure').append($pressure);
+		$('.humidity').append($humidity);
+		$('.wSpeed').append($wSpeed);
+		$('.wDeg').append($wDeg);
+
 	});
 </script>
 <body>
 <div class="current">
-	<h2>Weather API</h2>
-	<div class="ctemp">현재 온도 : </div>
-	<div class="clowtemp">최저 온도 : </div>
-	<div class="chightemp">최고 온도 : </div>
+	<h1>Weather Map Open API</h1>
+	<h2>실시간 기상정보</h2>
+	<h4>기준 측정한 DATA</h4>
+	<div>좌표 [ 
+		<span class="lat">위도 : </span>
+		<span class="lon"> 경도 : </span>
+		 ]
+	</div>
 	<div class="cicon">아이콘 : </div>
-<!-- HTML -->
+	<div class="weather">날씨 : </div>
+	<div>	
+		<span class="ctemp">현재 온도 : </span>
+		<span>℃</span>
+	</div>
+	<div>
+		<span class="clowtemp">최저 온도 : </span>
+		<span>℃</span>
+	</div>
+	<div>
+		<span class="chightemp">최고 온도 : </span>
+		<span>℃</span>
+	</div>
+	<div>
+		<span class="pressure">기압 : </span>
+		<span>hpa</span>
+	</div>
+	<div>
+		<span class="humidity">습도 : </span>
+		<span>%</span>
+	</div>
+	<div>
+		<span class="wSpeed">풍속 : </span>
+		<span>m/s</span>
+	</div>
+	<div>
+		<span class="wDeg">풍향 : </span>
+	</div>
 </div>
 </body>
 </html>
