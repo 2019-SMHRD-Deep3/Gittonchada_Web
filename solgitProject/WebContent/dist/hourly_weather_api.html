@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Current Weather</title>
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<style type="text/css">
+.hourly {
+	margin: 0 auto;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<script>
+	// latitude, longitude, APIKey
+	$.getJSON('https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric', function(oneCall){
+
+		//위도
+		var $lat = oneCall.lat;
+		// 경도
+		var $lon = oneCall.lon;
+		// 지역
+		var $timezome = oneCall.timezome;
+		
+
+		// Hourly Weather Data
+		for(int i=0; i<oneCall.hourly.length(); i++){
+			// 시간
+			var $hourly_time = oneCall.hourly[i].dt;
+			var $hourly_now = new Date($hourly_time * 1000);
+			var $hourly_dt = $hourly_now.getFullYear() + "-" + ($hourly_now.getMonth() + 1) + "-" + $hourly_now.getDate() + " " + $hourly_now.getHours() + ":" + $hourly_now.getMinutes() + " ";
+
+			// 날씨
+			var $hourly_weather = oneCall.hourly[i].weather[0].description;
+			
+			// 날씨 아이콘
+			var $hourly_wIcon = oneCall.hourly[i].weather[0].icon;
+			
+			// 현재 기온
+			var $hourly_temp = oneCall.hourly[i].temp;
+
+			// 체감 기온
+			var $hourly_feels_like = oneCall.hourly[i].feels_like;
+			
+			// 기압
+			var $hourly_pressure = oneCall.hourly[i].pressure;
+
+			// 습도
+			var $hourly_humidity = oneCall.hourly[i].humidity;
+			
+			// 이슬점
+			var $hourly_dew_point = oneCall.hourly[i].dew_point;
+			
+			// 운량
+			var $hourly_clouds = oneCall.hourly[i].clouds;
+			
+			// 풍속
+			var $hourly_wind_speed = oneCall.hourly[i].wind_speed;
+			
+			// 풍향
+			var $hourly_wind_deg = oneCall.hourly[i].wind_deg;			
+		}
+	});
+</script>
+	<div class="hourly">
+		<div>
+			<span class="hourly_dt">현재 시간 : </span>
+		</div>
+		<div>
+			<span class="hourly_weather">현재 날씨 : </span> <span
+				class="hourly_wIcon"></span>
+		</div>
+		<div>
+			<span class="hourly_temp">기온 : </span> <span>℃</span>
+		</div>
+		<div>
+			<span class="hourly_feels_like">체감 온도 : </span> <span>℃</span>
+		</div>
+		<div>
+			<span class="hourly_pressure">기압 : </span> <span>hpa</span>
+		</div>
+		<div>
+			<span class="hourly_humidity">습도 : </span> <span>%</span>
+		</div>
+		<div>
+			<span class="hourly_dew_point">이슬점 : </span> <span>℃</span>
+		</div>
+		<div>
+			<span class="hourly_clouds">운량 : </span> <span>%</span>
+		</div>
+		<div>
+			<span class="hourly_wind_speed">풍속 : </span> <span>m/s</span>
+		</div>
+		<div>
+			<span class="hourly_wind_deg">풍향 : </span>
+		</div>
+	</div>
+	<br/><br/>
+</body>
+</html>
