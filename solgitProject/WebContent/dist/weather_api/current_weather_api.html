@@ -23,7 +23,7 @@
 						// 경도
 						var lon = oneCall.lon;
 						// 지역
-						var timezome = oneCall.timezome;
+						var timezone = oneCall.timezone;
 
 						// Current Weather Data
 						// 현재 시간
@@ -101,6 +101,7 @@
 						$('.lat').append(lat);
 						$('.lon').append(lon);
 						$('.dt').append(dt);
+						$('.timezone').append(timezone);
 						$('.sunrise').append(sunrise);
 						$('.sunset').append(sunset);
 						$('.weather').append(weather);
@@ -125,6 +126,9 @@
 <body>
 	<div class="current">
 		<h1>현재 기상</h1>
+		<div>
+			<span class=timezone>현재 장소 : </span>
+		</div>
 		<div>
 			좌표 [ <span class="lat">위도 : </span> <span class="lon"> 경도 : </span> ]
 		</div>

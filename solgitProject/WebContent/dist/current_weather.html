@@ -10,14 +10,135 @@
 		<link href="css/styles.css" rel="stylesheet" />
 		<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+		<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
 		<style>
 			#table-div {
 				margin-top: 100px;
 			}
+			@media (min-width: 768px) {
+			  .container {
+			    width: 750px;
+			  }
+			}
+			
+			@media (min-width: 992px) {
+			  .container {
+			    width: 940px;
+			  }
+			}
 		</style>
+		<script>
+			// latitude, longitude, APIKey
+			$
+				.getJSON(
+					'https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
+					function(oneCall) {
+
+						//위도
+						var lat = oneCall.lat;
+						// 경도
+						var lon = oneCall.lon;
+						// 지역
+						var timezone = oneCall.timezone;
+
+						// Current Weather Data
+						// 현재 시간
+						var time = oneCall.current.dt;
+						var now = new Date(time * 1000);
+						var dt = now.getFullYear() + "년 " + (now.getMonth() + 1)
+								+ "월 " + now.getDate() + "일 " /* + now.getHours()
+								+ ":" + now.getMinutes() + " "; */
+
+						// 일출 시간
+						var sunUp = oneCall.current.sunrise;
+						var rTime = new Date(sunUp * 1000);
+						var sunrise = rTime.getHours() + ":"
+								+ rTime.getMinutes() + " ";
+
+						// 일몰 시간
+						var sunDown = oneCall.current.sunset;
+						var sTime = new Date(sunDown * 1000);
+						var sunset = sTime.getHours() + ":"
+								+ sTime.getMinutes() + " ";
+
+						// 현재 날씨
+						var weather = oneCall.current.weather[0].description;
+
+						// 날씨 아이콘
+						var wIcon = oneCall.current.weather[0].icon;
+
+						// 현재 기온
+						var temp = oneCall.current.temp;
+
+						// 체감 기온
+						var feels_like = oneCall.current.feels_like;
+
+						// 기압
+						var pressure = oneCall.current.pressure;
+
+						// 습도
+						var humidity = oneCall.current.humidity;
+
+						// 이슬점
+						var dew_point = oneCall.current.dew_point;
+
+						// 자외선
+						var uvi = oneCall.current.uvi;
+
+						// 운량
+						var clouds = parseInt(oneCall.current.clouds / 10);
+
+						// 가시거리
+						var visibility = oneCall.current.visibility;
+
+						// 풍속
+						var wind_speed = oneCall.current.wind_speed;
+
+						// 풍향
+						var wind_deg = oneCall.current.wind_deg;
+
+						// 강수량
+						var rain;
+						if(oneCall.current.rain != null){
+							rain = oneCall.current.rain;
+						}else{
+							rain = 0;
+						}
+						
+						// 적설량
+						var snow;
+						if(oneCall.current.snow != null){
+							snow = oneCall.current.snow;
+						}else{
+							snow = 0;
+						}
+						
+
+						$('.lat').append(lat);
+						$('.lon').append(lon);
+						$('.dt').append(dt);
+						$('.timezone').append(timezone);
+						$('.sunrise').append(sunrise);
+						$('.sunset').append(sunset);
+						$('.weather').append(weather);
+						$('.wIcon')
+								.append(
+										'<img src = "http://openweathermap.org/img/wn/' + wIcon + '.png"/>')
+						$('.temp').append(temp);
+						$('.feels_like').append(feels_like);
+						$('.pressure').append(pressure);
+						$('.humidity').append(humidity);
+						$('.dew_point').append(dew_point);
+						$('.uvi').append(uvi);
+						$('.clouds').append(clouds);
+						$('.visibility').append(visibility);
+						$('.wind_speed').append(wind_speed);
+						$('.wind_deg').append(wind_deg);
+						$('.rain').append(rain);
+						$('.snow').append(snow);
+					});
+		</script>
 	</head>
-
-
 	<body class="nav-fixed">
 	<!-- 네비게이션바 코드 -->
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
@@ -80,40 +201,41 @@
 			
 			</div>
 		</nav>
+		
 		<!-- 메인 내용 작성 부분 -->
-		<div class="container-fluid" id="table-div">
 		<main>
-			<div class="container-fluid">
-				<div class="card mb-4">
-                	<div class="card-header"><i class="fas fa-table mr-1"></i>현재 날씨</div>
+			<div class="container">
+				<div class="card mb-4" id="table-div">
+                	<div class="card-header"><i class="fas fa-table mr-1"></i><span class="dt"></span></div>
                     	<div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="4">이름</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td rowspan="2" colspan="2">Tiger Nixon</td>
-                                            <td colspan="2">System Architect</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">Garrett Winters</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-			</div>
+                            <div class="table-responsive-sm">
+                            	<div class="current">
+	                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	                                    <thead>
+	                                        <tr>
+	                                            <th colspan="4"><span class=timezone></span> 의 현재 날씨</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                        <tr>
+	                                            <td rowspan="2" colspan="2"><span class="wIcon"></span><br><span class="temp">기온 : </span> <span>℃</span></td>
+	                                            <td colspan="2">최고기온</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td colspan="2">최저기온</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td><span class="clouds">운량 : </span> <span>%</span></td>
+	                                            <td><span class="wind_speed">풍속 : </span> <span>m/s</span></td>
+	                                            <td><span class="sunrise">일출 시간 : </span></td>
+	                                            <td><span class="sunset">일몰 시간 : </span></td>
+	                                        </tr>
+	                                    </tbody>
+	                                </table>
+	                        	</div>
+                        	</div>
+                    	</div>
+                </div>
 			
 		
 		<!-- Footer -->
@@ -126,11 +248,9 @@
 					</div>
 				</div>
 			</footer>
+			</div>
 		</main>
-		</div>
 		
-
-	
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
