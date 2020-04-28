@@ -11,25 +11,12 @@
 		<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 		<style>
-			#bg {
-			  position: fixed; 
-			  top: -50%; 
-			  left: -50%; 
-			  width: 200%; 
-			  height: 200%;
-			}
-			#bg img {
-			  position: absolute; 
-			  top: 0; 
-			  left: 0; 
-			  right: 0; 
-			  bottom: 0; 
-			  margin: auto; 
-			  min-width: 50%;
-			  min-height: 50%;
+			#table-div {
+				margin-top: 100px;
 			}
 		</style>
 	</head>
+
 
 	<body class="nav-fixed">
 	<!-- 네비게이션바 코드 -->
@@ -94,13 +81,38 @@
 			</div>
 		</nav>
 		<!-- 메인 내용 작성 부분 -->
-		<div class="container-fluid">
+		<div class="container-fluid" id="table-div">
 		<main>
-		
 			<div class="container-fluid">
-				<div id="bg">
-					<img src="./assets/img/mainpage3.jpg" alt="메인 사진입니다.">
-				</div>
+				<div class="card mb-4">
+                	<div class="card-header"><i class="fas fa-table mr-1"></i>현재 날씨</div>
+                    	<div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">이름</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="2" colspan="2">Tiger Nixon</td>
+                                            <td colspan="2">System Architect</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Garrett Winters</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 			</div>
 			
 		
