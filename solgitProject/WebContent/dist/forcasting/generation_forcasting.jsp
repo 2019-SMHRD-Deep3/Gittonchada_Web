@@ -93,8 +93,7 @@
 								// ¹ßÀü·®
 								var generation = 0;
 
-								$
-										.ajax({
+								$.ajax({
 											url : "http://localhost:9000/re/"
 													+ hourly_month + "/"
 													+ hourly_day + "/"
@@ -107,9 +106,9 @@
 													+ hourly_clouds,
 											method : "POST",
 											success : function(rs) {
-												solar_radiation = rs.result1;
-												solar_sunshine = rs.result2;
-												generation = rs.result3;
+												solar_radiation = rs.solar_radiation;
+												solar_sunshine = rs.solar_sunshine;
+												generation = rs.generation;
 
 												document
 														.write('<div class="hourly">');
