@@ -60,13 +60,38 @@
 								var hourly_dew_point = oneCall.hourly[index].dew_point;
 
 								// 운량
-								var hourly_clouds = oneCall.hourly[index].clouds;
+								var hourly_clouds = parseInt(oneCall.hourly[index].clouds / 10);
 
 								// 풍속
 								var hourly_wind_speed = oneCall.hourly[index].wind_speed;
 
 								// 풍향
 								var hourly_wind_deg = oneCall.hourly[index].wind_deg;
+
+								// 강수량
+								var hourly_rain;
+								if (oneCall.hourly[index].rain != null) {
+									hourly_rain = oneCall.hourly[index].rain;
+								} else {
+									hourly_rain = 0;
+								}
+
+								// 적설량
+								var hourly_snow;
+								if (oneCall.hourly[index].snow != null) {
+									hourly_snow = oneCall.hourly[index].snow;
+								} else {
+									hourly_snow = 0;
+								}
+
+								// 일사량
+								var solar_radiation = 0;
+
+								// 일조량
+								var solar_sunshine = 0;
+
+								// 발전량
+								var generation = 0;
 
 								$
 										.ajax({
@@ -82,181 +107,65 @@
 													+ hourly_clouds,
 											method : "POST",
 											success : function(rs) {
+												solar_radiation = rs.result1;
+												solar_sunshine = rs.result2;
+												generation = rs.result3;
 
-												if (rs.result1 == 1) {
-													$('#result1').text(
-															'#명동, 남대문, 북창');
-													$('#result1').attr('style',
-															"display:inline");
-													url1 = 'K_MD.jsp?act='
-															+ act;
-													$('#result1').on('click',
-															popupPage1);
-												}
-												if (rs.result2 == 1) {
-													$('#result2')
-															.text(
-																	'#이태원(이태원세계음식거리, 한남동)');
-													$('#result2').attr('style',
-															"display:inline");
-													url2 = 'Main.html?act='
-															+ act;
-													$('#result2').on('click',
-															popupPage2);
-												}
-												if (rs.result3 == 1) {
-													$('#result3').text(
-															'#동대문 패션타운');
-													$('#result3').attr('style',
-															"display:inline");
-													url3 = 'K_Dongdaemun.jsp?act='
-															+ act;
-													$('#result3').on('click',
-															popupPage3);
-												}
-												if (rs.result4 == 1) {
-													$('#result4').text(
-															'#종로, 청계');
-													$('#result4').attr('style',
-															"display:inline");
-													url4 = 'K_Jong-ro.jsp?act='
-															+ act;
-													$('#result4').on('click',
-															popupPage4);
-												}
-												if (rs.result5 == 1) {
-													$('#result5').text('#잠실');
-													$('#result5').attr('style',
-															"display:inline");
-													url5 = 'Main.html?act='
-															+ act;
-													$('#result5').on('click',
-															popupPage5);
-												}
-												if (rs.result6 == 1) {
-													$('#result6').text('#코엑스');
-													$('#result6').attr('style',
-															"display:inline");
-													url6 = 'Main.html?act='
-															+ act
-													$('#result6').on('click',
-															popupPage6);
-												}
-												if (rs.result7 == 1) {
-													$('#result7').text(
-															'#여의도(63빌딩)');
-													$('#result7').attr('style',
-															"display:inline");
-													url7 = 'Main.html?act='
-															+ act
-													$('#result7').on('click',
-															popupPage7);
-												}
-												if (rs.result8 == 1) {
-													$('#result8').text(
-															'#한강, 유람선');
-													$('#result8').attr('style',
-															"display:inline");
-													url8 = 'Main.html?act='
-															+ act
-													$('#result8').on('click',
-															popupPage8);
-												}
-												if (rs.result9 == 1) {
-													$('#result9').text(
-															'#광화문 광장');
-													$('#result9').attr('style',
-															"display:inline");
-													url9 = 'Main.html?act='
-															+ act
-													$('#result9').on('click',
-															popupPage9);
-												}
-												if (rs.result10 == 1) {
-													$('#result10').text(
-															'#신촌, 홍대주변');
-													$('#result10').attr(
-															'style',
-															"display:inline");
-													url10 = 'Main.html?act='
-															+ act
-													$('#result10').on('click',
-															popupPage10);
-												}
-												if (rs.result11 == 1) {
-													$('#result11').text(
-															'#DMC, 월드컵경기장');
-													$('#result11').attr(
-															'style',
-															"display:inline");
-													url11 = 'Main.html?act='
-															+ act
-													$('#result11').on('click',
-															popupPage11);
-												}
-												if (rs.result12 == 1) {
-													$('#result12').text(
-															'#청담동, 압구정동');
-													$('#result12').attr(
-															'style',
-															"display:inline");
-													url12 = 'Main.html?act='
-															+ act
-													$('#result12').on('click',
-															popupPage12);
-												}
-												if (rs.result13 == 1) {
-													$('#result13')
-															.text('#가로수길');
-													$('#result13').attr(
-															'style',
-															"display:inline");
-													url13 = 'Main.html?act='
-															+ act
-													$('#result13').on('click',
-															popupPage13);
-												}
-												if (rs.result14 == 1) {
-													$('#result14').text('#강남역');
-													$('#result14').attr(
-															'style',
-															"display:inline");
-													url14 = 'Main.html?act='
-															+ act
-													$('#result13').on('click',
-															popupPage14);
-													//$('#result14').attr('onclick', "location='"+url14+ "'" );
-												}
+												document
+														.write('<div class="hourly">');
+												document.write('<div>현재 시간 : ',
+														hourly_dt, '</div>');
+												document.write('<div>현재 날씨 : ',
+														hourly_weather);
+												document
+														.write('<img src = "http://openweathermap.org/img/wn/' + hourly_wIcon + '.png"/></div>');
+												document.write('<div>기온 : ',
+														hourly_temp, '℃</div>');
+												document.write('<div>체감 온도 : ',
+														hourly_feels_like,
+														'℃</div>');
+												document.write('<div>기압 : ',
+														hourly_pressure,
+														'hpa</div>');
+												document.write('<div>습도 : ',
+														hourly_humidity,
+														'%</div>');
+												document.write('<div>이슬점 : ',
+														hourly_dew_point,
+														'℃</div>');
+												document.write('<div>운량 : ',
+														hourly_clouds,
+														'%</div>');
+												document.write('<div>풍속 : ',
+														hourly_wind_speed,
+														'm/s</div>');
+												document.write('<div>풍향 : ',
+														hourly_wind_deg,
+														'</div>');
+												document
+														.write('<div>강수량 : ',
+																hourly_rain,
+																'mm</div>');
+												document
+														.write('<div>적설량 : ',
+																hourly_snow,
+																'mm</div>');
+												document.write('<div>일사량 : ',
+														solar_radiation,
+														'MJ/m2</div>');
+												document.write('<div>일조량 : ',
+														solar_sunshine,
+														'hr</div>');
+												document
+														.write(
+																'<div>예상 발전량 : ',
+																generation,
+																'kWh</div>');
+												document
+														.write('</div></br></br>');
 
-												$('#seoul')
-														.attr('style',
-																"margin: auto; text-align: center;");
 											}
 										});
-
-								document.write('<div class="hourly">');
-								document.write('<div>현재 시간 : ', hourly_dt,
-										'</div>');
-								document.write('<div>현재 날씨 : ', hourly_weather);
-								document
-										.write('<img src = "http://openweathermap.org/img/wn/' + hourly_wIcon + '.png"/></div>');
-								document.write('<div>기온 : ', hourly_temp,
-										'℃</div>');
-								document.write('<div>체감 온도 : ',
-										hourly_feels_like, '℃</div>');
-								document.write('<div>기압 : ', hourly_pressure,
-										'hpa</div>');
-								document.write('<div>습도 : ', hourly_humidity,
-										'%</div>');
-								document.write('<div>이슬점 : ', hourly_dew_point,
-										'℃</div>');
-								document.write('<div>운량 : ', hourly_clouds,
-										'%</div>');
-								document.write('<div>풍속 : ', hourly_wind_speed,
-										'm/s</div>');
-								document.write('<div>풍향 : ', hourly_wind_deg,
-										'</div>');
-								document.write('</div></br></br>');
 							}
 						});
 	</script>

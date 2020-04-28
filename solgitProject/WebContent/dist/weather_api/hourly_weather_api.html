@@ -50,13 +50,29 @@
 							var hourly_dew_point = oneCall.hourly[index].dew_point;
 
 							// 운량
-							var hourly_clouds = oneCall.hourly[index].clouds;
-
+							var hourly_clouds = parseInt(oneCall.hourly[index].clouds / 10);
+							
 							// 풍속
 							var hourly_wind_speed = oneCall.hourly[index].wind_speed;
 
 							// 풍향
 							var hourly_wind_deg = oneCall.hourly[index].wind_deg;
+							
+							// 강수량
+							var hourly_rain;
+							if(oneCall.hourly[index].rain != null){
+								hourly_rain = oneCall.hourly[index].rain;
+							}else{
+								hourly_rain = 0;
+							}
+							
+							// 적설량
+							var hourly_snow;
+							if(oneCall.hourly[index].snow != null){
+								hourly_snow = oneCall.hourly[index].snow;
+							}else{
+								hourly_snow = 0;
+							}
 
 							document.write('<div class="hourly">');
 							document.write('<div>현재 시간 : ', hourly_dt, '</div>');
@@ -70,6 +86,8 @@
 							document.write('<div>운량 : ', hourly_clouds, '%</div>');
 							document.write('<div>풍속 : ', hourly_wind_speed, 'm/s</div>');
 							document.write('<div>풍향 : ', hourly_wind_deg, '</div>');
+							document.write('<div>강수량 : ', hourly_rain, 'mm</div>');
+							document.write('<div>적설량 : ', hourly_snow, 'mm</div>');
 							document.write('</div></br></br>');
 						}
 					});
