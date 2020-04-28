@@ -13,93 +13,112 @@
 </head>
 <script>
 	// latitude, longitude, APIKey
-	$.getJSON(
+	$
+			.getJSON(
 					'https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
 					function(oneCall) {
 
 						//위도
-						var $lat = oneCall.lat;
+						var lat = oneCall.lat;
 						// 경도
-						var $lon = oneCall.lon;
+						var lon = oneCall.lon;
 						// 지역
-						var $timezome = oneCall.timezome;
+						var timezome = oneCall.timezome;
 
 						// Current Weather Data
 						// 현재 시간
-						var $time = oneCall.current.dt;
-						var $now = new Date($time * 1000);
-						var $dt = $now.getFullYear() + "-"
-								+ ($now.getMonth() + 1) + "-" + $now.getDate()
-								+ " " + $now.getHours() + ":"
-								+ $now.getMinutes() + " ";
+						var time = oneCall.current.dt;
+						var now = new Date(time * 1000);
+						var dt = now.getFullYear() + "-" + (now.getMonth() + 1)
+								+ "-" + now.getDate() + " " + now.getHours()
+								+ ":" + now.getMinutes() + " ";
 
 						// 일출 시간
-						var $sunUp = oneCall.current.sunrise;
-						var $rTime = new Date($sunUp * 1000);
-						var $sunrise = $rTime.getHours() + ":"
-								+ $rTime.getMinutes() + " ";
+						var sunUp = oneCall.current.sunrise;
+						var rTime = new Date(sunUp * 1000);
+						var sunrise = rTime.getHours() + ":"
+								+ rTime.getMinutes() + " ";
 
 						// 일몰 시간
-						var $sunDown = oneCall.current.sunset;
-						var $sTime = new Date($sunDown * 1000);
-						var $sunset = $sTime.getHours() + ":"
-								+ $sTime.getMinutes() + " ";
+						var sunDown = oneCall.current.sunset;
+						var sTime = new Date(sunDown * 1000);
+						var sunset = sTime.getHours() + ":"
+								+ sTime.getMinutes() + " ";
 
 						// 현재 날씨
-						var $weather = oneCall.current.weather[0].description;
+						var weather = oneCall.current.weather[0].description;
 
 						// 날씨 아이콘
-						var $wIcon = oneCall.current.weather[0].icon;
+						var wIcon = oneCall.current.weather[0].icon;
 
 						// 현재 기온
-						var $temp = oneCall.current.temp;
+						var temp = oneCall.current.temp;
 
 						// 체감 기온
-						var $feels_like = oneCall.current.feels_like;
+						var feels_like = oneCall.current.feels_like;
 
 						// 기압
-						var $pressure = oneCall.current.pressure;
+						var pressure = oneCall.current.pressure;
 
 						// 습도
-						var $humidity = oneCall.current.humidity;
+						var humidity = oneCall.current.humidity;
 
 						// 이슬점
-						var $dew_point = oneCall.current.dew_point;
+						var dew_point = oneCall.current.dew_point;
 
 						// 자외선
-						var $uvi = oneCall.current.uvi;
+						var uvi = oneCall.current.uvi;
 
 						// 운량
-						var $clouds = oneCall.current.clouds;
+						var clouds = parseInt(oneCall.current.clouds / 10);
 
 						// 가시거리
-						var $visibility = oneCall.current.visibility;
+						var visibility = oneCall.current.visibility;
 
 						// 풍속
-						var $wind_speed = oneCall.current.wind_speed;
+						var wind_speed = oneCall.current.wind_speed;
 
 						// 풍향
-						var $wind_deg = oneCall.current.wind_deg;
+						var wind_deg = oneCall.current.wind_deg;
 
-						$('.lat').append($lat);
-						$('.lon').append($lon);
-						$('.dt').append($dt);
-						$('.sunrise').append($sunrise);
-						$('.sunset').append($sunset);
-						$('.weather').append($weather);
+						// 강수량
+						var rain;
+						if(oneCall.current.rain != null){
+							rain = oneCall.current.rain;
+						}else{
+							rain = 0;
+						}
+						
+						// 적설량
+						var snow;
+						if(oneCall.current.snow != null){
+							snow = oneCall.current.snow;
+						}else{
+							snow = 0;
+						}
+						
+
+						$('.lat').append(lat);
+						$('.lon').append(lon);
+						$('.dt').append(dt);
+						$('.sunrise').append(sunrise);
+						$('.sunset').append(sunset);
+						$('.weather').append(weather);
 						$('.wIcon')
 								.append(
-										'<img src = "http://openweathermap.org/img/wn/' + $wIcon + '.png"/>')
-						$('.temp').append($temp);
-						$('.feels_like').append($feels_like);
-						$('.pressure').append($pressure);
-						$('.humidity').append($humidity);
-						$('.dew_point').append($dew_point);
-						$('.uvi').append($uvi);
-						$('.clouds').append($clouds);
-						$('.visibility').append($visibility);
-						$('.wind_speed').append($wind_speed);
-						$('.wind_deg').append($wind_deg);
+										'<img src = "http://openweathermap.org/img/wn/' + wIcon + '.png"/>')
+						$('.temp').append(temp);
+						$('.feels_like').append(feels_like);
+						$('.pressure').append(pressure);
+						$('.humidity').append(humidity);
+						$('.dew_point').append(dew_point);
+						$('.uvi').append(uvi);
+						$('.clouds').append(clouds);
+						$('.visibility').append(visibility);
+						$('.wind_speed').append(wind_speed);
+						$('.wind_deg').append(wind_deg);
+						$('.rain').append(rain);
+						$('.snow').append(snow);
 					});
 </script>
 
@@ -150,6 +169,12 @@
 		</div>
 		<div>
 			<span class="wind_deg">풍향 : </span>
+		</div>
+		<div>
+			<span class="rain">강수량 : </span> <span>mm</span>
+		</div>
+		<div>
+			<span class="snow">적설량 : </span> <span>mm</span>
 		</div>
 	</div>
 </body>
