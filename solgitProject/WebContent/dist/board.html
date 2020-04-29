@@ -138,24 +138,22 @@ a {
 						</tr>
 					</thead>
 					<tbody>
+					<script>
+					BoardDAO dao = new BoardDAO();
+					ArrayList<BoardDAO> list = dao.selectAll();
+					for(var i =list.size()-1;i>=0;i--){
+						document.write("<tr><th scope='row'>");
+						list.get(i).get
+					}
 						<tr>
 							<th scope="row">1</th>
 							<td>Mark</td>
 							<td><a href="post.html">게시글 제목 클릭</a></td>
 							<td>@mdo</td>
 						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>Jacob</td>
-							<td>Thornton</td>
-							<td>@fat</td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>Larry</td>
-							<td>the Bird</td>
-							<td>@twitter</td>
-						</tr>
+						
+						</script>
+					
 					</tbody>
 				</table>
 				<!-- 테이블 끝	 -->
