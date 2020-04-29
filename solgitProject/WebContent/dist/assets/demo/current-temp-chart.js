@@ -7,7 +7,7 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["", "1시간", "2시간", "3시간", "4시간", "5시간", "6시간", "7시간", "8시간", "9시간", "10시간", "11시간", "12시간"],
+    labels: ["0", "1", "2시", "4시", "2시", "1시", "2시", "1시", "2시", "1시", "2시", "1시", "2시"], // time[0]+"시",time[1]+"시",time[2]+"시",time[3]+"시",time[4]+"시",time[5]+"시",time[6]+"시",time[7]+"시",time[8]+"시",time[9]+"시",time[10]+"시",time[11]+"시",time[12]+"시"
     datasets: [{
       label: "기온",
       lineTension: 0.3,
@@ -20,7 +20,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 1,
-      data: [-10, -5, 0, 5, 10, 12, 13, 15, 20, 25, 24, 15, 10],
+      data: [0, -5, 0, 5, 10, 12, 13, 15, 20, 25, 24, 15, 10],
     }],
   },
   options: {
