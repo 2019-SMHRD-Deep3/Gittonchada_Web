@@ -3,13 +3,13 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Area Chart Example
-var ctx = document.getElementById("시간별 기온");
+var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
+    labels: ["", "1시간", "2시간", "3시간", "4시간", "5시간", "6시간", "7시간", "8시간", "9시간", "10시간", "11시간", "12시간"],
     datasets: [{
-      label: "Sessions",
+      label: "기온",
       lineTension: 0.3,
       backgroundColor: "rgba(2,117,216,0.2)",
       borderColor: "rgba(2,117,216,1)",
@@ -19,28 +19,28 @@ var myLineChart = new Chart(ctx, {
       pointHoverRadius: 5,
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
-      pointBorderWidth: 2,
-      data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451],
+      pointBorderWidth: 1,
+      data: [-10, -5, 0, 5, 10, 12, 13, 15, 20, 25, 24, 15, 10],
     }],
   },
   options: {
     scales: {
       xAxes: [{
         time: {
-          unit: 'date'
+          unit: '시간'
         },
         gridLines: {
-          display: false
+          display: true
         },
         ticks: {
-          maxTicksLimit: 7
+          maxTicksLimit: 13
         }
       }],
       yAxes: [{
         ticks: {
-          min: 0,
-          max: 40000,
-          maxTicksLimit: 5
+          min: -20,
+          max: 40,
+          maxTicksLimit: 10
         },
         gridLines: {
           color: "rgba(0, 0, 0, .125)",
@@ -48,7 +48,7 @@ var myLineChart = new Chart(ctx, {
       }],
     },
     legend: {
-      display: false
+      display: true
     }
   }
 });

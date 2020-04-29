@@ -1,19 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <title>Insert title here</title>
 <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
-<style type="text/css">
-.hourly {
-	margin: 0 auto;
-	text-align: center;
-}
-</style>
-</head>
-<body>
-<div class="hourly">
-	<script>
+<script>
 	$.getJSON(
 					'https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
 					function(oneCall) {
@@ -89,9 +82,25 @@
 							document.write('<div>강수량 : ', hourly_rain, 'mm</div>');
 							document.write('<div>적설량 : ', hourly_snow, 'mm</div>');
 							document.write('</div></br></br>');
+							
+							
 						}
 					});
 </script>
+<script src="../assets/demo/current-temp-chart.js">
+	let x = [10,20];
+</script>
+<style type="text/css">
+.hourly {
+	margin: 0 auto;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="hourly">
+
+	
 </div>
 </body>
 </html>
