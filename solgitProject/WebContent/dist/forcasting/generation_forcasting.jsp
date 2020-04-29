@@ -22,7 +22,8 @@
 	<script>
 		$
 				.getJSON(
-						'https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
+						'https://api.openweathermap.org/data/2.5/onecall?lat=35.15&lon=126.92&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
+						// 광주 기상정보
 						function(oneCall) {
 							// Hourly Weather Data
 
@@ -110,9 +111,15 @@
 												+ hourly_clouds,
 										method : "POST",
 										success : function(rs) {
-											solar_radiation = rs.solar_radiation;
-											solar_sunshine = rs.solar_sunshine;
-											solar_generation = rs.solar_generation;
+											if (rs.solar_radiation > 0) {
+												solar_radiation = rs.solar_radiation;
+											}
+											if (rs.solar_sunshine > 0) {
+												solar_sunshine = rs.solar_sunshine;
+											}
+											if (rs.solar_generation > 0) {
+												solar_generation = parseInt(rs.solar_generation);
+											}
 
 											document
 													.write('<div class="hourly">');
@@ -151,9 +158,13 @@
 													solar_radiation.toFixed(2),
 													'MJ/m2</div>');
 											document.write('<div>일조량 : ',
-													solar_sunshine.toFixed(2), 'hr</div>');
-											document.write('<div>예상 발전량 : ',
-													solar_generation.toFixed(2), 'kWh</div>');
+													solar_sunshine.toFixed(2),
+													'hr</div>');
+											document
+													.write(
+															'<div>예상 발전량 : ',
+															solar_generation,
+															'kWh</div>');
 											document.write('</div></br></br>');
 
 										}
