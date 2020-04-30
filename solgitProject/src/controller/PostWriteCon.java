@@ -4,13 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.model.MemberDTO;
-import com.model.PostDAO;
-import com.model.PostDTO;
 
 import front.ICommand;
+import model.BoardDAO;
+import model.BoardDTO;
 
-public class ReadPostCon implements ICommand {
+public class PostWriteCon implements ICommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -34,7 +33,22 @@ public class ReadPostCon implements ICommand {
 //		}else {
 //			System.out.println("실패");
 //		}
-		moveURL = "community.jsp";
+		System.out.println("PostWriteCon 입장");
+		String board_id=request.getParameter("board_id");
+		System.out.println(board_id);
+		String board_pw=request.getParameter("board_pw");
+		System.out.println(board_pw);
+		String board_title=request.getParameter("board_title");
+		System.out.println(board_title);
+		String board_content=request.getParameter("board_content");
+		System.out.println(board_content);
+		String board_lock=request.getParameter("board_lock");
+		System.out.println(board_lock);
+		
+		BoardDTO dto = new BoardDTO(board_id, board_pw, board_title, board_content, board_lock);
+		BoardDAO dao = new BoardDAO();
+		dao.insertPost(dto);
+		moveURL = "board2.jsp";
 		return moveURL;
 	}
 

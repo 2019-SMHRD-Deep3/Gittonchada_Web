@@ -53,14 +53,13 @@ public class BoardDAO {
 			try {
 
 				getConnection();
-
-				String sql = "insert into POST values(BOARD_IDX.NEXTVAL,?,?,?,?,SYSDATE,?,?)";
+				String sql = "insert into board values(BOARD_IDX.NEXTVAL,?,?,?,?,SYSDATE,?,?,?)";
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, dto.getBoard_id());
 				psmt.setString(2, dto.getBoard_pw());
 				psmt.setString(3, dto.getBoard_title());
 				psmt.setString(4, dto.getBoard_content());
-				psmt.setInt(5, dto.getBoard_num());
+				psmt.setInt(5, 0);
 				psmt.setString(6, dto.getLock_post());
 				psmt.setInt(7, dto.getMember_seq());
 				cnt = psmt.executeUpdate();
@@ -74,15 +73,14 @@ public class BoardDAO {
 
 		}
 
-		// 게시글 작성 내역
-		public ArrayList<BoardDTO> selectPost(String id) {
+		// 게시글 리스트 불러오기
+		public ArrayList<BoardDTO> selectPost() {
 			ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
 
 			try {
 				getConnection();
-				String sql = "select * from BOARD where BOARD_ID=?";
+				String sql = "select * from BOARD";
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, id);
 				rs = psmt.executeQuery();
 				while (rs.next()) {
 					int board_idx = rs.getInt(1);
@@ -91,21 +89,52 @@ public class BoardDAO {
 					String board_title = rs.getString(4);
 					String board_content = rs.getString(5);
 					String board_date = rs.getString(6);
-					int board_num = rs.getInt(6);
-					
+					int board_num = rs.getInt(7);
+					String lock_post=rs.getString(8);
+					int member_seq = rs.getInt(9);
 
-					BoardDTO dto = new BoardDTO(board_idx, board_id, board_pw, board_title, board_content, board_date, board_num);
+					BoardDTO dto = new BoardDTO(board_idx, board_id, board_pw, board_title, board_content, board_date, board_num, lock_post, member_seq);
 					list.add(dto);
 				}
 
 			} catch (SQLException e) {
-
 				e.printStackTrace();
 			} finally {
 				close();
 			}
 
 			return list;
+		}
+		
+		// 게시글 작성 내역 불러오기
+		public BoardDTO selectOnePost(int idx) {
+			BoardDTO dto = null;
+			try {
+				getConnection();
+				String sql = "select * from BOARD where board_idx=?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, idx);
+				rs = psmt.executeQuery();
+				while(rs.next()) {
+					int board_idx = rs.getInt(1);
+					String board_id = rs.getString(2);
+					String board_pw = rs.getString(3);
+					String board_title = rs.getString(4);
+					String board_content = rs.getString(5);
+					String board_date = rs.getString(6);
+					int board_num = rs.getInt(7);
+					String lock_post=rs.getString(8);
+					int member_seq = rs.getInt(9);
+					//System.out.println(board_idx);
+					dto = new BoardDTO(board_idx, board_id, board_pw, board_title, board_content, board_date, board_num, lock_post, member_seq);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			return dto;
 		}
 	
 	

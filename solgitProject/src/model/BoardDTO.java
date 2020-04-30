@@ -12,27 +12,39 @@ public class BoardDTO {
 	private String lock_post;
 	private int member_seq;
 	
-	public BoardDTO(int board_idx, String board_id, String board_pw, String board_title, String board_content, String board_date,
-			int board_num, String lock_num, int member_seq) {
+
+
+	public BoardDTO(int board_idx, String board_id, String board_pw, String board_title, String board_content,
+			String board_date, int board_num, String lock_post, int member_seq) {
 		super();
 		this.board_idx = board_idx;
 		this.board_id = board_id;
 		this.board_pw = board_pw;
 		this.board_title = board_title;
 		this.board_content = board_content;
+		this.board_date = board_date;
 		this.board_num = board_num;
-		this.lock_post = lock_num;
+		this.lock_post = lock_post;
 		this.member_seq = member_seq;
 	}
-
-	public BoardDTO(int board_idx, String board_id, String board_pw, String board_title, String board_content,
-			String board_date, int board_num) {
-		this.board_idx = board_idx;
+/// 게시글 작성하기
+	public BoardDTO(String board_id, String board_pw, String board_title, String board_content,String lock_post,
+			 int board_num) {
+		//this.board_idx = board_idx;
 		this.board_id = board_id;
 		this.board_pw = board_pw;
 		this.board_title = board_title;
 		this.board_content = board_content;
-		this.board_num = board_num;
+		this.lock_post = lock_post;
+	}
+/// 게시글 작성하기2
+	public BoardDTO(String board_id, String board_pw, String board_title, String board_content,String lock_post) {
+		//this.board_idx = board_idx;
+		this.board_id = board_id;
+		this.board_pw = board_pw;
+		this.board_title = board_title;
+		this.board_content = board_content;
+		this.lock_post = lock_post;
 	}
 
 	public int getBoard_idx() {
@@ -97,6 +109,18 @@ public class BoardDTO {
 
 	public void setMember_seq(int member_seq) {
 		this.member_seq = member_seq;
+	}
+
+	public String getBoard_date() {
+		return board_date;
+	}
+
+	public void setBoard_date(String board_date) {
+		this.board_date = board_date;
+	}
+
+	public void setLock_post(String lock_post) {
+		this.lock_post = lock_post;
 	}
 	
 }

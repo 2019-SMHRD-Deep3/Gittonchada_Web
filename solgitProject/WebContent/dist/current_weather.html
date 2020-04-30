@@ -7,9 +7,9 @@
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 		<title>SOLGIT-솔깃한 정보 공유 플랫폼</title>
-		<link href="css/styles.css" rel="stylesheet" />
-		<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+		<link href="css/styles.css?ver=1" rel="stylesheet" />
+		<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css?ver=1" rel="stylesheet" crossorigin="anonymous" />
+		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js?ver=1" crossorigin="anonymous"></script>
 		<style>
 			#table-div {
 				margin-top: 100px;
@@ -261,81 +261,12 @@
 						$('.snow').append(snow);
 					});
 		</script>
-		<script>
-		$.getJSON(
-					'https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
-					function(oneCall) {
-						var times = [];
-						var temps = [];
-						// Hourly Weather Data
-						for (var index = 0; index < oneCall.hourly.length; index++) {
-							// 시간
-							var hourly_time = oneCall.hourly[index].dt;
-							var hourly_now = new Date(hourly_time * 1000);
-							var hourly_dt = hourly_now.getHours()
-
-							// 날씨
-							var hourly_weather = oneCall.hourly[index].weather[0].description;
-
-							// 날씨 아이콘
-							var hourly_wIcon = oneCall.hourly[index].weather[0].icon;
-
-							// 현재 기온
-							var hourly_temp = oneCall.hourly[index].temp;
-
-							// 체감 기온
-							var hourly_feels_like = oneCall.hourly[index].feels_like;
-
-							// 기압
-							var hourly_pressure = oneCall.hourly[index].pressure;
-
-							// 습도
-							var hourly_humidity = oneCall.hourly[index].humidity;
-
-							// 이슬점
-							var hourly_dew_point = oneCall.hourly[index].dew_point;
-
-							// 운량
-							var hourly_clouds = parseInt(oneCall.hourly[index].clouds / 10);
-							
-							// 풍속
-							var hourly_wind_speed = oneCall.hourly[index].wind_speed;
-
-							// 풍향
-							var hourly_wind_deg = oneCall.hourly[index].wind_deg;
-							
-							// 강수량
-							var hourly_rain;
-							if(oneCall.hourly[index].rain != null){
-								hourly_rain = oneCall.hourly[index].rain;
-							}else{
-								hourly_rain = 0;
-							}
-							
-							// 적설량
-							var hourly_snow;
-							if(oneCall.hourly[index].snow != null){
-								hourly_snow = oneCall.hourly[index].snow;
-							}else{
-								hourly_snow = 0;
-							}
-							
-							times.push(hourly_dt);
-							temps.push(hourly_temp);
-						}
-						console.log(times);
-						console.log(temps);
-					});
-		
-				var timeStr = times.join();
-				var tempStr = temps.join();
-		</script>
 		<script language="javascript">
 		    function showClock(){
 		        var currentDate = new Date();
 		        var divClock = document.getElementById("divClock");
 		         
-		        var msg = "업데이트 된 시각 : "+currentDate.getHours()+"시 "
+		        var msg = "현재 시각 : "+currentDate.getHours()+"시 "
 		        msg += currentDate.getMinutes()+"분 ";
 		        msg += currentDate.getSeconds()+"초";
 		         
@@ -343,16 +274,34 @@
 		        setTimeout(showClock,1000);
 		    }
 		</script>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/current-temp-chart.js">
-        
-        </script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/datatables-demo.js"></script>
+		<script>
+		$.getJSON(
+			'https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
+			function(oneCall) {
+				// Hourly Weather Data
+				for (var index = 0; index < oneCall.hourly.length; index++) {
+	
+					// 시간
+					var hourly_time = oneCall.hourly[index].dt;
+					var hourly_now = new Date(hourly_time * 1000);
+					var hourly_dt = hourly_now.getFullYear() + "-"
+							+ (hourly_now.getMonth() + 1) + "-"
+							+ hourly_now.getDate() + " "
+							+ hourly_now.getHours() + ":"
+							+ hourly_now.getMinutes() + " ";
+					
+					// 현재 기온
+					var hourly_temp = oneCall.hourly[index].temp;
+					
+				}
+			});
+		</script>
+		
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js?ver=1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js?ver=1" crossorigin="anonymous"></script>
+        <script src="js/scripts.js?ver=1"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js?ver=1" crossorigin="anonymous"></script>
+		<script src="assets/demo/current-temp-chart.js?ver=1"></script>        
+		<script src="assets/demo/datatables-demo.js?ver=1"></script>
     </body>
 </html>

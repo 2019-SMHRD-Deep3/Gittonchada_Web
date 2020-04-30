@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.controller.JoinCon;
 import com.controller.LoginCon;
-
+import controller.PostWriteCon;
 
 /**
  * Servlet implementation class DoFrontController
@@ -26,12 +27,13 @@ public class DoFrontController extends HttpServlet {
 		map.put("LoginService.do", new LoginCon());
 		map.put("JoinService.do", new JoinCon());
 		// map.put("InsertPost", new ReadPostCon());
+		map.put("dist/PostWriteCon.do", new PostWriteCon());
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
+
 		System.out.println("FrontController ¿‘¿Â!");
 		
 		String requestURI = request.getRequestURI();

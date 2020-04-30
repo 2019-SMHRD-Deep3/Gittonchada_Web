@@ -1,0 +1,40 @@
+DROP TABLE member CASCADE CONSTRAINT;
+DROP SEQUENCE member_IDX;
+CREATE TABLE member
+(
+    member_Idx        NUMBER           NOT NULL, 
+    member_Email         VARCHAR2(20)     NOT NULL, 
+    member_PW         VARCHAR2(20)    NOT NULL, 
+    member_TEL      NUMBER     		NOT NULL, 
+    member_name    VARCHAR(1000)    NOT NULL, 
+    member_Date       DATE             NOT NULL, 
+    CONSTRAINT MEMBER_PK PRIMARY KEY (member_Idx)
+);
+
+CREATE SEQUENCE member_Idx
+START WITH 1
+INCREMENT BY 1;
+
+INSERT INTO member
+VALUES
+    (
+    member_Idx.nextval,
+    'Member_email 1', 
+    'Member_pw 1', 
+    010-0000-0000, 
+    'Member_name 1', 
+    '05/03/23'
+    );
+
+INSERT INTO member
+VALUES
+    (
+    member_Idx.nextval,
+    'admin', 
+    '1111', 
+    010-0000-0000, 
+    'Member_name 1', 
+    '05/03/23'
+    );
+    
+select * from member;
