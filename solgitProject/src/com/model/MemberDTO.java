@@ -30,10 +30,22 @@ public class MemberDTO {
 		this.manager = manager;
 	}
 	
+	
+	
 	// 로그인
 	public MemberDTO(String email, String pw) {
 		this.email = email;
 		this.pw = pw;
+	}
+
+
+	public MemberDTO(String email, String pw, String birth, String name, String phone, int i) {
+		this.email = email;
+		this.pw = pw;
+		this.birth = birth;
+		this.name = name;
+		this.phone = phone;
+		this.manager = 1;
 	}
 
 	// 겟터 & 셋터

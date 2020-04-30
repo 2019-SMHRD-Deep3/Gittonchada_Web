@@ -56,9 +56,9 @@ CREATE TABLE member
     member_Seq        NUMBER           NOT NULL, 
     member_Email         VARCHAR2(20)     NOT NULL, 
     member_PW         VARCHAR2(20)    NOT NULL, 
-    member_Phone      NUMBER     		NOT NULL, 
+    member_birth       DATE             NOT NULL, 
+    member_Phone      VARCHAR2(20)     		NOT NULL, 
     member_name    VARCHAR(1000)    NOT NULL, 
-    member_Date       DATE             NOT NULL, 
     member_Manager	    	NUMBER		    	NULL,
     CONSTRAINT MEMBER_PK1 PRIMARY KEY (member_Seq)
 );
@@ -69,11 +69,11 @@ INSERT INTO member
 VALUES
     (
     member_Seq.nextval,
-    'Member_email 1', 
-    'Member_pw 1', 
-    010-0000-0000, 
-    'Member_name 1', 
+    'M@a.com', 
+    '4444', 
     '05/03/23',
+    010-1111-0000, 
+    'Member_name 1', 
     1
     );
 
@@ -83,9 +83,9 @@ VALUES
     member_Seq.nextval,
     'admin@naver.com', 
     '1', 
+    '05/03/23',
     010-0000-0000, 
     'Member_name 1', 
-    '05/03/23',
     1
     );
     

@@ -62,16 +62,16 @@ public class MemberDAO {
 		try {
 
 			getConnection();
-			String sql = "insert into MEMBER values(Member-Seq.nextval,?,?,?,?,?)";
+			String sql = "insert into MEMBER values(member_Seq.nextval,?,?,?,?,?,?)";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getEmail());
 			psmt.setString(2, dto.getPw());
 			psmt.setString(3, dto.getBirth());
 			psmt.setString(4, dto.getName());
 			psmt.setString(5, dto.getPhone());
-			// 관리자 여부 판단??
+			psmt.setInt(6, dto.getManager());
 			cnt = psmt.executeUpdate();
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -97,22 +97,18 @@ public class MemberDAO {
 			
 			
 			getConnection();
-			System.out.println("1");
 
 			String sql = "select * from MEMBER where MEMBER_EMAIL=? and MEMBER_PW=?";
-			System.out.println(sql);
 			psmt = conn.prepareStatement(sql);
-			System.out.println(psmt);
 			
 			psmt.setString(1, dto.getEmail());
 			psmt.setString(2, dto.getPw());
 			rs = psmt.executeQuery();
-			System.out.println("2");
 			
 			if (rs.next()) {
-				// rs.getString(1);
-				// rs.getString(2);
-				// rs.getString(3);
+				 rs.getString(1);
+				 rs.getString(2);
+				 rs.getString(3);
 				l_seq = rs.getString("MEMBER_SEQ");
 				l_email = rs.getString("MEMBER_EMAIL");
 				l_pw = rs.getString("MEMBER_PW");
@@ -122,10 +118,6 @@ public class MemberDAO {
 				l_manager = rs.getInt("MEMBER_MANAGER");
 				
 //				System.out.println(l_seq);
-//				System.out.println(l_email);
-//				System.out.println(l_pw);
-//				System.out.println(l_birth);
-//				System.out.println(l_name);
 //				System.out.println(l_phone);
 //				System.out.println(l_manager);
 				info = new MemberDTO(l_seq, l_email, l_pw, l_birth, l_name, l_phone, l_manager);

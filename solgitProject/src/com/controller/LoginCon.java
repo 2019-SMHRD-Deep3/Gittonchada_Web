@@ -27,6 +27,7 @@ public class LoginCon implements ICommand {
 
 		MemberDTO dto = new MemberDTO(email, pw);
 		MemberDAO dao = MemberDAO.getDAO();
+		
 		MemberDTO info = dao.login(dto);
 		
 		if (info != null) {
@@ -34,7 +35,7 @@ public class LoginCon implements ICommand {
 			session.setAttribute("info", info);
 		}
 		
-		if (request.getParameter("email") != null) {
+		if (info != null) {
 			moveURL = "mainpage.jsp";
 		}else {
 			moveURL = "login.jsp?success=False";

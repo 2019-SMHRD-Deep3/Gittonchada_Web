@@ -24,13 +24,6 @@
                  alert('로그인 실패');
       } 
    </script>
-   <!-- 회원가입 성공 판단여부   -->
-	<script language=javascript>
-
-    if ("<%=request.getParameter("joinsuccess")%>"=="False") {
-			alert('회원가입 실패');
-		}
-	</script>
     <body class="bg-primary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
@@ -47,7 +40,7 @@
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox"><input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" /><label class="custom-control-label" for="rememberPasswordCheck">비밀번호 기억하기</label></div>
                                             </div>
-                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" href="password.jsp">비밀번호를 잊어버리셨나요?</a><button type="submit" class="btn btn-primary" href="mainpage.jsp">로그인하기</button></div>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" href="password.jsp">비밀번호를 잊어버리셨나요?</a><button type="submit" class="btn btn-primary" href="#">로그인하기</button></div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
