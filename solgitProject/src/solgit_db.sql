@@ -13,12 +13,12 @@ CREATE TABLE BOARD
     Board_Idx        NUMBER           NOT NULL, 
     Board_ID         VARCHAR2(20)     NOT NULL, 
     Board_PW         VARCHAR2(20)     NULL, 
-    Board_Title      VARCHAR2(20)     NOT NULL, 
+    Board_Title      VARCHAR2(100)     NOT NULL, 
     Board_Content    VARCHAR(1000)    NOT NULL, 
     Board_Date       DATE             NOT NULL, 
     Board_Hit        NUMBER           NOT NULL, 
-    Lock_Post        CHAR(1)          NOT NULL, 
-    Member_Seq       NUMBER           NOT NULL, 
+    Lock_Post        CHAR(1)          NULL, 
+    Member_Seq       NUMBER           NULL, 
     CONSTRAINT BOARD_PK PRIMARY KEY (Board_Idx)
 );
 
@@ -36,6 +36,6 @@ VALUES
     'Board_Content 1', 
     sysdate, 
     1, 
-    'N', 
-    1);
+    'Y', 
+    null);
 select * from BOARD;
