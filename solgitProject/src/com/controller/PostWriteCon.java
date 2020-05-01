@@ -1,4 +1,4 @@
-package controller;
+package com.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,8 +6,8 @@ import javax.servlet.http.HttpSession;
 
 
 import front.ICommand;
-import model.BoardDAO;
-import model.BoardDTO;
+import com.model.BoardDAO;
+import com.model.BoardDTO;
 
 public class PostWriteCon implements ICommand {
 

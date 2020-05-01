@@ -1,5 +1,5 @@
-<%@page import="model.BoardDTO"%>
-<%@page import="model.BoardDAO"%>
+<%@page import="com.model.BoardDTO"%>
+<%@page import="com.model.BoardDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>

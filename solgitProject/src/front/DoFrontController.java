@@ -14,7 +14,7 @@ import com.controller.JoinCon;
 import com.controller.LoginCon;
 import com.controller.LogoutCon;
 
-import controller.PostWriteCon;
+import com.controller.PostWriteCon;
 
 /**
  * Servlet implementation class DoFrontController
@@ -29,7 +29,6 @@ public class DoFrontController extends HttpServlet {
 		map.put("LoginService.do", new LoginCon());
 		map.put("JoinService.do", new JoinCon());
 		map.put("LogoutService.do", new LogoutCon());
-		// map.put("InsertPost", new ReadPostCon());
 		map.put("PostWriteCon.do", new PostWriteCon());
 	}
 	

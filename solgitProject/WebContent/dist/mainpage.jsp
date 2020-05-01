@@ -71,7 +71,7 @@
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">정보 공유</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="#">공지사항</a>
-							<a class="dropdown-item" href="#">커뮤니티</a>
+							<a class="dropdown-item" href="board2.jsp">커뮤니티</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
@@ -93,8 +93,8 @@
 						if (info == null) {
 						%>
 						<a class="dropdown-item" href="login.jsp">로그인</a> 
-						<a class="dropdown-item" href="register.jsp">회원가입</a>
 						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="register.jsp">회원가입</a>
 						<%
 						} else {
 						%>
@@ -104,7 +104,7 @@
 						%>
 					</div>
 					</li>
-					<li><div style="float: right; margin-top:15%;margin-right:-50%;"><%if(info!=null){ %><%=info.getName()%>님 환영합니다.
+					<li><div style="color:white;"><%if(info!=null){ %><%=info.getName()%>님 환영합니다.
 					<%}else {%><%} %></div></li>
 				</ul>
 				
