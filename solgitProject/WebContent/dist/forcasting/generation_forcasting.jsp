@@ -29,7 +29,7 @@
 							// Hourly Weather Data
 
 							// index 시간출력
-							index = 0; // 0 : 현재시각, 1 : 1시간 뒤 ~ 47까지 있음, 셀렉 옵션 추가해서 버튼으로 구성하기!(1, 3, 6, 9, 12시간)
+							index = 11; // 0 : 현재시각, 1 : 1시간 뒤 ~ 47까지 있음, 셀렉 옵션 추가해서 버튼으로 구성하기!(1, 3, 6, 9, 12시간)
 
 							// 시간
 							var hourly_time = oneCall.hourly[index].dt;

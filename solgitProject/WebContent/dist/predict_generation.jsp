@@ -144,7 +144,32 @@
                                                 <th>강수량</th>
                                             </tr>
                                         </thead>
+<<<<<<< HEAD
                                         <tbody class = "myValue">
+=======
+                                        <tfoot>
+                                            <tr>
+                                                <th>시간</th>
+                                                <th>기온</th>
+                                                <th>습도</th>
+                                                <th>강수량</th>
+                                                <th>일사량</th>
+                                                <th>일조량</th>
+                                                <th>발전량</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        <% for (int i=0; i<48; i++) {%>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <% } %>
+>>>>>>> branch 'master' of https://github.com/2019-SMHRD-Deep3/Gittonchada_Web.git
                                         </tbody>
                                     </table>
                                 </div>
