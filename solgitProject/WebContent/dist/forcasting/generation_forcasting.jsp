@@ -19,6 +19,7 @@
 </style>
 </head>
 <body>
+<div class="hourly"></div>
 	<script>
 		$
 				.getJSON(
@@ -75,7 +76,7 @@
 							// 강수량
 							var hourly_rain;
 							if (oneCall.hourly[index].rain != null) {
-								hourly_rain = oneCall.hourly[index].rain;
+								hourly_rain = oneCall.hourly[index].rain["1h"];
 							} else {
 								hourly_rain = 0;
 							}
@@ -83,7 +84,7 @@
 							// 적설량
 							var hourly_snow;
 							if (oneCall.hourly[index].snow != null) {
-								hourly_snow = oneCall.hourly[index].snow;
+								hourly_snow = oneCall.hourly[index].snow["1h"];
 							} else {
 								hourly_snow = 0;
 							}

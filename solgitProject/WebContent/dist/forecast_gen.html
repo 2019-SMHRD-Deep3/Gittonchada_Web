@@ -127,9 +127,7 @@
                         </div>
                         
                         
-                        <table>
-                        	<tr class="current"></tr>
-                        </table>
+                       <div class="hourly"></div>
                         
                         <!-- 메인 테이블 시작 -->
                         <div class="card mb-4">
@@ -168,7 +166,6 @@
                                                 <th>발전량</th>
                                             </tr>
                                         </tfoot>
-                                        <% for (int i=0; i<48; i++) {%>
                                         <tbody>
                                             <tr>
                                                 <td>Yuri Berry</td>
@@ -180,76 +177,22 @@
                                                 <td>$675,000</td>
                                             </tr>
                                             <tr>
-                                                <td>Caesar Vance</td>
-                                                <td>Pre-Sales Support</td>
+                                                 <td>Yuri Berry</td>
+                                                <td>Chief Marketing Officer (CMO)</td>
                                                 <td>New York</td>
-                                                <td>21</td>
-                                                <td>2011/12/12</td>
-                                                <td>$106,450</td>
+                                                <td>40</td>
+                                                <td>2009/06/25</td>
+                                                <td>$675,000</td>
+                                                <td>$675,000</td>
                                             </tr>
                                             <tr>
-                                                <td>Doris Wilder</td>
-                                                <td>Sales Assistant</td>
-                                                <td>Sidney</td>
-                                                <td>23</td>
-                                                <td>2010/09/20</td>
-                                                <td>$85,600</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Angelica Ramos</td>
-                                                <td>Chief Executive Officer (CEO)</td>
-                                                <td>London</td>
-                                                <td>47</td>
-                                                <td>2009/10/09</td>
-                                                <td>$1,200,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gavin Joyce</td>
-                                                <td>Developer</td>
-                                                <td>Edinburgh</td>
-                                                <td>42</td>
-                                                <td>2010/12/22</td>
-                                                <td>$92,575</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jennifer Chang</td>
-                                                <td>Regional Director</td>
-                                                <td>Singapore</td>
-                                                <td>28</td>
-                                                <td>2010/11/14</td>
-                                                <td>$357,650</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brenden Wagner</td>
-                                                <td>Software Engineer</td>
-                                                <td>San Francisco</td>
-                                                <td>28</td>
-                                                <td>2011/06/07</td>
-                                                <td>$206,850</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fiona Green</td>
-                                                <td>Chief Operating Officer (COO)</td>
-                                                <td>San Francisco</td>
-                                                <td>48</td>
-                                                <td>2010/03/11</td>
-                                                <td>$850,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shou Itou</td>
-                                                <td>Regional Marketing</td>
-                                                <td>Tokyo</td>
-                                                <td>20</td>
-                                                <td>2011/08/14</td>
-                                                <td>$163,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Michelle House</td>
-                                                <td>Integration Specialist</td>
-                                                <td>Sidney</td>
-                                                <td>37</td>
-                                                <td>2011/06/02</td>
-                                                <td>$95,400</td>
+                                                 <td>Yuri Berry</td>
+                                                <td>Chief Marketing Officer (CMO)</td>
+                                                <td>New York</td>
+                                                <td>40</td>
+                                                <td>2009/06/25</td>
+                                                <td>$675,000</td>
+                                                <td>$675,000</td>
                                             </tr>
                                             </tbody>
                                     </table>
@@ -276,137 +219,181 @@
 		</main>
 		<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
 		<script>
-		var times = [];
-		var temps = [];
-		var hmds = [];
-		var rains = [];
-		var rads = [];
-		var suns = [];
-		var gens = [];
 		
 		
-		$
-				.getJSON(
-						'https://api.openweathermap.org/data/2.5/onecall?lat=35.15&lon=126.92&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
-						// 광주 기상정보
-						function(oneCall) {
-							
-						// Hourly Weather Data
-						for (var index = 0; index < oneCall.hourly.length; index++) {
-							// 시간
-							var hourly_time = oneCall.hourly[index].dt;
-							var hourly_now = new Date(hourly_time * 1000);
-							var hourly_dt = hourly_now.getFullYear() + "-"
-									+ (hourly_now.getMonth() + 1) + "-"
-									+ hourly_now.getDate() + " "
-									+ hourly_now.getHours() + ":"
-									+ hourly_now.getMinutes() + " ";
-							var hourly_month = hourly_now.getMonth() + 1;
-							var hourly_day = hourly_now.getDate();
-							var hourly_time = hourly_now.getHours();
+		 /* $(document).ready(function() {
+		        $('#table_id').DataTable(); */
+		   
+					  
+					  var times = [];
+						var temps = [];
+						var hmds = [];
+						var rains = [];
+						var rads = [];
+						var suns = [];
+						var gens = [];
+						
+						
+						$.getJSON(
+								'https://api.openweathermap.org/data/2.5/onecall?lat=35.15&lon=126.92&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
+								// 광주 기상정보
+								function(oneCall) {
+									
+								// Hourly Weather Data
+								for (var index = 0; index < oneCall.hourly.length; index++) {
+									// 시간
+									var hourly_time = oneCall.hourly[index].dt;
+									var hourly_now = new Date(hourly_time * 1000);
+									var hourly_dt = hourly_now.getFullYear() + "-"
+											+ (hourly_now.getMonth() + 1) + "-"
+											+ hourly_now.getDate() + " "
+											+ hourly_now.getHours() + ":"
+											+ hourly_now.getMinutes() + " ";
+									var hourly_month = hourly_now.getMonth() + 1;
+									var hourly_day = hourly_now.getDate();
+									var hourly_time = hourly_now.getHours();
 
-							// 날씨
-							var hourly_weather = oneCall.hourly[index].weather[0].description;
+									// 날씨
+									var hourly_weather = oneCall.hourly[index].weather[0].description;
 
-							// 날씨 아이콘
-							var hourly_wIcon = oneCall.hourly[index].weather[0].icon;
+									// 날씨 아이콘
+									var hourly_wIcon = oneCall.hourly[index].weather[0].icon;
 
-							// 현재 기온
-							var hourly_temp = oneCall.hourly[index].temp;
+									// 현재 기온
+									var hourly_temp = oneCall.hourly[index].temp;
 
-							// 체감 기온
-							var hourly_feels_like = oneCall.hourly[index].feels_like;
+									// 체감 기온
+									var hourly_feels_like = oneCall.hourly[index].feels_like;
 
-							// 기압
-							var hourly_pressure = oneCall.hourly[index].pressure;
+									// 기압
+									var hourly_pressure = oneCall.hourly[index].pressure;
 
-							// 습도
-							var hourly_humidity = oneCall.hourly[index].humidity;
+									// 습도
+									var hourly_humidity = oneCall.hourly[index].humidity;
 
-							// 이슬점
-							var hourly_dew_point = oneCall.hourly[index].dew_point;
+									// 이슬점
+									var hourly_dew_point = oneCall.hourly[index].dew_point;
 
-							// 운량
-							var hourly_clouds = parseInt(oneCall.hourly[index].clouds / 10);
-							
-							// 풍속
-							var hourly_wind_speed = oneCall.hourly[index].wind_speed;
+									// 운량
+									var hourly_clouds = parseInt(oneCall.hourly[index].clouds / 10);
+									
+									// 풍속
+									var hourly_wind_speed = oneCall.hourly[index].wind_speed;
 
-							// 풍향
-							var hourly_wind_deg = oneCall.hourly[index].wind_deg;
-							
-							// 강수량
-							var hourly_rain;
-							if(oneCall.hourly[index].rain != null){
-								hourly_rain = oneCall.hourly[index].rain["1h"];
-							}else{
-								hourly_rain = 0;
-							}
-							
-							// 적설량
-							var hourly_snow;
-							if(oneCall.hourly[index].snow != null){
-								hourly_snow = oneCall.hourly[index].snow["1h"];
-							}else{
-								hourly_snow = 0;
-							}
-
-							// 일사량
-							var solar_radiation = 0;
-
-							// 일조량
-							var solar_sunshine = 0;
-
-							// 발전량
-							var generation = 0;
-							
-							times.push(hourly_time);
-							temps.push(hourly_temp);
-							hmds.push(hourly_humidity);
-							rains.push(hourly_rain);
-							
-							$
-							.ajax({
-								url : "http://localhost:9000/re/"
-										+ hourly_month + "/"
-										+ hourly_day + "/"
-										+ hourly_time + "/"
-										+ hourly_temp + "/"
-										+ hourly_rain + "/"
-										+ hourly_wind_speed + "/"
-										+ hourly_wind_deg + "/"
-										+ hourly_humidity + "/"
-										+ hourly_clouds,
-								method : "POST",
-								success : function(rs) {
-									if (rs.solar_radiation > 0) {
-										solar_radiation = rs.solar_radiation;
+									// 풍향
+									var hourly_wind_deg = oneCall.hourly[index].wind_deg;
+									
+									// 강수량
+									var hourly_rain;
+									if(oneCall.hourly[index].rain != null){
+										hourly_rain = oneCall.hourly[index].rain["1h"];
+									}else{
+										hourly_rain = 0;
 									}
-									if (rs.solar_sunshine > 0) {
-										solar_sunshine = rs.solar_sunshine;
+									
+									// 적설량
+									var hourly_snow;
+									if(oneCall.hourly[index].snow != null){
+										hourly_snow = oneCall.hourly[index].snow["1h"];
+									}else{
+										hourly_snow = 0;
 									}
-									if (rs.solar_generation > 0) {
-										solar_generation = parseInt(rs.solar_generation);
-									}
-									rads.push(solar_radiation);
-									suns.push(solar_sunshine);
-									gens.push(solar_generation);			
-								}
+
+									// 일사량
+									var solar_radiation = 0;
+
+									// 일조량
+									var solar_sunshine = 0;
+
+									// 발전량
+									var generation = 0;
+									
+									times.push(hourly_time);
+									temps.push(hourly_temp);
+									hmds.push(hourly_humidity);
+									rains.push(hourly_rain);
+									
+									document
+									.write('<div class="hourly">');
+							document.write('<div>현재 시간 : ',
+									hourly_dt, '</div>');
+							document.write('<div>현재 날씨 : ',
+									hourly_weather);
+							document
+									.write('<img src = "http://openweathermap.org/img/wn/' + hourly_wIcon + '.png"/></div>');
+							document.write('<div>기온 : ',
+									hourly_temp, '℃</div>');
+							document.write('<div>체감 온도 : ',
+									hourly_feels_like,
+									'℃</div>');
+							document.write('<div>기압 : ',
+									hourly_pressure,
+									'hpa</div>');
+							document.write('<div>습도 : ',
+									hourly_humidity, '%</div>');
+							document
+									.write('<div>이슬점 : ',
+											hourly_dew_point,
+											'℃</div>');
+							document.write('<div>운량 : ',
+									hourly_clouds, '%</div>');
+							document.write('<div>풍속 : ',
+									hourly_wind_speed,
+									'm/s</div>');
+							document.write('<div>풍향 : ',
+									hourly_wind_deg, '</div>');
+							document.write('<div>강수량 : ',
+									hourly_rain, 'mm</div>');
+							document.write('<div>적설량 : ',
+									hourly_snow, 'mm</div>');
 							
+									
+									$
+									.ajax({
+										url : "http://localhost:9000/re/"
+												+ hourly_month + "/"
+												+ hourly_day + "/"
+												+ hourly_time + "/"
+												+ hourly_temp + "/"
+												+ hourly_rain + "/"
+												+ hourly_wind_speed + "/"
+												+ hourly_wind_deg + "/"
+												+ hourly_humidity + "/"
+												+ hourly_clouds,
+										method : "POST",
+										success : function(rs) {
+											if (rs.solar_radiation > 0) {
+												solar_radiation = rs.solar_radiation;
+											}
+											if (rs.solar_sunshine > 0) {
+												solar_sunshine = rs.solar_sunshine;
+											}
+											if (rs.solar_generation > 0) {
+												solar_generation = parseInt(rs.solar_generation);
+											}
+											rads.push(solar_radiation);
 											
+											document.write('<div>일사량 : ',
+													solar_radiation.toFixed(2),
+													'MJ/m2</div>');
+											document.write('<div>일조량 : ',
+													solar_sunshine.toFixed(2),
+													'hr</div>');
+											document
+													.write(
+															'<div>예상 발전량 : ',
+															solar_generation,
+															'kWh</div>');
+											document.write('</div></br></br>');
+											suns.push(solar_sunshine);
+											gens.push(solar_generation);			
+										}
+									});
+								}
+								console.log(times);
+								console.log(gens);
 							});
-							
-							
-						}
-				
-						
-						console.log(times);
-						console.log(gens);
-						
-						
-					});
-		
-		
+					  
 	</script>
 		
 		
