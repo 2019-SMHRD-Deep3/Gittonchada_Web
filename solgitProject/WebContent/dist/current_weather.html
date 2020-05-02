@@ -194,7 +194,7 @@
 						var wIcon = oneCall.current.weather[0].icon;
 
 						// 현재 기온
-						var temp = oneCall.current.temp;
+						var temp = oneCall.current.temp.toFixed(1);
 
 						// 체감 기온
 						var feels_like = oneCall.current.feels_like;
@@ -294,7 +294,7 @@
 					var hourly_temp = oneCall.hourly[index].temp;
 					
 					times.push(hourly_dt);
-					temps.push(hourly_temp);
+					temps.push(hourly_temp.toFixed(1));
 				}
 				/* var max = Math.max.apply(null, temps);
 				var min = Math.min.apply(null, temps);
