@@ -48,7 +48,7 @@ public class PostWriteCon implements ICommand {
 		BoardDTO dto = new BoardDTO(board_id, board_pw, board_title, board_content, board_lock);
 		BoardDAO dao = new BoardDAO();
 		dao.insertPost(dto);
-		moveURL = "board2.jsp";
+		moveURL = "board_community.jsp";
 		return moveURL;
 	}
 

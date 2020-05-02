@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.controller.DevelopInfoCon;
 import com.controller.JoinCon;
 import com.controller.LoginCon;
 import com.controller.LogoutCon;
@@ -35,6 +35,7 @@ public class DoFrontController extends HttpServlet {
 		map.put("NoticeWriteCon.do", new NoticeWriteCon());
 		map.put("ReplyWriteCon.do", new ReplyWriteCon());
 		map.put("ReplyReadCon.do", new ReplyReadCon());
+		map.put("DevelopInfoCon.do", new DevelopInfoCon());
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

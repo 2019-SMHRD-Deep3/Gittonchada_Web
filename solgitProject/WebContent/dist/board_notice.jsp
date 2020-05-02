@@ -1,10 +1,11 @@
 <%@page import="com.model.MemberDTO"%>
-<%@page import="com.model.NoticeDAO"%>
 <%@page import="com.model.NoticeDTO"%>
+<%@page import="com.model.NoticeDAO"%>
 <%@page import="com.model.BoardDTO"%>
 <%@page import="com.model.BoardDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,23 +23,19 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 	crossorigin="anonymous"></script>
+
 <style type="text/css">
-.mydiv {
-	padding-left: 10%;
-	padding-right: 10%;
+.mytable {
+	padding-left: 15%;
+	padding-right: 15%;
 	padding-top: 5%;
 	padding-bottom: 5%;
 }
 
-.write_info {
-	padding-top: 10px;
-}
-
-#writer {
-	margin: 0px;
+a {
+	color: black;
 }
 </style>
-
 </head>
 
 <body class="nav-fixed">
@@ -144,47 +141,71 @@
 
 			<h3>상단에 고정된 내비게이션 바(메뉴바)</h3>
 
+			<!-- 게시판 생성 -->
+			<div class="mytable">
 
-			<!-- 		게시글 시작 -->
-
-			<%
-				int idx = Integer.parseInt(request.getParameter("idx"));
-				System.out.print(idx);
-				NoticeDAO dao = new NoticeDAO();
-				NoticeDTO dto = dao.selectOneNotice(idx);
-			%>
-
-
-			<div class="mydiv">
-
-				<h2>
-					<%=
-						dto.getNotice_title()
-					%>
-				</h2>
-				<div class='write_info'>
-					<p id='writer'>
-						<%=
-							dto.getNotice_id()
-						%>
-					</p>
-					<p>
-						<%=
-							dto.getNotice_date()
-						%>
-					</p>
-				</div>
-				<hr>
-				<div>
-
-					<p><%=dto.getNotice_content() %></p>
-
+				<div class=" input-groupmb-3">
+					<form>
+						<div class="form-row align-items-center">
+							<div class="col-auto my-1">
+								<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+								<select class="custom-select mr-sm-2"
+									id="inlineFormCustomSelect">
+									<option selected>Choose...</option>
+									<option value="1">제목</option>
+									<option value="2">아이디</option>
+									<option value="3">닉네임</option>
+								</select>
+							</div>
+						</div>
+					</form>
+					<input type="text" class="form-control"
+						aria-label="Text input with dropdown button">
+					<button type="button" class="btn btn-info">검색</button>
+					<button type="button" class="btn btn-info" onclick="location.href='noticeWrite.html'">등록</button>
 				</div>
 
+
+				<!-- 테이블 생성 -->
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">제목</th>
+							<th scope="col">작성자</th>
+							<th scope="col">날짜</th>
+						</tr>
+					</thead>
+					<tbody>
+				
+					<% 
+					NoticeDAO dao = new NoticeDAO();
+					ArrayList<NoticeDTO> list = dao.selectNotice();
+					if(list!=null){
+					for(int i =list.size()-1;i>=0;i--){%>
+						<tr>
+							<td width="10%"><%=list.get(i).getNotice_idx() %></td>
+							<td width="50%"><a id="post" href="n_post.jsp?idx=<%=i+1%>"><%=list.get(i).getNotice_title() %></a></td>
+							<td width="20%"><%=list.get(i).getNotice_id() %></td>
+							<td width="20%"><%=list.get(i).getNotice_date() %></td>
+						</tr>
+						<%}} %>
+						
+					
+					</tbody>
+				</table>
+				<!-- 테이블 끝	 -->
+				<div class="btn-toolbar justify-content-between" role="toolbar"
+					aria-label="Toolbar with button groups">
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-secondary">1</button>
+						<button type="button" class="btn btn-secondary">2</button>
+						<button type="button" class="btn btn-secondary">3</button>
+						<button type="button" class="btn btn-secondary">4</button>
+					</div>
+				</div>
 			</div>
-			<!-- 게시글 끝 -->
-
-
+			<!-- 	게시판 끝 -->
 
 			<!-- Footer -->
 			<footer class="py-4 bg-light mt-auto fixed-bottom">
@@ -222,5 +243,6 @@
 		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 		crossorigin="anonymous"></script>
 	<script src="assets/demo/datatables-demo.js"></script>
+
 </body>
 </html>

@@ -53,7 +53,7 @@ public class NoticeWriteCon implements ICommand {
 		NoticeDTO dto = new NoticeDTO(notice_id, notice_title, notice_content);
 		NoticeDAO dao = new NoticeDAO();
 		dao.insertNotice(dto);
-		moveURL = "board3.jsp";
+		moveURL = "board_notice.jsp";
 		return moveURL;
 	}
 

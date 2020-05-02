@@ -46,11 +46,7 @@
 		</style>
 	</head>
 
-	<body class="nav-fixed">
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
-		<script> $('.carousel').carousel({ interval: 3000 }) </script>
+<body class="nav-fixed">
 	<%
       MemberDTO info = (MemberDTO) session.getAttribute("info");
    	%>
@@ -71,34 +67,29 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">데이터 등록</a>
 						<div class="dropdown-menu">
-							<span role="presentation" class="dropdown-header">발전이력</span>
-							<a class="dropdown-item" href="#">발전이력 등록</a>
-							<a class="dropdown-item" href="#">발전이력 갱신</a>
+							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">인공지능 분석</a>
 						<div class="dropdown-menu">
-							<span role="presentation" class="dropdown-header">예보·예측</span>
-							<a class="dropdown-item" href="#">기상예보</a>
-							<a class="dropdown-item" href="#">발전량 예측</a>
-							<a class="dropdown-item" href="#">수익 예측</a>
+							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a>
+							<a class="dropdown-item" href="predict_generation.jsp">발전량 예측</a>
+							<a class="dropdown-item" href="predict_benefit.jsp">수익 예측</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">정보 공유</a>
 						<div class="dropdown-menu">
-							<span role="presentation" class="dropdown-header">게시판</span>
-							<a class="dropdown-item" href="#">공지사항</a>
-							<a class="dropdown-item" href="board2.jsp">커뮤니티</a>
+							<a class="dropdown-item" href="board_notice.jsp">공지사항</a>
+							<a class="dropdown-item" href="board_community.jsp">커뮤니티</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">고객 센터</a>
 						<div class="dropdown-menu">
-							<span role="presentation" class="dropdown-header">사이트정보</span>
-							<a class="dropdown-item" href="#">앱 지원</a>
-							<a class="dropdown-item" href="#">FAQ</a>
+							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
+							<a class="dropdown-item" href="customer_faq.jps">FAQ</a>
 						</div>
 					</li>
 				</ul>
@@ -119,7 +110,7 @@
 	            </div>
 	            <div class="collapse navbar-collapse" id="collapsibleNavbar">
 	            <ul class="navbar-nav ml-auto">
-	            	<li><div style="color : hotpink;"><%if(info!=null){ %><%=info.getName()%><br>님 환영합니다.
+	            	<li><div  style="color : hotpink;"><%if(info!=null){ %><%=info.getName()%><br>님 환영합니다.
 	               		<%}else {%><%} %></div></li>
 	            </ul>
 	            </div>
@@ -216,7 +207,9 @@
 		</div>
 		
 
-	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
+		<script> $('.carousel').carousel({ interval: 3000 }) </script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
