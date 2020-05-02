@@ -174,7 +174,6 @@
                                         <tbody>
                                         <% for (int i=0; i<48; i++) {%>
                                             <tr>
-                                                <td><% $(temps) %></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
