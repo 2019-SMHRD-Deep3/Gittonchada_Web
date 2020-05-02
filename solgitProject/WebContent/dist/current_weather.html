@@ -10,6 +10,7 @@
 		<link href="css/styles.css?ver=1" rel="stylesheet" />
 		<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css?ver=1" rel="stylesheet" crossorigin="anonymous" />
 		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js?ver=1" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 		<style>
 			#table-div {
 				margin-top: 100px;
@@ -35,6 +36,7 @@
 		</style>
 	</head>
 	<body class="nav-fixed" onload="showClock()">
+	
 	<!-- 네비게이션바 코드 -->
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
 			
@@ -133,7 +135,7 @@
                     	<!-- 꺽은선 그래프 -->
                     	<div class="card mb-4">
                             <div class="card-header"><i class="fas fa-chart-area mr-1"></i>시간별 기온</div>
-                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
+                            <div class="card-body"><canvas id="myLineChart" width="100%" height="30"></canvas></div>
                             <div class="card-footer small text-muted"><div id="divClock" class="clock"></div></div>
                         </div>
                 </div>
@@ -275,6 +277,8 @@
 		    }
 		</script>
 		<script>
+		var times = [];
+		var temps = [];
 		$.getJSON(
 			'https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
 			function(oneCall) {
@@ -284,24 +288,85 @@
 					// 시간
 					var hourly_time = oneCall.hourly[index].dt;
 					var hourly_now = new Date(hourly_time * 1000);
-					var hourly_dt = hourly_now.getFullYear() + "-"
-							+ (hourly_now.getMonth() + 1) + "-"
-							+ hourly_now.getDate() + " "
-							+ hourly_now.getHours() + ":"
-							+ hourly_now.getMinutes() + " ";
+					var hourly_dt = hourly_now.getHours()+"시";
 					
 					// 현재 기온
 					var hourly_temp = oneCall.hourly[index].temp;
 					
+					times.push(hourly_dt);
+					temps.push(hourly_temp);
 				}
+				/* var max = Math.max.apply(null, temps);
+				var min = Math.min.apply(null, temps);
+				var u = 10;
+				var max_change = Math.round(max/10);
+				var min_change = Math.round(min/10); */
+				
+				Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+				Chart.defaults.global.defaultFontColor = '#292b2c';
+
+				// Area Chart Example
+				var ctx = document.getElementById("myLineChart");
+				var myLineChart = new Chart(ctx, {
+				  type: 'line',
+				  
+				  data: {
+				    labels: [times[0],times[1],times[2],times[3],times[4],times[5],times[6],times[7],times[8],times[9],times[10],times[11],times[12]],
+				    
+				    datasets: [{
+				      label: "기온",
+				      lineTension: 0.3,
+				      backgroundColor: "rgba(2,117,216,0.2)",
+				      borderColor: "rgba(2,117,216,1)",
+				      pointRadius: 5,
+				      pointBackgroundColor: "rgba(2,117,216,1)",
+				      pointBorderColor: "rgba(255,255,255,0.8)",
+				      pointHoverRadius: 5,
+				      pointHoverBackgroundColor: "rgba(2,117,216,1)",
+				      pointHitRadius: 50,
+				      pointBorderWidth: 1,
+				      data: [temps[0],temps[1],temps[2],temps[3],temps[4],temps[5],temps[6],temps[7],temps[8],temps[9],temps[10],temps[11],temps[12]],
+				    }],
+				  },
+				  
+				  options: {
+				    scales: {
+				      xAxes: [{
+				        time: {
+				          unit: '시간'
+				        },
+				        gridLines: {
+				          display: true
+				        },
+				        ticks: {
+				          maxTicksLimit: 13
+				        }
+				      }],
+				      yAxes: [{
+				        ticks: {
+				          min: -20,
+				          max: 40,
+				          maxTicksLimit: 10
+				        },
+				        gridLines: {
+				          color: "rgba(0, 0, 0, .125)",
+				        }
+				      }],
+				    },
+				    legend: {
+				      display: true
+				    }
+				  }
+				});
 			});
 		</script>
+		
 		
         <script src="https://code.jquery.com/jquery-3.4.1.min.js?ver=1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js?ver=1" crossorigin="anonymous"></script>
         <script src="js/scripts.js?ver=1"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js?ver=1" crossorigin="anonymous"></script>
-		<script src="assets/demo/current-temp-chart.js?ver=1"></script>        
+		<!-- <script src="assets/demo/current-temp-chart.js?ver=1"></script> -->
 		<script src="assets/demo/datatables-demo.js?ver=1"></script>
     </body>
 </html>
