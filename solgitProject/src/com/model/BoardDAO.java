@@ -43,7 +43,7 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	//
 	
 	// 게시글 작성
 		public int insertPost(BoardDTO dto) {
