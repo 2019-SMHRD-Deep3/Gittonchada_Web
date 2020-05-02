@@ -43,18 +43,32 @@
 		    .title h2 h3 {
 		      display: inline;
 		    }
+		    
+		    .navbar {
+		      @include red-gradient();
+		      .navbar-nav li a {
+		          @include gold-text-gradient;
+		      }
+		      .navbar-nav{ 
+		          a:hover {
+		            @include red-text-gradient();
+		          }
+		          li:hover{
+		            @include gold-gradient();
+		          } 
+		       } 
+			}
 		</style>
 	</head>
-
-	<body class="nav-fixed">
+	<body class="sb-nav-fixed nav-fixed">
 	<%
       MemberDTO info = (MemberDTO) session.getAttribute("info");
    	%>
 	<!-- 네비게이션바 코드 -->
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+		<nav class="navbar navbar-expand-sm navbar-collapse navbar-dark fixed-top"  fill="url(#grad1)" font-size="50" font-family="Verdana" x="0" y="100">
 			
 			<!-- 회사명, 로고 -->
-			<a class="navbar-brand" href="#"><img src="./assets/img/solgitIcon.png" alt="Logo" style="text-size=5rem; width:40px;">&nbsp;　　솔깃</a>
+			<a class="navbar-brand" href="#"><img src="./assets/img/solgitIcon.png" alt="Logo" style="text-size=5rem; width:40px;"><h1>　솔깃</h1></a>
 			
 			<!-- 반응형 버튼 -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -157,15 +171,11 @@
 			</div>
 		</section>
 		
-		<!-- <section>
-			<div class="img">
-        		<div class="content">
-            		<h1>Hello!</h1>
-           			<h2>My name is nunu</h2>
-       			</div>
-        		<div class="img-cover"></div>
-   			</div>
-		</section> -->
+		
+		
+		
+		
+		
 		</main>
 			
 		
@@ -182,7 +192,18 @@
 			</footer>
 		</div>
 		
-
+		<svg xmlns=:http://www.w3.org/200/svg" version"1.1" width="100%">
+			<defs>
+				<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" style="stop-color:#ff5d62; stop-opacity:1"/>
+					<stop offset="50%" style="stop-color:#ffbc5d; stop-opacity:1"/>
+					<stop offset="100%" style="stop-color:#ffd7cb; stop-opacity:1"/>
+				</linearGradient>
+			</defs>
+			<text fill="url(#grad1)" font-size="50" font-family="Verdana" x="0" y="100">
+			see you next year~!
+			</text>
+		</svg>
 	
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
