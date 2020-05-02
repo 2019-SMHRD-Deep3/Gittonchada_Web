@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.controller.JoinCon;
 import com.controller.LoginCon;
 import com.controller.LogoutCon;
-
+import com.controller.NoticeWriteCon;
 import com.controller.PostWriteCon;
+import com.controller.ReplyReadCon;
+import com.controller.ReplyWriteCon;
 
 /**
  * Servlet implementation class DoFrontController
@@ -30,6 +32,9 @@ public class DoFrontController extends HttpServlet {
 		map.put("JoinService.do", new JoinCon());
 		map.put("LogoutService.do", new LogoutCon());
 		map.put("PostWriteCon.do", new PostWriteCon());
+		map.put("NoticeWriteCon.do", new NoticeWriteCon());
+		map.put("ReplyWriteCon.do", new ReplyWriteCon());
+		map.put("ReplyReadCon.do", new ReplyReadCon());
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

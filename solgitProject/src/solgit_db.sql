@@ -94,3 +94,65 @@ select * from member;
 
 select * from MEMBER where MEMBER_EMAIL='admin@naver.com' and MEMBER_PW='1';
 
+-- 공지사항 게시판
+drop table Notice;
+drop sequence Notice_seq;
+
+CREATE TABLE Notice
+(   Notice_Idx         NUMBER            NOT NULL, 
+    Notice_ID          VARCHAR2(20)      NOT NULL, 
+    Notice_Title       VARCHAR2(100)      NOT NULL, 
+    Notice_Content     VARCHAR2(1000)    NOT NULL, 
+    Notice_Date        DATE              NOT NULL, 
+    Notice_Hit         NUMBER            NOT NULL,
+    CONSTRAINT Notice_PK1 PRIMARY KEY (Notice_Idx)
+);
+
+CREATE SEQUENCE Notice_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+insert into NOTICE
+values(
+notice_seq.nextval,
+'admin@naver.com',
+'공지사항 입니다.',
+'서비스 점검으로 2020/05/01 서비스 이용이 중지됩니다.',
+sysdate,
+0);
+
+select * from notice;
+
+-- 게시판 댓글
+drop table Reply
+drop sequence Reply_seq;
+
+CREATE TABLE Reply
+(   Reply_Idx        NUMBER            NOT NULL, 
+    Reply_ID         VARCHAR2(20)      NOT NULL, 
+    Reply_PW         VARCHAR2(20)      NOT NULL, 
+    Reply_Content    VARCHAR2(1000)    NOT NULL, 
+    Reply_Date       DATE              NOT NULL, 
+    Board_Idx        NUMBER            NOT NULL, 
+    Member_Seq       NUMBER            NULL, 
+    CONSTRAINT REPLY_PK PRIMARY KEY (Reply_Idx),
+    CONSTRAINT REPLY_FK FOREIGN KEY (Board_Idx) 
+    REFERENCES BOARD (Board_Idx)
+);
+
+CREATE SEQUENCE Reply_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+INSERT INTO REPLY
+VALUES(
+Reply_SEQ.nextval,
+'admin@naver.com',
+'123',
+'댓글 1',
+sysdate,
+1,
+1
+);
+
+select * from reply;

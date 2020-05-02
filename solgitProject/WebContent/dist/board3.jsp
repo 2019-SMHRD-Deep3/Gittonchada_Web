@@ -1,10 +1,10 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.model.ReplyDAO"%>
-<%@page import="com.model.ReplyDTO"%>
+<%@page import="com.model.NoticeDTO"%>
+<%@page import="com.model.NoticeDAO"%>
 <%@page import="com.model.BoardDTO"%>
 <%@page import="com.model.BoardDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,26 +22,25 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 	crossorigin="anonymous"></script>
+
 <style type="text/css">
-.mydiv {
+.mytable {
 	padding-left: 10%;
 	padding-right: 10%;
 	padding-top: 5%;
 	padding-bottom: 5%;
 }
 
-.write_info {
-	padding-top: 10px;
-}
-
-#writer {
-	margin: 0px;
+a {
+	color: black;
 }
 </style>
-
 </head>
 
 <body class="nav-fixed">
+<%request.setCharacterEncoding("euc-kr");
+ response.setCharacterEncoding("euc-kr");
+ %>
 	<!-- 네비게이션바 코드 -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
 
@@ -113,71 +112,71 @@
 
 			<h3>상단에 고정된 내비게이션 바(메뉴바)</h3>
 
+			<!-- 게시판 생성 -->
+			<div class="mytable">
 
-			<!-- 		게시글 시작 -->
-
-			<%
-				int idx = Integer.parseInt(request.getParameter("idx"));
-				System.out.print(idx);
-				BoardDAO dao = new BoardDAO();
-				BoardDTO dto = dao.selectOnePost(idx);
-				ReplyDAO reple_dao = new ReplyDAO();
-				ArrayList<ReplyDTO> reple_list = reple_dao.selectReply(idx);
-			%>
-
-
-			<div class="mydiv">
-
-				<h2>
-					<%=dto.getBoard_title()%>
-				</h2>
-				<div class='write_info'>
-					<p id='writer'>
-						<%=dto.getBoard_id()%>
-					</p>
-					<p>
-						<%=dto.getBoard_date()%>
-					</p>
-				</div>
-				<hr>
-				<div>
-
-					<p><%=dto.getBoard_content()%></p>
-
+				<div class=" input-groupmb-3">
+					<form>
+						<div class="form-row align-items-center">
+							<div class="col-auto my-1">
+								<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+								<select class="custom-select mr-sm-2"
+									id="inlineFormCustomSelect">
+									<option selected>Choose...</option>
+									<option value="1">제목</option>
+									<option value="2">아이디</option>
+									<option value="3">닉네임</option>
+								</select>
+							</div>
+						</div>
+					</form>
+					<input type="text" class="form-control"
+						aria-label="Text input with dropdown button">
+					<button type="button" class="btn btn-info">검색</button>
+					<button type="button" class="btn btn-info" onclick="location.href='noticeWrite.html'">등록</button>
 				</div>
 
-			</div>
-			<!-- 게시글 끝 -->
-			<!-- 댓글 입력창 -->
-			<div class="mydiv">
-				<form action="ReplyWriteCon.do">
-					<div class="form-group">
-						<input class="form-control" type="text" placeholder="아이디"
-							id="reply_id" name="reply_id"> <input
-							class="form-control" type="password" placeholder="비밀번호"
-							name="reply_pw" id="reply_pw"> <input
-							class="form-control" type="text" placeholder="댓글을 입력해주세요"
-							id="reply_content" name="reply_content"> <input
-							type="hidden" value="<%=idx%>" name="board_idx" id="board_idx">
-						<button type="submit" class="btn btn-primary">등록</button>
-					</div>
-				</form>
-				<!-- 댓글 내용 -->
-				<div>
-					<table class="table table-sm">
-						<%if(reple_list.size()!=0){
-						for(int i=0;i<reple_list.size();i++){ %>
+
+				<!-- 테이블 생성 -->
+				<table class="table">
+					<thead>
 						<tr>
-							<td class="table-active"><%=reple_list.get(i).getReply_id()%></td>
-							<td class="table-active"><%=reple_list.get(i).getReply_content()%></td>
-							<td class="table-active"><%=reple_list.get(i).getReply_date()%></td>
-						</tr> 
+							<th scope="col">#</th>
+							<th scope="col">작성자</th>
+							<th scope="col">제목</th>
+							<th scope="col">날짜</th>
+						</tr>
+					</thead>
+					<tbody>
+				
+					<% 
+					NoticeDAO dao = new NoticeDAO();
+					ArrayList<NoticeDTO> list = dao.selectNotice();
+					if(list!=null){
+					for(int i =list.size()-1;i>=0;i--){%>
+						<tr>
+							<td><%=list.get(i).getNotice_idx() %></td>
+							<td><%=list.get(i).getNotice_id() %></td>
+							<td><a id="post" href="n_post.jsp?idx=<%=i+1%>"><%=list.get(i).getNotice_title() %></a></td>
+							<td><%=list.get(i).getNotice_date() %></td>
+						</tr>
 						<%}} %>
-					</table>
+						
+					
+					</tbody>
+				</table>
+				<!-- 테이블 끝	 -->
+				<div class="btn-toolbar justify-content-between" role="toolbar"
+					aria-label="Toolbar with button groups">
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-secondary">1</button>
+						<button type="button" class="btn btn-secondary">2</button>
+						<button type="button" class="btn btn-secondary">3</button>
+						<button type="button" class="btn btn-secondary">4</button>
+					</div>
 				</div>
 			</div>
-			<!-- 댓글 끝 -->
-
+			<!-- 	게시판 끝 -->
 
 			<!-- Footer -->
 			<footer class="py-4 bg-light mt-auto fixed-bottom">
@@ -215,38 +214,6 @@
 		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 		crossorigin="anonymous"></script>
 	<script src="assets/demo/datatables-demo.js"></script>
-
-	<!-- 	댓글 리스트 -->
-	<script type="text/javascript">
-		$(".btn btn-primary").click(function() {
-			$.ajax({
-				type : "post",
-				url : "ReplyReadCon.do",
-				data : "board_idx="+board_idx,
-				success : function(result) {
-					console.log("hi");
-					var reply = $(".table-sm");
-					var reply_list;
-					//reply.empty();
-					if(result.length!=0){
-						for(var i=0;i<result.length;i++){
-							var reply_id = result[i].reply_id;
-							var reply_content = result[i].reply_content;
-							var reply_date=result[i].reply_date;
-							reply_list = '<tr><td class="table-active">'+reply_id
-							+'</td><td class="table-active">'+reply_content
-							+'</td><td class="table-active">'+reply_date
-							+'</td></tr>';
-							reply.append(reply_list);	
-						}
-					}
-				}
-			})
-
-		});
-	</script>
-
-
 
 </body>
 </html>

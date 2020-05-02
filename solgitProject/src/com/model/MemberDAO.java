@@ -28,8 +28,8 @@ public class MemberDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String db_url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String db_id = "hr";
-			String db_pw = "hr";
+			String db_id = "solgit";
+			String db_pw = "solgit";
 			conn = DriverManager.getConnection(db_url, db_id, db_pw);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

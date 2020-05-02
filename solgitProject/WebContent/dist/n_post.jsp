@@ -1,6 +1,5 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.model.ReplyDAO"%>
-<%@page import="com.model.ReplyDTO"%>
+<%@page import="com.model.NoticeDAO"%>
+<%@page import="com.model.NoticeDTO"%>
 <%@page import="com.model.BoardDTO"%>
 <%@page import="com.model.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -119,64 +118,40 @@
 			<%
 				int idx = Integer.parseInt(request.getParameter("idx"));
 				System.out.print(idx);
-				BoardDAO dao = new BoardDAO();
-				BoardDTO dto = dao.selectOnePost(idx);
-				ReplyDAO reple_dao = new ReplyDAO();
-				ArrayList<ReplyDTO> reple_list = reple_dao.selectReply(idx);
+				NoticeDAO dao = new NoticeDAO();
+				NoticeDTO dto = dao.selectOneNotice(idx);
 			%>
 
 
 			<div class="mydiv">
 
 				<h2>
-					<%=dto.getBoard_title()%>
+					<%=
+						dto.getNotice_title()
+					%>
 				</h2>
 				<div class='write_info'>
 					<p id='writer'>
-						<%=dto.getBoard_id()%>
+						<%=
+							dto.getNotice_id()
+						%>
 					</p>
 					<p>
-						<%=dto.getBoard_date()%>
+						<%=
+							dto.getNotice_date()
+						%>
 					</p>
 				</div>
 				<hr>
 				<div>
 
-					<p><%=dto.getBoard_content()%></p>
+					<p><%=dto.getNotice_content() %></p>
 
 				</div>
 
 			</div>
 			<!-- 게시글 끝 -->
-			<!-- 댓글 입력창 -->
-			<div class="mydiv">
-				<form action="ReplyWriteCon.do">
-					<div class="form-group">
-						<input class="form-control" type="text" placeholder="아이디"
-							id="reply_id" name="reply_id"> <input
-							class="form-control" type="password" placeholder="비밀번호"
-							name="reply_pw" id="reply_pw"> <input
-							class="form-control" type="text" placeholder="댓글을 입력해주세요"
-							id="reply_content" name="reply_content"> <input
-							type="hidden" value="<%=idx%>" name="board_idx" id="board_idx">
-						<button type="submit" class="btn btn-primary">등록</button>
-					</div>
-				</form>
-				<!-- 댓글 내용 -->
-				<div>
-					<table class="table table-sm">
-						<%if(reple_list.size()!=0){
-						for(int i=0;i<reple_list.size();i++){ %>
-						<tr>
-							<td class="table-active"><%=reple_list.get(i).getReply_id()%></td>
-							<td class="table-active"><%=reple_list.get(i).getReply_content()%></td>
-							<td class="table-active"><%=reple_list.get(i).getReply_date()%></td>
-						</tr> 
-						<%}} %>
-					</table>
-				</div>
-			</div>
-			<!-- 댓글 끝 -->
+
 
 
 			<!-- Footer -->
@@ -215,38 +190,5 @@
 		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 		crossorigin="anonymous"></script>
 	<script src="assets/demo/datatables-demo.js"></script>
-
-	<!-- 	댓글 리스트 -->
-	<script type="text/javascript">
-		$(".btn btn-primary").click(function() {
-			$.ajax({
-				type : "post",
-				url : "ReplyReadCon.do",
-				data : "board_idx="+board_idx,
-				success : function(result) {
-					console.log("hi");
-					var reply = $(".table-sm");
-					var reply_list;
-					//reply.empty();
-					if(result.length!=0){
-						for(var i=0;i<result.length;i++){
-							var reply_id = result[i].reply_id;
-							var reply_content = result[i].reply_content;
-							var reply_date=result[i].reply_date;
-							reply_list = '<tr><td class="table-active">'+reply_id
-							+'</td><td class="table-active">'+reply_content
-							+'</td><td class="table-active">'+reply_date
-							+'</td></tr>';
-							reply.append(reply_list);	
-						}
-					}
-				}
-			})
-
-		});
-	</script>
-
-
-
 </body>
 </html>
