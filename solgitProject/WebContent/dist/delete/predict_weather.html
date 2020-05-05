@@ -147,7 +147,23 @@
 	                                            <th colspan="4">위치 : <span class=timezone></span></th>
 	                                        </tr>
 	                                    </thead>
-	                                    <tbody>
+	                                    	<tbody>
+		                                        <tr>
+		                                            <td rowspan="2" colspan="2"></td>
+		                                            <td colspan="2"><span>℃</span></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td colspan="2"><span>%</span></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td>  <span>%</span></td>
+		                                            <td>  <span>m/s</span></td>
+		                                            <td>  </td>
+		                                            <td>  </td>
+		                                        </tr>
+	                                    	</tbody>
+	                                    
+	                                   <!--  <tbody>
 	                                        <tr>
 	                                            <td rowspan="2" colspan="2"><span class="wIcon"></span></td>
 	                                            <td colspan="2"><span class="temp">기온 : </span> <span>℃</span></td>
@@ -161,7 +177,7 @@
 	                                            <td><span class="sunrise">일출 시간 : </span></td>
 	                                            <td><span class="sunset">일몰 시간 : </span></td>
 	                                        </tr>
-	                                    </tbody>
+	                                    </tbody> -->
 	                                </table>
 	                        	</div>
                         	</div>
@@ -193,7 +209,15 @@
 			$.getJSON(
 					'https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
 					function(oneCall) {
-
+						
+						var icons = [];
+						var temps = [];
+						var hmds = [];
+						var winds = [];
+						var clds = [];
+						var srise = [];
+						var sset = [];
+						
 						//위도
 						var lat = oneCall.lat;
 						// 경도
@@ -272,29 +296,17 @@
 						}else{
 							snow = 0;
 						}
+						
+						icons.push(wIcon);
+						temps.push(temp);
+						hmds.push(humidity);
+						winds.push(wind_speed);
+						clds.push(clouds);
+						srise.push(sunrise);
+						sset.push(sunset);
+						
+						console.log(icons);
 
-						$('.lat').append(lat);
-						$('.lon').append(lon);
-						$('.dt').append(dt);
-						$('.timezone').append(timezone);
-						$('.sunrise').append(sunrise);
-						$('.sunset').append(sunset);
-						$('.weather').append(weather);
-						$('.wIcon')
-								.append(
-										'<img id="iconwt" src = "http://openweathermap.org/img/wn/' + wIcon + '.png"/>')
-						$('.temp').append(temp);
-						$('.feels_like').append(feels_like);
-						$('.pressure').append(pressure);
-						$('.humidity').append(humidity);
-						$('.dew_point').append(dew_point);
-						$('.uvi').append(uvi);
-						$('.clouds').append(clouds);
-						$('.visibility').append(visibility);
-						$('.wind_speed').append(wind_speed);
-						$('.wind_deg').append(wind_deg);
-						$('.rain').append(rain);
-						$('.snow').append(snow);
 					});
 		</script>
 		<script language="javascript">

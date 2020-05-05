@@ -118,14 +118,16 @@ td {
 	<!-- 메인 내용 작성 부분 -->
 	<main>
 		<!-- 메인 테이블 시작 -->
-		<div class="card mb-4">
-			<div class="card-header container-sm" style="margin-top: 100px;">
-				<i class="fas fa-table mr-1"></i>DataTable Example
+		
+		<div class="card container-sm" style="margin-top: 100px;margin-bottom: 100px;padding-right: 0px;padding-left: 0px;">
+			<div class="card-header" style="margin-top: 0px; margin-left: 0px;"><h3>발전량 예측</h3></div>
+			<div class="card-header">
+				<i class="fas fa-table mr-1"></i>표(Table)
 			</div>
-			<div class="card-body container-sm">
-				<div class="table" style="width: 50%; float:left;">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
+			<div class="card-body">
+				<div style="width: 60%; float:left;">
+					<table class="table table-bordered table-striped table-hover table-condensed info" width="100%" id="dataTable"
+						cellspacing="0" >
 						<thead>
 							<tr>
 								<th>날짜</th>
@@ -139,8 +141,8 @@ td {
 						</tbody>
 					</table>
 				</div>
-				<div class="table" style="width: 50%; float:right;">
-					<table class="table table-bordered" id="dataTable" width="100%"
+				<div class="table table-responsive" style="width: 40%; float:right;">
+					<table class="table table-bordered table-striped table-hover table-condensed" width="100%"
 						cellspacing="0">
 						<thead>
 							<tr>
@@ -248,25 +250,25 @@ td {
 								// 발전량
 								var generation = 0;
 
-								// 값 전달하는 부분
-								//hourly_time
+								// 값 전달 및 테이블 구축
+								//hourly_time(일자)
 								var dayValue = document.createElement("td");
 								dayValue.innerHTML = (hourly_month + "월　"
 										+ hourly_day + "일");
 
-								//hourly_time
+								//hourly_time(시간)
 								var timeValue = document.createElement("td");
 								timeValue.innerHTML = hourly_time + " 시";
 
-								//hourly_temp
+								//hourly_temp(기온)
 								var tempValue = document.createElement("td");
 								tempValue.innerHTML = hourly_temp.toFixed(1) + " ℃";
 
-								//hourly_humidity
+								//hourly_humidity(습도)
 								var hmdValue = document.createElement("td");
 								hmdValue.innerHTML = hourly_humidity + " %";
 
-								//hourly_rain
+								//hourly_rain(강수)
 								var rainValue = document.createElement("td");
 								rainValue.innerHTML = hourly_rain + " mm";
 
@@ -342,6 +344,8 @@ td {
 														.createElement("td");
 												generationValue.innerHTML = solar_generation
 														+ " kWh";
+												
+												console.log(hourly_time);
 
 												selector
 														.appendChild(radiationValue);

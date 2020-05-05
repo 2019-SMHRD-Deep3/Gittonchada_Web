@@ -269,13 +269,14 @@ td {
 				<div class="card mb-4">
                     <div class="card-header"><i class="fas fa-chart-area mr-1"></i>시간별 SMP가격</div>
                     <div class="card-body"><canvas id="myLineChart2" width="100%" height="30"></canvas></div>
-                    <div class="card-footer small text-muted">※본 SMP예측 분석은 의사 결정에 참고만 하시기 바랍니다.※</div>
+                    <div class="card-footer small text-muted"><div id="divClock" class="clock"></div></div>
                 </div>
 			</div>
 		</div>
 
+
 		<!-- Footer -->
-		<footer class="py-4 bg-light mb-auto">
+		<footer class="py-4 bg-light mt-auto">
 			<div class="container-fluid">
 				<div class="d-flex align-items-center justify-content-between small">
 					<div class="text-muted">Copyright &copy; 2020 © SOLGIT</div>
@@ -363,7 +364,7 @@ td {
 				  
 				  data: {
 				    labels: ["1시","2시","3시","4시","5시","6시","7시","8시","9시","10시","11시","12시","13시",
-				    	"14시","15시","16시","17시","18시","19시","20시","21시","22시","23시","24시","최대","최소","가중평균",],
+				    	"14시","15시","16시","17시","18시","19시","20시","21시","22시","23시","24시","최소","최대","가중평균",],
 				    
 				    	datasets: [{
 						      label: "2일전",
@@ -375,8 +376,8 @@ td {
 						      pointBorderColor: "rgba(255,255,255,0.8)",
 						      pointHoverRadius: 5,
 						      pointHoverBackgroundColor: "rgba(255, 230, 221,1)",
-						      pointHitRadius: 100,
-						      pointBorderWidth: 5,
+						      pointHitRadius: 50,
+						      pointBorderWidth: 1,
 						      data: past2,
 						    },{
 						      label: "1일전",
@@ -388,8 +389,8 @@ td {
 						      pointBorderColor: "rgba(255,255,255,0.8)",
 						      pointHoverRadius: 5,
 						      pointHoverBackgroundColor: "rgba(255, 205, 187,1)",
-						      pointHitRadius: 80,
-						      pointBorderWidth: 4,
+						      pointHitRadius: 50,
+						      pointBorderWidth: 1,
 						      data: past1,
 					    	},{
 						      label: "오늘",
@@ -401,8 +402,8 @@ td {
 						      pointBorderColor: "rgba(255,255,255,0.8)",
 						      pointHoverRadius: 5,
 						      pointHoverBackgroundColor: "rgba(255, 180, 153,1)",
-						      pointHitRadius: 60,
-						      pointBorderWidth: 3,
+						      pointHitRadius: 50,
+						      pointBorderWidth: 1,
 						      data: present,
 				   	 		},{
 						      label: "1일후",
@@ -414,8 +415,8 @@ td {
 						      pointBorderColor: "rgba(255,255,255,0.8)",
 						      pointHoverRadius: 5,
 						      pointHoverBackgroundColor: "rgba(255, 156, 119,1)",
-						      pointHitRadius: 40,
-						      pointBorderWidth: 2,
+						      pointHitRadius: 50,
+						      pointBorderWidth: 1,
 						      data: future1,
 					    	},{
 						      label: "2일후",
@@ -427,7 +428,7 @@ td {
 						      pointBorderColor: "rgba(255,255,255,0.8)",
 						      pointHoverRadius: 5,
 						      pointHoverBackgroundColor: "rgba(255, 131, 85,1)",
-						      pointHitRadius: 20,
+						      pointHitRadius: 50,
 						      pointBorderWidth: 1,
 						      data: future2,
 					    	}
@@ -449,9 +450,9 @@ td {
 				      }],
 				      yAxes: [{
 				        ticks: {
-				          min: 90,
-				          max: 50,
-				          maxTicksLimit: 20
+				          min: 100,
+				          max: 30,
+				          maxTicksLimit: 10
 				        },
 				        gridLines: {
 				          color: "rgba(0, 0, 0, .125)",

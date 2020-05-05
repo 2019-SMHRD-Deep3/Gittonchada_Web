@@ -103,9 +103,10 @@
 		
 		<!-- 메인 내용 작성 부분 -->
 		<main>
-			<div class="container">
-				<div class="card mb-4" id="table-div">
-                	<div class="card-header"><i class="fas fa-table mr-1"></i><span class="dt"></span>현재 날씨</div>
+			<div class="card container-sm" style="margin-top: 100px;margin-bottom: 50px;padding-right: 0px;padding-left: 0px;">
+			<div class="card-header" style="margin-top: 0px; margin-left: 0px;"><h3><span class="dt"></h3>
+			</div>
+                	<div class="card-header"><i class="fas fa-table mr-1"></i></span>현재 날씨</div>
                     	<div class="card-body">
                             <div class="table-responsive-sm">
                             	<div class="current">
@@ -117,19 +118,19 @@
 	                                    </thead>
 	                                    <tbody>
 	                                        <tr>
-	                                            <td rowspan="2" colspan="2"><span class="wIcon"></span></td>
-	                                            <td colspan="2"><span class="temp">기온 : </span> <span>℃</span></td>
+	                                            <td class="wIcon" rowspan="2" colspan="2"></td>
+	                                            <td class="temp" colspan="2"><p>온도</p></td>
 	                                        </tr>
 	                                        <tr>
-	                                            <td colspan="2"><span class="humidity">습도 : </span> <span>%</span></td>
+	                                            <td class="humidity" colspan="2"><p>습도</p></td>
 	                                        </tr>
 	                                        <tr>
-	                                            <td><span class="clouds">운량 : </span> <span>%</span></td>
-	                                            <td><span class="wind_speed">풍속 : </span> <span>m/s</span></td>
-	                                            <td><span class="sunrise">일출 시간 : </span></td>
-	                                            <td><span class="sunset">일몰 시간 : </span></td>
+	                                            <td class="clouds"><p>운량</p></td>
+	                                            <td class="wind_speed"><p>풍속</p></td>
+	                                            <td class="sunrise"><p>일출</p></td>
+	                                            <td class="sunset"><p>일몰</p></td>
 	                                        </tr>
-	                                    </tbody>
+                                    	</tbody>
 	                                </table>
 	                        	</div>
                         	</div>
@@ -161,7 +162,7 @@
 			$.getJSON(
 					'https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
 					function(oneCall) {
-
+						
 						//위도
 						var lat = oneCall.lat;
 						// 경도
@@ -180,14 +181,14 @@
 						// 일출 시간
 						var sunUp = oneCall.current.sunrise;
 						var rTime = new Date(sunUp * 1000);
-						var sunrise = rTime.getHours() + ":"
-								+ rTime.getMinutes() + " ";
+						var sunrise = rTime.getHours() + "시 "
+								+ rTime.getMinutes() + "분";
 
 						// 일몰 시간
 						var sunDown = oneCall.current.sunset;
 						var sTime = new Date(sunDown * 1000);
-						var sunset = sTime.getHours() + ":"
-								+ sTime.getMinutes() + " ";
+						var sunset = sTime.getHours() + "시 "
+								+ sTime.getMinutes() + "분";
 
 						// 현재 날씨
 						var weather = oneCall.current.weather[0].description;
@@ -196,16 +197,16 @@
 						var wIcon = oneCall.current.weather[0].icon;
 
 						// 현재 기온
-						var temp = oneCall.current.temp.toFixed(1);
+						var temp = oneCall.current.temp.toFixed(1) + " ℃";
 
 						// 체감 기온
-						var feels_like = oneCall.current.feels_like;
+						var feels_like = oneCall.current.feels_like + " ℃";
 
 						// 기압
 						var pressure = oneCall.current.pressure;
 
 						// 습도
-						var humidity = oneCall.current.humidity;
+						var humidity = oneCall.current.humidity + " %";
 
 						// 이슬점
 						var dew_point = oneCall.current.dew_point;
@@ -214,13 +215,13 @@
 						var uvi = oneCall.current.uvi;
 
 						// 운량
-						var clouds = parseInt(oneCall.current.clouds / 10);
+						var clouds = parseInt(oneCall.current.clouds / 10) + " %";
 
 						// 가시거리
 						var visibility = oneCall.current.visibility;
 
 						// 풍속
-						var wind_speed = oneCall.current.wind_speed;
+						var wind_speed = oneCall.current.wind_speed + " m/s";
 
 						// 풍향
 						var wind_deg = oneCall.current.wind_deg;
@@ -240,6 +241,32 @@
 						}else{
 							snow = 0;
 						}
+						
+						// 날씨 아이콘 변경
+						var weathers
+						
+						if (wIcon == '01d' || wIcon == '01n') {
+							wIcons = 'clear_sky';
+							weathers = '맑음';
+						} else if (wIcon == '02d' || wIcon == '02n') {
+							wIcons = 'few_clouds';
+							weathers = '구름 조금';
+						} else if (wIcon == '03d' || wIcon == '03n' || wIcon == '04d' || wIcon == '04n') {
+							wIcons = 'scattered_clouds';
+							weathers = '구름';
+						} else if (wIcon == '09d' || wIcon == '09n' || wIcon == '10d' || wIcon == '10n') {
+							wIcons = 'rain';
+							weathers = '비';
+						} else if (wIcon == '11d' || wIcon == '11n') {
+							wIcons = 'thunderstorm';
+							weathers = '번개';
+						} else if (wIcon == '13d' || wIcon == '13n') {
+							wIcons = 'snow';
+							weathers = '눈';
+						} else {
+							wIcons = 'mist';
+							weathers = '안개';
+						}
 
 						$('.lat').append(lat);
 						$('.lon').append(lon);
@@ -250,7 +277,7 @@
 						$('.weather').append(weather);
 						$('.wIcon')
 								.append(
-										'<img id="iconwt" src = "http://openweathermap.org/img/wn/' + wIcon + '.png"/>')
+										'<img id="iconwt" src = "./assets/img/' + wIcons + '.png"/><div style="margin-top: 10px;">' + weathers + '</div>')
 						$('.temp').append(temp);
 						$('.feels_like').append(feels_like);
 						$('.pressure').append(pressure);
@@ -272,7 +299,6 @@
 		         
 		        var msg = "현재 시각 : "+currentDate.getHours()+"시 "
 		        msg += currentDate.getMinutes()+"분 ";
-		        msg += currentDate.getSeconds()+"초";
 		         
 		        divClock.innerText = msg;
 		        setTimeout(showClock,1000);
@@ -281,6 +307,8 @@
 		<script>
 		var times = [];
 		var temps = [];
+		var hmds = [];
+		var winds = [];
 		$.getJSON(
 			'https://api.openweathermap.org/data/2.5/onecall?lat=37.57&lon=126.98&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
 			function(oneCall) {
@@ -295,14 +323,18 @@
 					// 현재 기온
 					var hourly_temp = oneCall.hourly[index].temp;
 					
+					// 현재 습도
+					var hourly_humidity = oneCall.hourly[index].humidity;
+					
+					// 현재 풍속
+					var hourly_wind_speed = oneCall.hourly[index].wind_speed;
+
+					
 					times.push(hourly_dt);
 					temps.push(hourly_temp.toFixed(1));
+					hmds.push(hourly_humidity);
+					winds.push(hourly_wind_speed);
 				}
-				/* var max = Math.max.apply(null, temps);
-				var min = Math.min.apply(null, temps);
-				var u = 10;
-				var max_change = Math.round(max/10);
-				var min_change = Math.round(min/10); */
 				
 				Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 				Chart.defaults.global.defaultFontColor = '#292b2c';
@@ -317,18 +349,45 @@
 				    
 				    datasets: [{
 				      label: "기온",
-				      lineTension: 0.3,
-				      backgroundColor: "rgba(2,117,216,0.2)",
-				      borderColor: "rgba(2,117,216,1)",
+				      lineTension: 1,
+				      backgroundColor: "rgba(255,255,255,0)",
+				      borderColor: "rgba(255, 230, 221,1)",
 				      pointRadius: 5,
-				      pointBackgroundColor: "rgba(2,117,216,1)",
+				      pointBackgroundColor: "rgba(255, 230, 221,1)",
 				      pointBorderColor: "rgba(255,255,255,0.8)",
 				      pointHoverRadius: 5,
-				      pointHoverBackgroundColor: "rgba(2,117,216,1)",
-				      pointHitRadius: 50,
-				      pointBorderWidth: 1,
+				      pointHoverBackgroundColor: "rgba(255, 230, 221,1)",
+				      pointHitRadius: 100,
+				      pointBorderWidth: 3,
 				      data: [temps[0],temps[1],temps[2],temps[3],temps[4],temps[5],temps[6],temps[7],temps[8],temps[9],temps[10],temps[11],temps[12]],
-				    }],
+				    },{
+				      label: "습도",
+				      lineTension: 0.6,
+				      backgroundColor: "rgba(255,255,255,0)",
+				      borderColor: "rgba(255, 180, 153,1)",
+				      pointRadius: 5,
+				      pointBackgroundColor: "rgba(255, 180, 153,1)",
+				      pointBorderColor: "rgba(255,255,255,0.8)",
+				      pointHoverRadius: 5,
+				      pointHoverBackgroundColor: "rgba(255, 180, 153,1)",
+				      pointHitRadius: 50,
+				      pointBorderWidth: 2,
+				      data: [hmds[0],hmds[1],hmds[2],hmds[3],hmds[4],hmds[5],hmds[6],hmds[7],hmds[8],hmds[9],hmds[10],hmds[11],hmds[12]],
+				    },{
+				      label: "풍속",
+				      lineTension: 0.3,
+				      backgroundColor: "rgba(255,255,255,0)",
+				      borderColor: "rgba(255, 131, 85,1)",
+				      pointRadius: 5,
+				      pointBackgroundColor: "rgba(255, 131, 85,1)",
+				      pointBorderColor: "rgba(255,255,255,0.8)",
+				      pointHoverRadius: 5,
+				      pointHoverBackgroundColor: "rgba(255, 131, 85,1)",
+				      pointHitRadius: 10,
+				      pointBorderWidth: 1,
+				      data: [winds[0],winds[1],winds[2],winds[3],winds[4],winds[5],winds[6],winds[7],winds[8],winds[9],winds[10],winds[11],winds[12]],
+				    }
+				    ],
 				  },
 				  
 				  options: {
@@ -345,15 +404,20 @@
 				        }
 				      }],
 				      yAxes: [{
-				        ticks: {
-				          min: -20,
-				          max: 40,
-				          maxTicksLimit: 10
-				        },
-				        gridLines: {
-				          color: "rgba(0, 0, 0, .125)",
-				        }
-				      }],
+				    	 	 ticks: {
+					          min: 0,
+					          max: 100,
+					          maxTicksLimit: 20
+					        },
+			                display: true,
+			                ticks: {
+			                    suggestedMin: 100,
+			                },
+			                scaleLabel: {
+			                    display: true,
+			                    labelString: '기온'
+			                }
+			            }]
 				    },
 				    legend: {
 				      display: true
