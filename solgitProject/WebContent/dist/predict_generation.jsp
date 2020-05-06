@@ -45,9 +45,35 @@ td {
 	text-align: center;
 	vertical-align: middle;
 }
+
+.wrap-loading { /*화면 전체를 어둡게 합니다.*/
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.2); /*not in ie */
+	z-index: 100;
+}
+.wrap-loading div { /*로딩 이미지*/
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -21px;
+	margin-top: -21px;
+	z-index: 101;
+}
+.display-none { /*감추기*/
+	display: none;
+}
 </style>
 </head>
 <body class="nav-fixed">
+	<div class="wrap-loading display-none">
+		<div>
+			<img src="./assets/img/loadingbar.gif" />
+		</div>
+	</div>
 
 	<!-- 네비게이션바 코드 -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
@@ -118,14 +144,20 @@ td {
 	<!-- 메인 내용 작성 부분 -->
 	<main>
 		<!-- 메인 테이블 시작 -->
-		<div class="card mb-4">
-			<div class="card-header container-sm" style="margin-top: 100px;">
-				<i class="fas fa-table mr-1"></i>DataTable Example
+
+		<div class="card container-sm"
+			style="margin-top: 100px; margin-bottom: 100px; padding-right: 0px; padding-left: 0px;">
+			<div class="card-header" style="margin-top: 0px; margin-left: 0px;">
+				<h3>발전량 예측</h3>
 			</div>
-			<div class="card-body container-sm">
-				<div class="table" style="width: 50%; float:left;">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
+			<div class="card-header">
+				<i class="fas fa-table mr-1"></i>표(Table)
+			</div>
+			<div class="card-body">
+				<div style="width: 60%; float: left;">
+					<table
+						class="table table-bordered table-striped table-hover table-condensed info"
+						width="100%" id="dataTable" cellspacing="0">
 						<thead>
 							<tr>
 								<th>날짜</th>
@@ -139,9 +171,11 @@ td {
 						</tbody>
 					</table>
 				</div>
-				<div class="table" style="width: 50%; float:right;">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
+				<div class="table table-responsive"
+					style="width: 40%; float: right;">
+					<table
+						class="table table-bordered table-striped table-hover table-condensed"
+						width="100%" cellspacing="0">
 						<thead>
 							<tr>
 								<th>일사량</th>
@@ -154,11 +188,22 @@ td {
 					</table>
 				</div>
 			</div>
+			<div class="card-body display_chart">
+				<div class="card mb-4">
+					<div class="card-header">
+						<i class="fas fa-chart-area mr-1"></i>시간별 일사·일조·발전량
+					</div>
+					<div class="card-body">
+						<canvas id="myLineChart2" width="100%" height="30"></canvas>
+					</div>
+					<div class="card-footer small text-muted">※본 일사·일조·발전량은 머신러닝
+						분석으로 예측한 자료입니다.※</div>
+				</div>
+			</div>
 		</div>
 
-
 		<!-- Footer -->
-		<footer class="py-4 bg-light mt-auto fixed-bottom">
+		<footer class="py-4 bg-light mt-auto">
 			<div class="container-fluid">
 				<div class="d-flex align-items-center justify-content-between small">
 					<div class="text-muted">Copyright &copy; 2020 © SOLGIT</div>
@@ -169,10 +214,14 @@ td {
 				</div>
 			</div>
 		</footer>
-		</div>
 	</main>
 	<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
 	<script>
+		var times = [];
+		var radis = [];
+		var shines = [];
+		var gens = [];
+
 		$
 				.getJSON(
 						'https://api.openweathermap.org/data/2.5/onecall?lat=35.15&lon=126.92&appid=dbf3abee8d29ca1bd9cefa8675b55c52&units=metric',
@@ -248,25 +297,26 @@ td {
 								// 발전량
 								var generation = 0;
 
-								// 값 전달하는 부분
-								//hourly_time
+								// 값 전달 및 테이블 구축
+								//hourly_time(일자)
 								var dayValue = document.createElement("td");
 								dayValue.innerHTML = (hourly_month + "월　"
 										+ hourly_day + "일");
 
-								//hourly_time
+								//hourly_time(시간)
 								var timeValue = document.createElement("td");
 								timeValue.innerHTML = hourly_time + " 시";
 
-								//hourly_temp
+								//hourly_temp(기온)
 								var tempValue = document.createElement("td");
-								tempValue.innerHTML = hourly_temp.toFixed(1) + " ℃";
+								tempValue.innerHTML = hourly_temp.toFixed(1)
+										+ " ℃";
 
-								//hourly_humidity
+								//hourly_humidity(습도)
 								var hmdValue = document.createElement("td");
 								hmdValue.innerHTML = hourly_humidity + " %";
 
-								//hourly_rain
+								//hourly_rain(강수)
 								var rainValue = document.createElement("td");
 								rainValue.innerHTML = hourly_rain + " mm";
 
@@ -280,22 +330,8 @@ td {
 								selector.appendChild(rainValue);
 								selector.appendChild(lineValue);
 
-								//solar_radiation
-								/* var radValue = document.createElement("td");
-								radValue.innerHTML=solar_radiation;
-								console.log(radValue);
-								//solar_sunshine
-								var sunValue = document.createElement("td");
-								sunValue.innerHTML=solar_sunshine;
-								console.log(sunValue);
-								
-								//solar_generation
-								var genValue = document.createElement("td");
-								genValue.innerHTML=solar_generation;
-								
-								selector.appendChild(radValue);
-								selector.appendChild(sunValue);
-								selector.appendChild(genValue); */
+								times.push(hourly_day + " 일 " + hourly_time
+										+ " 시");
 
 								$
 										.ajax({
@@ -311,16 +347,19 @@ td {
 													+ hourly_clouds,
 											method : "POST",
 											success : function(rs) {
-												if (rs.solar_radiation > 0) {
-													solar_radiation = rs.solar_radiation;
-												}
-												if (rs.solar_sunshine > 0) {
-													solar_sunshine = rs.solar_sunshine;
-												}
-												if (rs.solar_generation > 0) {
-													solar_generation = parseInt(rs.solar_generation);
-												}
 
+												if (hourly_time > 5
+														&& hourly_time < 20) {
+													if (rs.solar_radiation > 0) {
+														solar_radiation = rs.solar_radiation;
+													}
+													if (rs.solar_sunshine > 0) {
+														solar_sunshine = rs.solar_sunshine;
+													}
+													if (rs.solar_generation > 0) {
+														solar_generation = parseInt(rs.solar_generation);
+													}
+												}
 												var selector = document
 														.querySelector(".myPredict");
 												var lineValue = document
@@ -351,10 +390,121 @@ td {
 														.appendChild(generationValue);
 												selector.appendChild(lineValue);
 
+												radis.push(solar_radiation
+														.toFixed(2));
+												shines.push(solar_sunshine
+														.toFixed(0));
+												gens.push(solar_generation);
+
+												if (gens[47] == null) {
+													$('.wrap-loading')
+															.removeClass(
+																	'display-none');
+												} else if (gens[47] != null) {
+													$('.wrap-loading')
+															.addClass(
+																	'display-none');
+												}
+
+												// 차트 
+												Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+												Chart.defaults.global.defaultFontColor = '#292b2c';
+
+												var ctx = document
+														.getElementById("myLineChart2");
+												var myLineChart = new Chart(
+														ctx,
+														{
+															type : 'line',
+
+															data : {
+																labels : times,
+
+																datasets : [
+																		{
+																			label : "일사량",
+																			lineTension : 0.3,
+																			backgroundColor : "rgba(255,255,255,0)",
+																			borderColor : "rgba(255, 230, 221,1)",
+																			pointRadius : 5,
+																			pointBackgroundColor : "rgba(255, 230, 221,1)",
+																			pointBorderColor : "rgba(255,255,255,0.8)",
+																			pointHoverRadius : 5,
+																			pointHoverBackgroundColor : "rgba(255, 230, 221,1)",
+																			pointHitRadius : 100,
+																			pointBorderWidth : 5,
+																			data : radis,
+																		},
+																		{
+																			label : "일조시간",
+																			lineTension : 0.3,
+																			backgroundColor : "rgba(255,255,255,0)",
+																			borderColor : "rgba(255, 180, 153,1)",
+																			pointRadius : 5,
+																			pointBackgroundColor : "rgba(255, 180, 153,1)",
+																			pointBorderColor : "rgba(255,255,255,0.8)",
+																			pointHoverRadius : 5,
+																			pointHoverBackgroundColor : "rgba(255, 180, 153,1)",
+																			pointHitRadius : 60,
+																			pointBorderWidth : 3,
+																			data : shines,
+																		},
+																		{
+																			label : "발전량",
+																			lineTension : 0.3,
+																			backgroundColor : "rgba(255,255,255,0)",
+																			borderColor : "rgba(255, 131, 85,1)",
+																			pointRadius : 5,
+																			pointBackgroundColor : "rgba(255, 131, 85,1)",
+																			pointBorderColor : "rgba(255,255,255,0.8)",
+																			pointHoverRadius : 5,
+																			pointHoverBackgroundColor : "rgba(255, 131, 85,1)",
+																			pointHitRadius : 20,
+																			pointBorderWidth : 1,
+																			data : gens,
+																		} ],
+															},
+
+															options : {
+																scales : {
+																	xAxes : [ {
+																		time : {
+																			unit : '시간'
+																		},
+																		gridLines : {
+																			display : true
+																		},
+																		ticks : {
+																			maxTicksLimit : 48
+																		}
+																	} ],
+																	yAxes : [ {
+																		ticks : {
+																			min : 0,
+																			max : 100,
+																			maxTicksLimit : 20
+																		},
+																		display : true,
+																		ticks : {
+																			suggestedMin : 100,
+																		},
+																		scaleLabel : {
+																			display : true,
+																			labelString : ''
+																		}
+																	} ]
+																},
+																legend : {
+																	display : true
+																}
+															}
+														});
 											}
+
 										});
 							}
 						});
+		/* }); */
 	</script>
 
 
@@ -375,9 +525,6 @@ td {
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js?ver=1"
 		crossorigin="anonymous"></script>
-	<!-- <script src="assets/demo/chart-area-demo.js?ver=1"></script>
-		<script src="assets/demo/chart-bar-demo.js?ver=1"></script>
-		<script src="assets/demo/chart-pie-demo.js?ver=1"></script> -->
 	<script src="assets/demo/datatables-demo.js?ver=1"></script>
 </body>
 </html>

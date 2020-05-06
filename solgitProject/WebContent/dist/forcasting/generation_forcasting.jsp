@@ -98,6 +98,7 @@
 							// 발전량
 							var generation = 0;
 
+							
 							$
 									.ajax({
 										url : "http://localhost:9000/re/"
@@ -121,53 +122,51 @@
 											if (rs.solar_generation > 0) {
 												solar_generation = parseInt(rs.solar_generation);
 											}
-
 											document
-													.write('<div class="hourly">');
-											document.write('<div>현재 시간 : ',
-													hourly_dt, '</div>');
-											document.write('<div>현재 날씨 : ',
-													hourly_weather);
-											document
-													.write('<img src = "http://openweathermap.org/img/wn/' + hourly_wIcon + '.png"/></div>');
-											document.write('<div>기온 : ',
-													hourly_temp, '℃</div>');
-											document.write('<div>체감 온도 : ',
-													hourly_feels_like,
+											.write('<div class="hourly">');
+									document.write('<div>현재 시간 : ',
+											hourly_dt, '</div>');
+									document.write('<div>현재 날씨 : ',
+											hourly_weather);
+									document
+											.write('<img src = "http://openweathermap.org/img/wn/' + hourly_wIcon + '.png"/></div>');
+									document.write('<div>기온 : ',
+											hourly_temp, '℃</div>');
+									document.write('<div>체감 온도 : ',
+											hourly_feels_like,
+											'℃</div>');
+									document.write('<div>기압 : ',
+											hourly_pressure,
+											'hpa</div>');
+									document.write('<div>습도 : ',
+											hourly_humidity, '%</div>');
+									document
+											.write('<div>이슬점 : ',
+													hourly_dew_point,
 													'℃</div>');
-											document.write('<div>기압 : ',
-													hourly_pressure,
-													'hpa</div>');
-											document.write('<div>습도 : ',
-													hourly_humidity, '%</div>');
-											document
-													.write('<div>이슬점 : ',
-															hourly_dew_point,
-															'℃</div>');
-											document.write('<div>운량 : ',
-													hourly_clouds, '%</div>');
-											document.write('<div>풍속 : ',
-													hourly_wind_speed,
-													'm/s</div>');
-											document.write('<div>풍향 : ',
-													hourly_wind_deg, '</div>');
-											document.write('<div>강수량 : ',
-													hourly_rain, 'mm</div>');
-											document.write('<div>적설량 : ',
-													hourly_snow, 'mm</div>');
-											document.write('<div>일사량 : ',
-													solar_radiation.toFixed(2),
-													'MJ/m2</div>');
-											document.write('<div>일조량 : ',
-													solar_sunshine.toFixed(2),
-													'hr</div>');
-											document
-													.write(
-															'<div>예상 발전량 : ',
-															solar_generation,
-															'kWh</div>');
-											document.write('</div></br></br>');
-
+									document.write('<div>운량 : ',
+											hourly_clouds, '%</div>');
+									document.write('<div>풍속 : ',
+											hourly_wind_speed,
+											'm/s</div>');
+									document.write('<div>풍향 : ',
+											hourly_wind_deg, '</div>');
+									document.write('<div>강수량 : ',
+											hourly_rain, 'mm</div>');
+									document.write('<div>적설량 : ',
+											hourly_snow, 'mm</div>');
+									document.write('<div>일사량 : ',
+											solar_radiation.toFixed(2),
+											'MJ/m2</div>');
+									document.write('<div>일조량 : ',
+											solar_sunshine.toFixed(2),
+											'hr</div>');
+									document
+											.write(
+													'<div>예상 발전량 : ',
+													solar_generation,
+													'kWh</div>');
+									document.write('</div></br></br>');
 										}
 									});
 						});
