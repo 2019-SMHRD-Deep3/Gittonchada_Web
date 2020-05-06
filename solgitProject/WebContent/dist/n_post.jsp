@@ -24,8 +24,8 @@
 	crossorigin="anonymous"></script>
 <style type="text/css">
 .mydiv {
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 15%;
+	padding-right: 15%;
 	padding-top: 5%;
 	padding-bottom: 5%;
 }

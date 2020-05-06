@@ -79,7 +79,7 @@ public class BoardDAO {
 
 			try {
 				getConnection();
-				String sql = "select * from BOARD";
+				String sql = "select * from BOARD order by board_idx desc";
 				psmt = conn.prepareStatement(sql);
 				rs = psmt.executeQuery();
 				while (rs.next()) {

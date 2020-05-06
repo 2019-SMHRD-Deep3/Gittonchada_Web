@@ -156,7 +156,7 @@ sysdate,
 );
 
 select * from reply;
-
+delete from reply where reply_idx=29;
 -- 과거 발전량 정보
 drop table Load_File;
 drop sequence File_seq;
@@ -164,7 +164,8 @@ drop sequence File_seq;
 CREATE TABLE Load_File
 (   File_seq          NUMBER            NOT NULL, 
     File_name         VARCHAR2(20)      NOT NULL, 
-    File_local        VARCHAR2(50)      NOT NULL, 
+    File_local        VARCHAR2(50)      NOT NULL,
+    File_content      VARCHAR2(1000)    NULL,
     File_date         DATE    NOT NULL, 
     File_check        VARCHAR2(20)              NOT NULL, 
     Member_Seq        NUMBER            NOT NULL, 
@@ -182,9 +183,9 @@ VALUES(
 File_seq.nextval,
 '광주 발전량.csv',
 '광주 광역시',
+'모델명 : gitdongcha',
 sysdate,
 '대기중',
 1
 );
-
 select * from LOAD_FILE;

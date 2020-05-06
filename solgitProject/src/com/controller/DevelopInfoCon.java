@@ -31,6 +31,7 @@ public class DevelopInfoCon implements ICommand{
 		String local1=null;
 		String local2=null;
 		String file_name=null;
+		String file_content=null;
 		int member_seq;
 		
 		try {
@@ -39,9 +40,11 @@ public class DevelopInfoCon implements ICommand{
 			local2=multi.getParameter("gugun");
 			member_seq=Integer.parseInt(multi.getParameter("info"));
 			file_name=multi.getFilesystemName("file_name");
+			file_content=multi.getParameter("file_content");
 			String local=local1+"-"+local2;
 			System.out.println(member_seq);
-			dto = new FileDTO(file_name, local, member_seq);
+			System.out.println(file_content);
+			dto = new FileDTO(file_name, local, file_content, member_seq);
 			dao.insertFile(dto);
 			
 		} catch (IOException e) {

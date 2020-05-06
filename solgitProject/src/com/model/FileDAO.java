@@ -49,11 +49,12 @@ public class FileDAO {
 		
 		try {
 			getConnection();
-			String sql="insert into Load_File values(File_seq.nextval,?,?,sysdate,'대기중',?)";
+			String sql="insert into Load_File values(File_seq.nextval,?,?,?,sysdate,'대기중',?)";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getFile_name());
 			psmt.setString(2, dto.getFile_local());
-			psmt.setInt(3, dto.getMember_seq());
+			psmt.setString(3, dto.getFile_content());
+			psmt.setInt(4, dto.getMember_seq());
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -69,7 +70,7 @@ public class FileDAO {
 		ArrayList<FileDTO> file_list = new ArrayList<FileDTO>();
 		try {
 			getConnection();
-			String sql = "select * from Load_File where member_seq=?";
+			String sql = "select * from Load_File where member_seq=? order by file_seq desc";
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, idx);
 			rs = psmt.executeQuery();
@@ -77,10 +78,11 @@ public class FileDAO {
 				int file_seq=rs.getInt(1);
 				String file_name=rs.getString(2);
 				String file_local=rs.getString(3);
-				String file_date=rs.getString(4);
-				String file_check=rs.getString(5);
-				int member_seq=rs.getInt(6);
-				FileDTO dto = new FileDTO(file_seq, file_name, file_local, file_date, file_check, member_seq);
+				String file_content=rs.getString(4);
+				String file_date=rs.getString(5);
+				String file_check=rs.getString(6);
+				int member_seq=rs.getInt(7);
+				FileDTO dto = new FileDTO(file_seq, file_name, file_local, file_content, file_date, file_check, member_seq);
 				file_list.add(dto);
 			}
 		} catch (SQLException e) {

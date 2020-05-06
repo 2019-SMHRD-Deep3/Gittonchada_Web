@@ -100,6 +100,30 @@ public class ReplyDAO {
 		return reple_list;
 		
 	}
-	
+
+	public int deleteReply(int idx) {
+		int board_idx = 0;
+		try {
+			System.out.println(idx);
+			getConnection();
+			String sql_select = "select * from reply where reply_idx=?";
+			psmt = conn.prepareStatement(sql_select);
+			psmt.setInt(1, idx);
+			rs=psmt.executeQuery();
+			while(rs.next()) {
+				board_idx = rs.getInt(6);
+			}
+			String sql = "delete from reply where reply_idx=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, idx);
+			rs = psmt.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return board_idx;
+	}
 	
 }

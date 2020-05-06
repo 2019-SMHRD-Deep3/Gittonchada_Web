@@ -5,30 +5,39 @@ public class FileDTO {
 	private int file_seq;
 	private String file_name;
 	private String file_local;
+	private String file_content;
 	private String file_date;
 	private String file_check;
 	private int member_seq;
 	
-	public FileDTO(int file_seq, String file_name, String file_local, String file_date, String file_check,
+	public FileDTO(int file_seq, String file_name, String file_local, String file_content, String file_date, String file_check,
 			int member_seq) {
 		super();
 		this.file_seq = file_seq;
 		this.file_name = file_name;
 		this.file_local = file_local;
+		this.file_content = file_content;
 		this.file_date = file_date;
 		this.file_check = file_check;
 		this.member_seq = member_seq;
 	}
 	
 	
-	public FileDTO(String file_name, String file_local, int member_seq) {
+	public FileDTO(String file_name, String file_local, String file_content, int member_seq) {
 		super();
 		this.file_name = file_name;
 		this.file_local = file_local;
+		this.file_content = file_content;
 		this.member_seq = member_seq;
 	}
 
 
+	public String getFile_content() {
+		return file_content;
+	}
+	public void setFile_content(String file_content) {
+		this.file_content = file_content;
+	}
 	public int getFile_seq() {
 		return file_seq;
 	}

@@ -73,7 +73,7 @@ public class NoticeDAO {
 
 		try {
 			getConnection();
-			String sql = "select * from NOTICE";
+			String sql = "select * from NOTICE order by notice_idx desc ";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
@@ -124,5 +124,4 @@ public class NoticeDAO {
 				}
 				return dto;
 			}
-		
 	}

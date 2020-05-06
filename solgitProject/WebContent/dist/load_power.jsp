@@ -21,8 +21,8 @@
 
 <style type="text/css">
 .mytable {
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 15%;
+	padding-right: 15%;
 	padding-top: 5%;
 	padding-bottom: 5%;
 }
@@ -140,17 +140,26 @@ a {
 			<div class="mytable">
 
 				<!-- 발전이력 등록하기 -->
-				<p>태양광 발전이력을 '파일명.csv' 형식으로 첨부바랍니다.</p>
 				<form action="DevelopInfoCon.do" method="post"
 					enctype="multipart/form-data">
-					<div class="form-group">
-						<label for="exampleFormControlSelect1">지역 선택</label> <select
-							class="form-control" name="sido" id="sido"></select> <select
+					<div class="form-group" >
+					<div>
+						<label for="exampleFormControlSelect1" style="font-weight:bold;">발전 지역 선택</label> </div>
+						<select style="width: 20%; display: block; float: left; margin-right: 2%;"
+							class="form-control" name="sido" id="sido"></select> 
+							<select style="width: 20%; display: block; float: left; margin-right: 2%;"
 							class="form-control" name="gugun" id="gugun"></select>
 						<!-- //////////////////////////////////////////////// 발전이력 첨부////////////////////////////////////////////////// -->
-					</div>
+					</div><br><br>
 					<div class="form-group">
-						<label for="exampleFormControlTextarea1">발전이력 불러오기</label>
+					<label for="exampleFormControlSelect1" style="font-weight:bold;">세부 사항</label> 
+						<textarea class="form-control" id="exampleFormControlTextarea1"
+							name="file_content" rows="5" placeholder="현재 사용하시는 <인버터> <모듈명> <연식> 등을 함께 적어주시면 차후 성능 개선에 반영됩니다."></textarea>
+					</div>
+						<div>
+						<label for="exampleFormControlSelect1" style="font-weight:bold;">파일 첨부</label> </div>
+					<div class="form-group">
+						<label for="exampleFormControlTextarea1">※ 태양광 발전이력을 '파일명.csv' 형식으로 첨부바랍니다. ※</label>
 						<div class="custom-file">
 							<input type="file" name="file_name" id="inputGroupFile01"
 								aria-describedby="inputGroupFileAddon01">
@@ -160,8 +169,11 @@ a {
 							<%if (info!=null){ %>
 						<input type="hidden" name="info" value="<%= info.getSeq()%>" />
 					</div>
-					<%}%>
+					<%}%><br><br><br><br><br>
+					<div style="text-align:center;">
+					<button type="button" class="btn btn-primary" onclick="location.href='board_load.jsp'" >뒤로가기</button>
 					<button type="submit" class="btn btn-primary">등록하기</button>
+					</div>
 				</form>
 
 			</div>

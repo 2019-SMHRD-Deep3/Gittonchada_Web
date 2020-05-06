@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.controller.BoardCommuCon;
+import com.controller.BoardLoadCon;
+import com.controller.BoardNoticeCon;
 import com.controller.DevelopInfoCon;
 import com.controller.JoinCon;
 import com.controller.LoginCon;
 import com.controller.LogoutCon;
 import com.controller.NoticeWriteCon;
 import com.controller.PostWriteCon;
+import com.controller.ReplyDeleteCon;
 import com.controller.ReplyReadCon;
 import com.controller.ReplyWriteCon;
 
@@ -36,6 +40,10 @@ public class DoFrontController extends HttpServlet {
 		map.put("ReplyWriteCon.do", new ReplyWriteCon());
 		map.put("ReplyReadCon.do", new ReplyReadCon());
 		map.put("DevelopInfoCon.do", new DevelopInfoCon());
+		map.put("BoardNoticeCon.do", new BoardNoticeCon());
+		map.put("BoardCommuCon.do", new BoardCommuCon());
+		map.put("BoardLoadCon.do", new BoardLoadCon());
+		map.put("ReplyDeleteCon.do", new ReplyDeleteCon());
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

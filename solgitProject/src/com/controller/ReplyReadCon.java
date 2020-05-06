@@ -24,7 +24,7 @@ public class ReplyReadCon implements ICommand{
 		response.setCharacterEncoding("euc-kr");
 		response.setCharacterEncoding("UTF-8");
 
-		String moveURL=null;
+//		String moveURL=null;
 //		HttpSession session = request.getSession();
 //		MemberDTO info = (MemberDTO)session.getAttribute("info");
 //		String post_id = info.getId();

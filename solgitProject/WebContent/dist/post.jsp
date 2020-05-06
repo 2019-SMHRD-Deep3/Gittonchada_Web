@@ -25,8 +25,8 @@
 	crossorigin="anonymous"></script>
 <style type="text/css">
 .mydiv {
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 15%;
+	padding-right: 15%;
 	padding-top: 5%;
 	padding-bottom: 5%;
 }
@@ -44,101 +44,121 @@
 
 <body class="nav-fixed">
 	<%
-      MemberDTO info = (MemberDTO) session.getAttribute("info");
-   	%>
+		MemberDTO info = (MemberDTO) session.getAttribute("info");
+	%>
 	<!-- 네비게이션바 코드 -->
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-			
-			<!-- 회사명, 로고 -->
-			<a class="navbar-brand" href="mainpage.jsp"><img src="./assets/img/solgitIcon.png" alt="Logo" style="text-size=5rem; width:40px;">&nbsp;　　솔깃</a>
-			
-			<!-- 반응형 버튼 -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#collapsibleNavbar"><span class="navbar-toggler-icon"></span></button>
-			
-			<!-- 메뉴바 내용 -->
-			<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<!-- 메뉴 타이틀 -->
-				<ul class="navbar-nav ml-auto ml-md-3"> <!--  ml-auto ml-md-5 -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">데이터 등록</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">인공지능 분석</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a>
-							<a class="dropdown-item" href="predict_generation.jsp">발전량 예측</a>
-							<a class="dropdown-item" href="predict_benefit.jsp">수익 예측</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">정보 공유</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="board_notice.jsp">공지사항</a>
-							<a class="dropdown-item" href="board_community.jsp">커뮤니티</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">고객 센터</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
-							<a class="dropdown-item" href="customer_faq.jsp">FAQ</a>
-						</div>
-					</li>
-				</ul>
-				</div>
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<%
-	            	if (info != null) {
-	            %>
-				<!-- SMP 등 정보전달 -->
-				<div class="navbar-nav" style="margin-left: 150px;"> <!-- ml-auto ml-md-8 -->
-					<span class="nav-link" id="navbar">SMP <% %></span>
-					<span class="nav-link" id="navbar">REC <% %></span>
-					<span class="nav-link" id="navbar">날씨  <% %></span>
-				</div>
-				<%
-	            	}
-	            %>
-	            </div>
-	            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-	            <ul class="navbar-nav ml-auto">
-	            	<li><div  style="color : hotpink;"><%if(info!=null){ %><%=info.getName()%><br>님 환영합니다.
-	               		<%}else {%><%} %></div></li>
-	            </ul>
-	            </div>
-	            
-				<!-- 메뉴 로그인 등 -->
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">
-	            <ul class="navbar-nav ml-auto ml-md-6">
-	               <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
-	               id="userDropdown" href="#" role="button" data-toggle="dropdown" 
-	               aria-haspopup="true" aria-expanded="true"><i class="fas fa-user fa-fw"></i></a>
-	               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-	                  <%
-	                  if (info == null) {
-	                  %>
-	                  <a class="dropdown-item" href="login.jsp">로그인</a> 
-	                  <div class="dropdown-divider"></div>
-	                  <a class="dropdown-item" href="register.jsp">회원가입</a>
-	                  <%
-	                  } else {
-	                  %>
-	                  <a class="dropdown-item" href="LogoutService.do">로그아웃</a>
-	                  <%
-	                  }
-	                  %>
-	               </div>
-	               </li>
-	            </ul>
-	            </div>
-			
-	            <!-- 신 로그인, 회원가입 -->
-				
-		</nav>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+
+		<!-- 회사명, 로고 -->
+		<a class="navbar-brand" href="mainpage.jsp"><img
+			src="./assets/img/solgitIcon.png" alt="Logo" style="width: 40px;">&nbsp;
+			솔깃</a>
+
+		<!-- 반응형 버튼 -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- 메뉴바 내용 -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<!-- 메뉴 타이틀 -->
+			<ul class="navbar-nav ml-auto ml-md-3">
+				<!--  ml-auto ml-md-5 -->
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown">데이터 등록</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown">인공지능 분석</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="predict_weather.jsp">기상예보</a> <a
+							class="dropdown-item" href="predict_generation.jsp">발전량 예측</a> <a
+							class="dropdown-item" href="predict_benefit.jsp">수익 예측</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown">정보 공유</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="board_notice.jsp">공지사항</a> <a
+							class="dropdown-item" href="board_community.jsp">커뮤니티</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown">고객 센터</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="customer_app.jsp">앱 지원</a> <a
+							class="dropdown-item" href="customer_faq.jsp">FAQ</a>
+					</div></li>
+			</ul>
+		</div>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<%
+				if (info != null) {
+			%>
+			<!-- SMP 등 정보전달 -->
+			<div class="navbar-nav" style="margin-left: 150px;">
+				<!-- ml-auto ml-md-8 -->
+				<span class="nav-link" id="navbar">SMP <%
+					
+				%></span> <span class="nav-link" id="navbar">REC <%
+ 	
+ %></span> <span class="nav-link" id="navbar">날씨 <%
+ 	
+ %></span>
+			</div>
+			<%
+				}
+			%>
+		</div>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav ml-auto">
+				<li><div style="color: hotpink;">
+						<%
+							if (info != null) {
+						%><%=info.getName()%><br>님 환영합니다.
+						<%
+							} else {
+						%>
+						<%
+							}
+						%>
+					</div></li>
+			</ul>
+		</div>
+
+		<!-- 메뉴 로그인 등 -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav ml-auto ml-md-6">
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" id="userDropdown" href="#"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="true"><i class="fas fa-user fa-fw"></i></a>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="userDropdown">
+						<%
+							if (info == null) {
+						%>
+						<a class="dropdown-item" href="login.jsp">로그인</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="register.jsp">회원가입</a>
+						<%
+							} else {
+						%>
+						<a class="dropdown-item" href="LogoutService.do">로그아웃</a>
+						<%
+							}
+						%>
+					</div></li>
+			</ul>
+		</div>
+
+		<!-- 신 로그인, 회원가입 -->
+
+	</nav>
 	<!-- 메인 내용 작성 부분 -->
 	<div class=container-fluid"">
 		<main>
@@ -183,28 +203,53 @@
 			<!-- 댓글 입력창 -->
 			<div class="mydiv">
 				<form action="ReplyWriteCon.do">
-					<div class="form-group">
-						<input class="form-control" type="text" placeholder="아이디"
-							id="reply_id" name="reply_id"> <input
-							class="form-control" type="password" placeholder="비밀번호"
-							name="reply_pw" id="reply_pw"> <input
-							class="form-control" type="text" placeholder="댓글을 입력해주세요"
-							id="reply_content" name="reply_content"> <input
-							type="hidden" value="<%=idx%>" name="board_idx" id="board_idx">
-						<button type="submit" class="btn btn-primary">등록</button>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="input-group">
+								<input class="form-control" type="text" placeholder="아이디"
+									id="reply_id" name="reply_id">
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="input-group">
+								<input class="form-control" type="password" placeholder="비밀번호"
+									name="reply_pw" id="reply_pw">
+							</div>
+						</div>
+						<div class="form-group" style="width: 89%; padding: 12px;">
+							<input class="form-control" type="text" placeholder="댓글을 입력해주세요"
+								id="reply_content" name="reply_content"> <input
+								type="hidden" value="<%=idx%>" name="board_idx" id="board_idx">
+						</div>
+						<div class="form-group"
+							style="display: block; float: right; padding: 12px; width: 11%;">
+							<button type="submit" class="btn btn-primary"
+								style="width: 100%;">등록</button>
+						</div>
 					</div>
 				</form>
 				<!-- 댓글 내용 -->
 				<div>
 					<table class="table table-sm">
-						<%if(reple_list.size()!=0){
-						for(int i=0;i<reple_list.size();i++){ %>
+						<%
+							if (reple_list.size() != 0) {
+								for (int i = 0; i < reple_list.size(); i++) {
+						%>
 						<tr>
-							<td class="table-active"><%=reple_list.get(i).getReply_id()%></td>
-							<td class="table-active"><%=reple_list.get(i).getReply_content()%></td>
-							<td class="table-active"><%=reple_list.get(i).getReply_date()%></td>
-						</tr> 
-						<%}} %>
+							<td class="table-active" style="width: 2%;"></td>
+							<td class="table-active" style="width: 10%;"><%=reple_list.get(i).getReply_id()%></td>
+							<td class="table-active" style="width: 68%;"><%=reple_list.get(i).getReply_content()%></td>
+							<td class="table-active" style="width: 15%;"><%=reple_list.get(i).getReply_date()%></td>
+							<td class="table-active" style="width: 5%;">
+							<button type="button" class="btn btn-delete" value="<%=reple_list.get(i).getReply_idx()%>">삭제</button>
+							<%-- <a href="#"
+								onclick="cmDelete(<%=reple_list.get(i).getReply_idx()%>)">삭제</a> --%>
+								</td>
+						</tr>
+						<%
+							}
+							}
+						%>
 					</table>
 				</div>
 			</div>
@@ -250,34 +295,72 @@
 
 	<!-- 	댓글 리스트 -->
 	<script type="text/javascript">
-		$(".btn btn-primary").click(function() {
-			$.ajax({
-				type : "post",
-				url : "ReplyReadCon.do",
-				data : "board_idx="+board_idx,
-				success : function(result) {
-					console.log("hi");
-					var reply = $(".table-sm");
-					var reply_list;
-					//reply.empty();
-					if(result.length!=0){
-						for(var i=0;i<result.length;i++){
-							var reply_id = result[i].reply_id;
-							var reply_content = result[i].reply_content;
-							var reply_date=result[i].reply_date;
-							reply_list = '<tr><td class="table-active">'+reply_id
-							+'</td><td class="table-active">'+reply_content
-							+'</td><td class="table-active">'+reply_date
-							+'</td></tr>';
-							reply.append(reply_list);	
+		$(".btn btn-primary")
+				.click(
+						function() {
+							$.ajax({
+										type : "post",
+										url : "ReplyReadCon.do",
+										data : "board_idx=" + board_idx,
+										success : function(result) {
+											insertReply()
+										}
+									})
+
+						});
+	<!-- //////////// 댓글 삭제 -->
+	$(".btn btn-delete").click(
+			alert("확인")
+			function(){
+				$.ajax({
+						type:"post",
+						url:"ReplyDeleteCon.do",
+						data:"reply_idx="+reply_idx,
+						success:function(result){
+							insertReply()
 						}
-					}
-				}
-			})
-
-		});
-	</script>
-
+					});
+				});
+function cmDelete(comment_num){
+	var msg = confirm("댓글을 삭제합니다.");
+	if(msg==true){
+		deleteCmt(comment_num);
+	}else{
+		return false;
+	}
+}
+function deleteCmt(comment_num){
+	$.ajax({
+		type:"post",
+		url:"ReplyDeleteCon.do",
+		data:"reply_idx="+comment_num,
+		success:function(result){
+			insertReply()
+		}
+	});
+}
+function insertReply(){
+	console.log("hi");
+	var reply = $(".table-sm");
+	var reply_list;
+	//reply.empty();
+	if (result.length != 0) {
+		for (var i = 0; i < result.length; i++) {
+			var reply_id = result[i].reply_id;
+			var reply_content = result[i].reply_content;
+			var reply_date = result[i].reply_date;
+			reply_list = '<tr><td class="table-active">'
+					+ reply_id
+					+ '</td><td class="table-active">'
+					+ reply_content
+					+ '</td><td class="table-active">'
+					+ reply_date
+					+ '</td></tr>';
+			reply.append(reply_list);
+		}
+	}
+}
+</script>
 
 
 </body>

@@ -18,8 +18,8 @@
 
 <style type="text/css">
 .mytable {
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 15%;
+	padding-right: 15%;
 	padding-top: 5%;
 	padding-bottom: 5%;
 }
@@ -110,21 +110,24 @@ a {
 				<form action="NoticeWriteCon.do">
 					<div class="form-group">
 						<label for="exampleFormControlInput1">아이디</label> <input
-							type="email" class="form-control" id="exampleFormControlInput1"
-							name="notice_id" placeholder="">
+							type="text" class="form-control" id="exampleFormControlInput1"
+							name="notice_id" placeholder="" value="관리자">
 					</div>
-
-					<label for="exampleFormControlInput1">제목</label> <input type="text"
-						class="form-control" placeholder="제목을 입력하세요"
-						aria-label="Recipient's username" aria-describedby="basic-addon2" name="notice_title">
-
 					<div class="form-group">
-						<label for="exampleFormControlTextarea1">Example textarea</label>
-						<textarea class="form-control" id="exampleFormControlTextarea1"
-							name="notice_content" rows="3"></textarea>
+						<label for="exampleFormControlInput1">제목</label> <input
+							type="text" class="form-control" placeholder="제목을 입력하세요"
+							aria-label="Recipient's username" aria-describedby="basic-addon2"
+							name="notice_title">
 					</div>
-					
-					<button type="submit" class="btn btn-primary">글쓰기</button>
+					<div class="form-group">
+						<label for="exampleFormControlTextarea1">공지</label>
+						<textarea class="form-control" id="exampleFormControlTextarea1"
+							name="notice_content" rows="10" placeholder="내용을 입력하세요"></textarea>
+					</div><br>
+					<div class="form-group" style="text-align:center;">
+						<button type="button" class="btn btn-primary" onclick="location.href='board_notice.jsp'">뒤로가기</button>
+						<button type="submit" class="btn btn-primary">등록하기</button>
+					</div>
 				</form>
 
 			</div>

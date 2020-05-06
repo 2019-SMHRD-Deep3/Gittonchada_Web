@@ -5,7 +5,7 @@
 <%@page import="com.model.BoardDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,109 +32,165 @@
 	padding-bottom: 5%;
 }
 
+.my_table {
+	height: 550px;
+}
+
 a {
 	color: black;
+	width: 10%;
+}
+
+/* form{
+	float: right;
+}
+ */
+.form-row {
+	float: left;
+}
+
+.form-control {
+	display: inline;
+	width: 95%;
+	/* padding:0;
+	margin:0; */
+}
+
+.custom-select {
+	display: inline;
+	width: 90%;
+	/* 	margin:0;
+	padding:0; */
+}
+
+.btn-info {
+	display: inline;
+	height: 38px;
+}
+
+.col-auto.my-1 {
+	width: 100%;
 }
 </style>
 </head>
 
 <body class="nav-fixed">
 	<%
-      MemberDTO info = (MemberDTO) session.getAttribute("info");
-   	%>
+		MemberDTO info = (MemberDTO) session.getAttribute("info");
+	%>
 	<!-- 네비게이션바 코드 -->
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-			
-			<!-- 회사명, 로고 -->
-			<a class="navbar-brand" href="mainpage.jsp"><img src="./assets/img/solgitIcon.png" alt="Logo" style="text-size=5rem; width:40px;">&nbsp;　　솔깃</a>
-			
-			<!-- 반응형 버튼 -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#collapsibleNavbar"><span class="navbar-toggler-icon"></span></button>
-			
-			<!-- 메뉴바 내용 -->
-			<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<!-- 메뉴 타이틀 -->
-				<ul class="navbar-nav ml-auto ml-md-3"> <!--  ml-auto ml-md-5 -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">데이터 등록</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">인공지능 분석</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a>
-							<a class="dropdown-item" href="predict_generation.jsp">발전량 예측</a>
-							<a class="dropdown-item" href="predict_benefit.jsp">수익 예측</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">정보 공유</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="board_notice.jsp">공지사항</a>
-							<a class="dropdown-item" href="board_community.jsp">커뮤니티</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">고객 센터</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
-							<a class="dropdown-item" href="customer_faq.jsp">FAQ</a>
-						</div>
-					</li>
-				</ul>
-				</div>
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<%
-	            	if (info != null) {
-	            %>
-				<!-- SMP 등 정보전달 -->
-				<div class="navbar-nav" style="margin-left: 150px;"> <!-- ml-auto ml-md-8 -->
-					<span class="nav-link" id="navbar">SMP <% %></span>
-					<span class="nav-link" id="navbar">REC <% %></span>
-					<span class="nav-link" id="navbar">날씨  <% %></span>
-				</div>
-				<%
-	            	}
-	            %>
-	            </div>
-	            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-	            <ul class="navbar-nav ml-auto">
-	            	<li><div  style="color : hotpink;"><%if(info!=null){ %><%=info.getName()%><br>님 환영합니다.
-	               		<%}else {%><%} %></div></li>
-	            </ul>
-	            </div>
-	            
-				<!-- 메뉴 로그인 등 -->
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">
-	            <ul class="navbar-nav ml-auto ml-md-6">
-	               <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
-	               id="userDropdown" href="#" role="button" data-toggle="dropdown" 
-	               aria-haspopup="true" aria-expanded="true"><i class="fas fa-user fa-fw"></i></a>
-	               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-	                  <%
-	                  if (info == null) {
-	                  %>
-	                  <a class="dropdown-item" href="login.jsp">로그인</a> 
-	                  <div class="dropdown-divider"></div>
-	                  <a class="dropdown-item" href="register.jsp">회원가입</a>
-	                  <%
-	                  } else {
-	                  %>
-	                  <a class="dropdown-item" href="LogoutService.do">로그아웃</a>
-	                  <%
-	                  }
-	                  %>
-	               </div>
-	               </li>
-	            </ul>
-	            </div>
-			
-	            <!-- 신 로그인, 회원가입 -->
-				
-		</nav>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+
+		<!-- 회사명, 로고 -->
+		<a class="navbar-brand" href="mainpage.jsp"><img
+			src="./assets/img/solgitIcon.png" alt="Logo" style="width: 40px;">&nbsp;
+			솔깃</a>
+
+		<!-- 반응형 버튼 -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- 메뉴바 내용 -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<!-- 메뉴 타이틀 -->
+			<ul class="navbar-nav ml-auto ml-md-3">
+				<!--  ml-auto ml-md-5 -->
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown">데이터 등록</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown">인공지능 분석</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="predict_weather.jsp">기상예보</a> <a
+							class="dropdown-item" href="predict_generation.jsp">발전량 예측</a> <a
+							class="dropdown-item" href="predict_benefit.jsp">수익 예측</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown">정보 공유</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="board_notice.jsp">공지사항</a> <a
+							class="dropdown-item" href="board_community.jsp">커뮤니티</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown">고객 센터</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="customer_app.jsp">앱 지원</a> <a
+							class="dropdown-item" href="customer_faq.jsp">FAQ</a>
+					</div></li>
+			</ul>
+		</div>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<%
+				if (info != null) {
+			%>
+			<!-- SMP 등 정보전달 -->
+			<div class="navbar-nav" style="margin-left: 150px;">
+				<!-- ml-auto ml-md-8 -->
+				<span class="nav-link" id="navbar">SMP <%
+					
+				%></span> <span class="nav-link" id="navbar">REC <%
+ 	
+ %></span> <span class="nav-link" id="navbar">날씨 <%
+ 	
+ %></span>
+			</div>
+			<%
+				}
+			%>
+		</div>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav ml-auto">
+				<li><div style="color: hotpink;">
+						<%
+							if (info != null) {
+						%><%=info.getName()%><br>님 환영합니다.
+						<%
+							} else {
+						%>
+						<%
+							}
+						%>
+					</div></li>
+			</ul>
+		</div>
+
+		<!-- 메뉴 로그인 등 -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav ml-auto ml-md-6">
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" id="userDropdown" href="#"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="true"><i class="fas fa-user fa-fw"></i></a>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="userDropdown">
+						<%
+							if (info == null) {
+						%>
+						<a class="dropdown-item" href="login.jsp">로그인</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="register.jsp">회원가입</a>
+						<%
+							} else {
+						%>
+						<a class="dropdown-item" href="LogoutService.do">로그아웃</a>
+						<%
+							}
+						%>
+					</div></li>
+			</ul>
+		</div>
+
+		<!-- 신 로그인, 회원가입 -->
+
+	</nav>
 	<!-- 메인 내용 작성 부분 -->
 	<div class=container-fluid"">
 		<main>
@@ -149,59 +205,139 @@ a {
 						<div class="form-row align-items-center">
 							<div class="col-auto my-1">
 								<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-								<select class="custom-select mr-sm-2"
-									id="inlineFormCustomSelect">
-									<option selected>Choose...</option>
-									<option value="1">제목</option>
-									<option value="2">아이디</option>
-									<option value="3">닉네임</option>
-								</select>
+
+								<div class="form-row">
+									<div class="col-md-3 mb-3" style="width: 50px;">
+										<label for="validationCustom04"></label> <select
+											class="custom-select" id="validationCustom04" required>
+											<option selected disabled value="">Choose...</option>
+											<option>제목</option>
+											<option>아이디</option>
+											<option>내용</option>
+										</select>
+									</div>
+									<div class="col-md-6 mb-3" style="width: 600px;">
+										<label for="validationCustom03"></label> <input type="text"
+											class="form-control" id="validationCustom03" required>
+										<div class="invalid-feedback">Please provide a valid
+											city.</div>
+									</div>
+									<button type="button" class="btn btn-info" style="width: 70px;">검색</button>
+								</div>
 							</div>
 						</div>
 					</form>
-					<input type="text" class="form-control"
-						aria-label="Text input with dropdown button">
-					<button type="button" class="btn btn-info">검색</button>
-					<button type="button" class="btn btn-info" onclick="location.href='noticeWrite.html'">등록</button>
+					<div style="float: right; margin-top: 5px;">
+					<%if(info!=null && info.getManager()==1){ %>
+						<button type="button" class="btn btn-info" style="width: 70px;"
+							onclick="location.href='noticeWrite.html'">등록</button>
+							<%} %>
+					</div>
 				</div>
+				<br> <br> <br>
 
 
 				<!-- 테이블 생성 -->
+				<div class="my_table">
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">#</th>
-							<th scope="col">제목</th>
-							<th scope="col">작성자</th>
-							<th scope="col">날짜</th>
+							<th scope="col" style="padding: 8px; text-align: center;">#</th>
+							<th scope="col" style="padding: 8px;">제목</th>
+							<th scope="col" style="padding: 8px;">작성자</th>
+							<th scope="col" style="padding: 8px;">날짜</th>
 						</tr>
 					</thead>
 					<tbody>
-				
-					<% 
-					NoticeDAO dao = new NoticeDAO();
-					ArrayList<NoticeDTO> list = dao.selectNotice();
-					if(list!=null){
-					for(int i =list.size()-1;i>=0;i--){%>
+
+						<%
+							NoticeDAO dao = new NoticeDAO();
+							ArrayList<NoticeDTO> list = dao.selectNotice();
+							int pageNow = 0;
+							int totalCount = list.size();
+							int listCount = 10;
+							int totalPage = totalCount / listCount;
+							if (totalCount % listCount > 0) {
+								totalPage++;
+							}
+							/* 
+														if (list != null && pageNow==0) {
+															for (int i = 0; i < 10; i++) { */
+						%>
+						<%-- <tr>
+							<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getNotice_idx()%></td>
+							<td style="width: 50%; padding: 10px;"><a id="post"
+								href="n_post.jsp?idx=<%=i + 1%>"><%=list.get(i).getNotice_title()%></a></td>
+							<td style="width: 20%; padding: 10px;"><%=list.get(i).getNotice_id()%></td>
+							<td style="width: 20%; padding: 10px;"><%=list.get(i).getNotice_date()%></td>
+						</tr> --%>
+						<%
+							/* }
+							} */
+							if (request.getParameter("page_num") != null) {
+								pageNow = Integer.parseInt(request.getParameter("page_num"));
+								int end = listCount * pageNow;
+								if (end > list.size()) {
+									end = list.size();
+								}
+								for (int i = listCount * (pageNow - 1); i < end; i++) {
+						%>
 						<tr>
-							<td width="10%"><%=list.get(i).getNotice_idx() %></td>
-							<td width="50%"><a id="post" href="n_post.jsp?idx=<%=i+1%>"><%=list.get(i).getNotice_title() %></a></td>
-							<td width="20%"><%=list.get(i).getNotice_id() %></td>
-							<td width="20%"><%=list.get(i).getNotice_date() %></td>
+							<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getNotice_idx()%></td>
+							<td style="width: 50%; padding: 10px;"><a id="post" style="color:red; font-weight:bold;"
+								href="n_post.jsp?idx=<%=list.get(i).getNotice_idx()%>"><%=list.get(i).getNotice_title()%></a></td>
+							<td style="width: 20%; padding: 10px;"><%=list.get(i).getNotice_id()%></td>
+							<td style="width: 20%; padding: 10px;"><%=list.get(i).getNotice_date()%></td>
 						</tr>
-						<%}} %>
-						
-					
+						<%
+							}
+							} else if (list != null) {
+								int end = 10;
+								if (list.size() < 10) {
+									end = list.size();
+								}
+								for (int i = 0; i < end; i++) {
+						%>
+						<tr>
+							<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getNotice_idx()%></td>
+							<td style="width: 50%; padding: 10px;"><a id="post" style="color:red; font-weight:bold;"
+								href="n_post.jsp?idx=<%=list.get(i).getNotice_idx()%>"><%=list.get(i).getNotice_title()%></a></td>
+							<td style="width: 20%; padding: 10px;"><%=list.get(i).getNotice_id()%></td>
+							<td style="width: 20%; padding: 10px;"><%=list.get(i).getNotice_date()%></td>
+						</tr>
+						<%
+							}
+							}
+						%>
 					</tbody>
-				</table>
+				</table></div>
 				<!-- 테이블 끝	 -->
 				<div class="btn-toolbar justify-content-between" role="toolbar"
 					aria-label="Toolbar with button groups">
-					<div class="btn-group" role="group" aria-label="First group">
-						<button type="button" class="btn btn-secondary">1</button>
-						<button type="button" class="btn btn-secondary">2</button>
-						<button type="button" class="btn btn-secondary">3</button>
-						<button type="button" class="btn btn-secondary">4</button>
+					<div class="btn-group" role="group" aria-label="First group"
+						style="margin: auto;">
+						<form action="BoardNoticeCon.do">
+							<%
+								if (list.size() > 10) {
+							%>
+							<button type="submit" name='page_num' value="1"
+								class="btn btn-secondary">1</button>
+							<%
+								}
+							%>
+							<%
+								for (int i = 1; i < 10; i++) {
+									if (list.size() >= 10 * i + 1) {
+										for (int j = i + 1; j <= i + 1; j++) {
+							%>
+							<button type="submit" name='page_num' value="<%=j%>"
+								class="btn btn-secondary"><%=j%></button>
+							<%
+								}
+									}
+								}
+							%>
+						</form>
 					</div>
 				</div>
 			</div>
