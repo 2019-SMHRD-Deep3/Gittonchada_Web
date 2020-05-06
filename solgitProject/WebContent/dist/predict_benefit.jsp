@@ -56,10 +56,37 @@ td {
 	text-align: center;
 	vertical-align: middle;
 }
+			
+			.wrap-loading { /*화면 전체를 어둡게 합니다.*/
+				position: fixed;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0.2); /*not in ie */
+				z-index: 100;
+			}
+			.wrap-loading div { /*로딩 이미지*/
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-left: -21px;
+				margin-top: -21px;
+				z-index: 101;
+			}
+			.display-none { /*감추기*/
+				display: none;
+			}
 </style>
 
 </head>
 <body>
+<div class="wrap-loading display-none">
+		<div>
+			<img src="./assets/img/loadingbar.gif" />
+		</div>
+	</div>
+	
 	<!-- 네비게이션바 코드 -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
 
@@ -448,15 +475,20 @@ td {
 				        }
 				      }],
 				      yAxes: [{
-				        ticks: {
-				          min: 90,
-				          max: 50,
-				          maxTicksLimit: 20
-				        },
-				        gridLines: {
-				          color: "rgba(0, 0, 0, .125)",
-				        }
-				      }],
+				    	 	 ticks: {
+					          min: 0,
+					          max: 100,
+					          maxTicksLimit: 20
+					        },
+			                display: true,
+			                ticks: {
+			                    suggestedMin: 100,
+			                },
+			                scaleLabel: {
+			                    display: true,
+			                    labelString: '금액'
+			                }
+			            }]
 				    },
 				    legend: {
 				      display: true
@@ -464,6 +496,14 @@ td {
 				  }
 				});
 			}
+		,beforeSend:function(){
+	        $('.wrap-loading').removeClass('display-none');
+	    }
+	    ,complete:function(){
+	        $('.wrap-loading').addClass('display-none');
+	    }
+		
+		
 		});
 		
 		$(function(){

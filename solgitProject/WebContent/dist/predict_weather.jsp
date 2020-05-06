@@ -35,9 +35,36 @@
 			    text-align: center;
 			    vertical-align: middle;
 			}
+			
+			.wrap-loading { /*화면 전체를 어둡게 합니다.*/
+				position: fixed;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0.2); /*not in ie */
+				z-index: 100;
+			}
+			.wrap-loading div { /*로딩 이미지*/
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-left: -21px;
+				margin-top: -21px;
+				z-index: 101;
+			}
+			.display-none { /*감추기*/
+				display: none;
+			}
 		</style>
 	</head>
 	<body class="nav-fixed" onload="showClock()">
+	
+	<div class="wrap-loading display-none">
+		<div>
+			<img src="./assets/img/loadingbar.gif" />
+		</div>
+	</div>
 	
 	<!-- 네비게이션바 코드 -->
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
@@ -145,7 +172,7 @@
 			
 		
 		<!-- Footer -->
-			<footer class="py-4 bg-light mt-auto fixed-bottom">
+			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid">
 					<div class="d-flex align-items-center justify-content-between small">
 						<div class="text-muted">Copyright &copy; 2020 © SOLGIT</div>
@@ -154,7 +181,6 @@
 					</div>
 				</div>
 			</footer>
-			</div>
 		</main>
 		<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
 		<script>
@@ -334,6 +360,16 @@
 					temps.push(hourly_temp.toFixed(1));
 					hmds.push(hourly_humidity);
 					winds.push(hourly_wind_speed);
+					
+					if (times[47] == null) {
+						$('.wrap-loading')
+								.removeClass(
+										'display-none');
+					} else if (times[47] != null) {
+						$('.wrap-loading')
+								.addClass(
+										'display-none');
+					}
 				}
 				
 				Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -349,7 +385,7 @@
 				    
 				    datasets: [{
 				      label: "기온",
-				      lineTension: 1,
+				      lineTension: 0.3,
 				      backgroundColor: "rgba(255,255,255,0)",
 				      borderColor: "rgba(255, 230, 221,1)",
 				      pointRadius: 5,
@@ -362,7 +398,7 @@
 				      data: [temps[0],temps[1],temps[2],temps[3],temps[4],temps[5],temps[6],temps[7],temps[8],temps[9],temps[10],temps[11],temps[12]],
 				    },{
 				      label: "습도",
-				      lineTension: 0.6,
+				      lineTension: 0.2,
 				      backgroundColor: "rgba(255,255,255,0)",
 				      borderColor: "rgba(255, 180, 153,1)",
 				      pointRadius: 5,
@@ -375,7 +411,7 @@
 				      data: [hmds[0],hmds[1],hmds[2],hmds[3],hmds[4],hmds[5],hmds[6],hmds[7],hmds[8],hmds[9],hmds[10],hmds[11],hmds[12]],
 				    },{
 				      label: "풍속",
-				      lineTension: 0.3,
+				      lineTension: 0.1,
 				      backgroundColor: "rgba(255,255,255,0)",
 				      borderColor: "rgba(255, 131, 85,1)",
 				      pointRadius: 5,
@@ -415,7 +451,7 @@
 			                },
 			                scaleLabel: {
 			                    display: true,
-			                    labelString: '기온'
+			                    labelString: ''
 			                }
 			            }]
 				    },
