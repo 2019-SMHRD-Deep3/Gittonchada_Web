@@ -62,6 +62,10 @@ a {
 .col-auto.my-1 {
 	width: 100%;
 }
+
+html, body {
+    height: 80%;
+}
 </style>
 </head>
 
@@ -155,140 +159,49 @@ a {
 	            </div>
 	</nav>
 	<!-- 메인 내용 작성 부분 -->
-	<div class=container-fluid"">
 		<main>
 
 			<h3>   </h3>
  			
-			<!-- 게시판 생성 -->
-			<div class="mytable">
-
-				<div class=" input-groupmb-3">
-					<form>
-						<div class="form-row align-items-center">
-							<div class="col-auto my-1">
-								<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-
-								<div class="form-row">
-									<div class="col-md-3 mb-3" style="width: 50px;">
-										<label for="validationCustom04"></label> <select
-											class="custom-select" id="validationCustom04" required>
-											<option selected disabled value="">Choose...</option>
-											<option>제목</option>
-											<option>아이디</option>
-											<option>내용</option>
-										</select>
-									</div>
-									<div class="col-md-6 mb-3" style="width: 600px;">
-										<label for="validationCustom03"></label> <input type="text"
-											class="form-control" id="validationCustom03" required>
-										<div class="invalid-feedback">Please provide a valid
-											city.</div>
-									</div>
-									<button type="button" class="btn btn-info" style="width: 70px;">검색</button>
-								</div>
-							</div>
-						</div>
-					</form>
-					<div style="float: right; margin-top: 5px;">
-						<button type="button" class="btn btn-info" style="width: 70px;"
-							onclick="location.href='postWrite.html'">등록</button>
-					</div>
-				</div>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" style="margin-top: 104px; padding:100px;">
+      <div class="container">
+        <h1>SOLGIT!</h1><br>
+        <p>솔깃은 머신러닝 기술을 이용해 데이터를 분석 및 태양광발전량을 예측해주는 서비스입니다.</p>
+      </div>
+    </div>
+<br><br><br>
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>업무시간</h2><br>
+          <p>월 - 금요일: 09:00 ~ 18:00</p>
+          <p>주말 · 공휴일은 쉽니다.</p>
+       </div>
+       <div class="col-md-4">
+          <h2>문의하기</h2><br>
+          <p>카카오 : solgit</p>
+          <p>이메일 : solgit@naver.com</p>
+          <p>전화번호 : 010-1234-5678</p>
+        </div>
+        <div class="col-md-4">
+          <h2>주소</h2><br>
+          <p>광주광역시 남구 송암로60 광주CGI센터 2층</p>
+          <img src="./assets/img/solgit_address.PNG" alt="Logo" style="text-size=5rem; width:300px;">
+      </div> 
+</div>
 
 
-				<!-- 테이블 생성 -->
-				<div class="my_table">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">작성자</th>
-							<th scope="col">제목</th>
-							<th scope="col">날짜</th>
-						</tr>
-					</thead>
-					<tbody>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  
 
-						<%
-							BoardDAO dao = new BoardDAO();
-							ArrayList<BoardDTO> list = dao.selectPost();
-							int pageNow = 0;
-							int totalCount = list.size();
-							int listCount = 10;
-							int totalPage = totalCount / listCount;
-							if (totalCount % listCount > 0) {
-								totalPage++;
-							}
-
-							if (request.getParameter("page_num") != null) {
-								pageNow = Integer.parseInt(request.getParameter("page_num"));
-								int end = listCount * pageNow;
-								if (end > list.size()) {
-									end = list.size();
-								}
-								for (int i = listCount * (pageNow - 1); i < end; i++) {
-						%><tr>
-							<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getBoard_idx()%></td>
-							<td style="width: 50%; padding: 10px;"><a id="post"
-								href="post.jsp?idx=<%=list.get(i).getBoard_idx()%>"><%=list.get(i).getBoard_title()%></a></td>
-							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_id()%></td>
-							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_date()%></td>
-						</tr>
-						<%
-							}
-							} else if (list != null) {
-								int end = 10;
-								if (list.size() < 10) {
-									end = list.size();
-								}
-								for (int i = 0; i < end; i++) {
-						%>
-						<tr>
-							<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getBoard_idx()%></td>
-							<td style="width: 50%; padding: 10px;"><a id="post"
-								href="post.jsp?idx=<%=list.get(i).getBoard_idx()%>"><%=list.get(i).getBoard_title()%></a></td>
-							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_id()%></td>
-							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_date()%></td>
-						</tr>
-						<%
-							}
-							}
-						%>
-
-					</tbody>
-				</table></div>
-				<!-- 테이블 끝	 -->
-				<br> <br>
-				<div class="btn-toolbar justify-content-between" role="toolbar"
-					aria-label="Toolbar with button groups">
-					<div class="btn-group" role="group" aria-label="First group"
-						style="margin: auto;">
-						<form action="BoardCommuCon.do">
-							<%
-								if (list.size() > 10) {
-							%>
-							<button type="submit" name='page_num' value="1"
-								class="btn btn-secondary">1</button>
-							<%
-								}
-							%>
-							<%
-								for (int i = 1; i < 10; i++) {
-									if (list.size() >= 10 * i + 1) {
-										for (int j = i + 1; j <= i + 1; j++) {
-							%>
-							<button type="submit" name='page_num' value="<%=j%>"
-								class="btn btn-secondary"><%=j%></button>
-							<%
-								}
-									}
-								}
-							%>
-						</form>
-					</div>
-				</div>
-			</div>
 			<!-- 	게시판 끝 -->
 
 			<!-- Footer -->
