@@ -138,19 +138,6 @@ a:hover {
 					</li>
 				</ul>
 				</div>
-				<%-- <div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<%
-	            	if (info != null) {
-	            %>
-				<!-- SMP 등 정보전달 -->
-				<div class="navbar-nav" style="margin-left: 150px;"> <!-- ml-auto ml-md-8 -->
-					<span class="nav-link" id="navbar">SMP <% %></span>
-					<span class="nav-link" id="navbar">날씨  <% %></span>
-				</div>
-				<%
-	            	}
-	            %>
-	            </div> --%>
 	            
 				<!-- 메뉴 로그인 등 -->
 				
@@ -170,9 +157,6 @@ a:hover {
 	                %>
 	            </div>
 	            </div>
-			
-	           
-	            
 				
 		</nav>
 		<!-- 메인 내용 작성 부분 -->

@@ -54,9 +54,6 @@ a:hover {
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">계정 생성하기</h3></div>
                                     <div class="card-body">
                                         <form action="JoinService.do">
-                                            <!-- <div class="form-group"><label class="small mb-1" for="inputEmailAddress">이메일</label><input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="이메일 주소를 입력해주세요." /></div> -->
-
-
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group"><label class="small mb-1" for="inputEmailAddress">이메일</label><input name="email" class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="이메일 주소를 입력해주세요." /></div>
