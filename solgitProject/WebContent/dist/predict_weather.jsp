@@ -1,3 +1,4 @@
+<%@page import="com.model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -67,70 +68,80 @@
 	</div>
 	
 	<!-- 네비게이션바 코드 -->
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+<%
+      MemberDTO info = (MemberDTO) session.getAttribute("info");
+   	%>
+	<!-- 네비게이션바 코드 -->
+		<nav class="navbar navbar-expand-sm navbar-collapse navbar-dark fixed-top bg-default" font-size="50" font-family="Verdana" x="0" y="100"  style="	background-color: rgba(0, 0, 0, 0.5) !important;">
 			
 			<!-- 회사명, 로고 -->
-			<a class="navbar-brand" href="#"><img src="./assets/img/solgitIcon.png" alt="Logo" style="width:40px;">솔깃</a>
-			
+			<div class="container-fluid">
+			<div class="navbar-header">
+			<a class="navbar-brand" href="mainpage2.jsp"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
+			</div>
 			<!-- 반응형 버튼 -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar"><span class="navbar-toggler-icon"></span></button>
 			
 			<!-- 메뉴바 내용 -->
-			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<div class="collapse navbar-collapse" id="collapsibleNavbar" style="width: 200px;">
 				<!-- 메뉴 타이틀 -->
-				<ul class="navbar-nav">
+				<ul class="nav navbar-nav nav-pills nav-justified ml-auto"> <!--  ml-auto ml-md-5 -->
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">데이터 등록</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">데이터 등록</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">발전이력 등록</a>
-							<a class="dropdown-item" href="#">발전이력 갱신</a>
+							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">인공지능 분석</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">인공지능 분석</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">기상예보</a>
-							<a class="dropdown-item" href="#">발전량 예측</a>
-							<a class="dropdown-item" href="#">수익 예측</a>
+							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a>
+							<a class="dropdown-item" href="predict_generation.jsp">발전량 예측</a>
+							<a class="dropdown-item" href="predict_benefit.jsp">수익 예측</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">정보 공유</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">정보 공유</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">공지사항</a>
-							<a class="dropdown-item" href="#">커뮤니티</a>
+							<a class="dropdown-item" href="board_notice.jsp">공지사항</a>
+							<a class="dropdown-item" href="board_community.jsp">커뮤니티</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">고객 센터</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">고객 센터</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">앱 지원</a>
-							<a class="dropdown-item" href="#">FAQ</a>
+							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
+							<a class="dropdown-item" href="customer_faq.jsp">고객센터</a>
 						</div>
 					</li>
 				</ul>
-			
+				</div>
+	            
 				<!-- 메뉴 로그인 등 -->
-				<ul class="navbar-nav">
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
-					id="userDropdown" href="#" role="button" data-toggle="dropdown" 
-					aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-						<a class="dropdown-item" href="login.html">로그인</a> 
-						<a class="dropdown-item" href="register.html">회원가입</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="login.html">로그아웃</a>
-					</div>
-					</li>
-				</ul>
-			
-			</div>
+				
+				<div class="collapse navbar-collapse" id="collapsibleNavbar" style="width: 5px; flex-direction: row-reverse;">
+					<%
+	                  if (info == null) {
+	                %>
+	            	<a class="btn btn-light" href="login.jsp" style="font-size:15px; margin-left:10px;">로그인</a>
+	            	<a class="btn btn-light" href="register.jsp" style="font-size:15px;">회원가입</a>
+	            	
+	            	<%
+	                  } else {
+	                %>
+	            	<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
+	            	<%
+	                  }
+	                %>
+	            </div>
+	            </div>
+				
 		</nav>
 		
 		<!-- 메인 내용 작성 부분 -->
 		<main>
-			<div class="card container-sm" style="margin-top: 100px;margin-bottom: 50px;padding-right: 0px;padding-left: 0px;">
+			<div class="card container-sm" style="margin-top: 150px;margin-bottom: 50px;padding-right: 0px;padding-left: 0px;">
 			<div class="card-header" style="margin-top: 0px; margin-left: 0px;"><h3><span class="dt"></h3>
 			</div>
                 	<div class="card-header"><i class="fas fa-table mr-1"></i></span>현재 날씨</div>

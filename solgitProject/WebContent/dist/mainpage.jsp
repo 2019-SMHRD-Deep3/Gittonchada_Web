@@ -77,7 +77,7 @@
 			<!-- 회사명, 로고 -->
 			<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand" href="#"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
+			<a class="navbar-brand" href="mainpage2.jsp"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
 			</div>
 			<!-- 반응형 버튼 -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"

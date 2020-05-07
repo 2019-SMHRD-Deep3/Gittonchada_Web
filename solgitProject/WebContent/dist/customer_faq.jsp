@@ -70,7 +70,7 @@ html, body {
 </head>
 
 <body class="nav-fixed">
-		<%
+<%
       MemberDTO info = (MemberDTO) session.getAttribute("info");
    	%>
 	<!-- 네비게이션바 코드 -->
@@ -79,7 +79,7 @@ html, body {
 			<!-- 회사명, 로고 -->
 			<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand" href="#"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
+			<a class="navbar-brand" href="mainpage2.jsp"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
 			</div>
 			<!-- 반응형 버튼 -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -114,31 +114,11 @@ html, body {
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">고객 센터</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
-							<a class="dropdown-item" href="customer_faq.jps">FAQ</a>
+							<a class="dropdown-item" href="customer_faq.jsp">고객센터</a>
 						</div>
 					</li>
 				</ul>
 				</div>
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<%
-	            	if (info != null) {
-	            %>
-				<!-- SMP 등 정보전달 -->
-				<div class="navbar-nav" style="margin-left: 150px;"> <!-- ml-auto ml-md-8 -->
-					<span class="nav-link" id="navbar">SMP <% %></span>
-					<span class="nav-link" id="navbar">REC <% %></span>
-					<span class="nav-link" id="navbar">날씨  <% %></span>
-				</div>
-				<%
-	            	}
-	            %>
-	            </div>
-	            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-	            <ul class="navbar-nav ml-auto">
-	            	<li><div  style="color : hotpink;"><%if(info!=null){ %><%=info.getName()%><br>님 환영합니다.
-	               		<%}else {%><%} %></div></li>
-	            </ul>
-	            </div>
 	            
 				<!-- 메뉴 로그인 등 -->
 				
@@ -148,6 +128,7 @@ html, body {
 	                %>
 	            	<a class="btn btn-light" href="login.jsp" style="font-size:15px; margin-left:10px;">로그인</a>
 	            	<a class="btn btn-light" href="register.jsp" style="font-size:15px;">회원가입</a>
+	            	
 	            	<%
 	                  } else {
 	                %>
@@ -157,7 +138,8 @@ html, body {
 	                %>
 	            </div>
 	            </div>
-	</nav>
+				
+		</nav>
 	<!-- 메인 내용 작성 부분 -->
 		<main>
 
