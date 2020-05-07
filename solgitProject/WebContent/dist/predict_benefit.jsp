@@ -12,25 +12,34 @@
 <meta name="author" content="" />
 <title>SOLGIT-솔깃한 정보 공유 플랫폼</title>
 <link href="css/styles.css?ver=1" rel="stylesheet" />
-<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css?ver=1" rel="stylesheet" crossorigin="anonymous" />
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js?ver=1" crossorigin="anonymous"></script>
+<link
+	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css?ver=1"
+	rel="stylesheet" crossorigin="anonymous" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js?ver=1"
+	crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <style>
-.orangeColor{
+.orangeColor {
 	background-color: #FFE6DD;
 }
-.orange1Color{
+
+.orange1Color {
 	background-color: #FFCDBB;
 }
-.orange2Color{
+
+.orange2Color {
 	background-color: #FFB499;
 }
-.orange3Color{
+
+.orange3Color {
 	background-color: #FF9C77;
 }
-.orange4Color{
+
+.orange4Color {
 	background-color: #FF8355;
 }
+
 #table-div {
 	margin-top: 100px;
 }
@@ -56,37 +65,39 @@ td {
 	text-align: center;
 	vertical-align: middle;
 }
-			
-			.wrap-loading { /*화면 전체를 어둡게 합니다.*/
-				position: fixed;
-				left: 0;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				background: rgba(0, 0, 0, 0.2); /*not in ie */
-				z-index: 100;
-			}
-			.wrap-loading div { /*로딩 이미지*/
-				position: fixed;
-				top: 50%;
-				left: 50%;
-				margin-left: -21px;
-				margin-top: -21px;
-				z-index: 101;
-			}
-			.display-none { /*감추기*/
-				display: none;
-			}
+
+.wrap-loading { /*화면 전체를 어둡게 합니다.*/
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.2); /*not in ie */
+	z-index: 100;
+}
+
+.wrap-loading div { /*로딩 이미지*/
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -21px;
+	margin-top: -21px;
+	z-index: 101;
+}
+
+.display-none { /*감추기*/
+	display: none;
+}
 </style>
 
 </head>
 <body>
-<div class="wrap-loading display-none">
+	<div class="wrap-loading display-none">
 		<div>
 			<img src="./assets/img/loadingbar.gif" />
 		</div>
 	</div>
-	
+
 	<!-- 네비게이션바 코드 -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
 
@@ -141,14 +152,13 @@ td {
 					class="nav-link dropdown-toggle" id="userDropdown" href="#"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-				<div class="dropdown-menu dropdown-menu-right"
-					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="login.html">로그인</a> <a
-						class="dropdown-item" href="register.html">회원가입</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="login.html">로그아웃</a>
-				</div>
-				</li>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="userDropdown">
+						<a class="dropdown-item" href="login.html">로그인</a> <a
+							class="dropdown-item" href="register.html">회원가입</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="login.html">로그아웃</a>
+					</div></li>
 			</ul>
 		</div>
 	</nav>
@@ -156,19 +166,34 @@ td {
 	<!-- 메인 내용 작성 부분 -->
 	<main>
 		<!-- 메인 테이블 시작 -->
-		<div class="card container-sm" style="margin-top: 100px;margin-bottom: 50px;padding-right: 0px;padding-left: 0px;">
-			<div class="card-header" style="margin-top: 0px; margin-left: 0px;"><h3>SMP 예측</h3>
-				<button class="btn_table" style="padding:3px">표</button>
-				<button class="btn_chart" style="padding:3px">차트</button>
-				</div>
+		<div class="card container-sm" style="margin-top: 100px; margin-bottom: 50px; padding-right: 0px; padding-left: 0px;">
+			<div class="card-header" style="margin-top: 0px; margin-left: 0px;">
+				<h3 style="float:left;">SMP 예측</h3>
+				<button style="float:right;" class="btn_table" style="padding: 3px">표</button>
+				<button style="float:right;" class="btn_chart" style="padding: 3px">차트</button>
+			</div>
+
+				<div class="card mb-4">
+					<div class="card-header display_chart">
+						<i class="fas fa-chart-area mr-1"></i>시간별 SMP가격
+					</div>
+					<div class="card-body">
+						<canvas id="myLineChart2" width="100%" height="30"></canvas>
+					</div>
+					<div class="card-footer small text-muted">※ 본 SMP예측(1~2일 후)은
+						딥러닝 분석으로 예측한 결과이므로 참고만 하시기 바랍니다. ※</div>
+			</div>
+
 			<div class="card-header">
 				<i class="fas fa-table mr-1"></i>표(Table)
 			</div>
+
 			<div class="card-body display_table">
-				<div class="table table-responsive" style="width: 25%; float:left;">
-					<table class="table table-bordered table-striped table-hover table-condensed" id="dataTable" width="100%"
-						cellspacing="0">
-						<thead class=table style="text-align:center;">
+				<div class="table table-responsive" style="width: 25%; float: left;">
+					<table
+						class="table table-bordered table-striped table-hover table-condensed"
+						id="dataTable" width="100%" cellspacing="0">
+						<thead class=table style="text-align: center;">
 							<tr>
 								<th>시간\날짜</th>
 							</tr>
@@ -255,49 +280,52 @@ td {
 							</tr>
 						</thead>
 					</table>
-					</div>
-					<div class="table" style="width: 15%; float:left;">
-					<table id="setTable" class="table table-bordered table-striped table-condensed" id="dataTable" cellspacing="0">
-						<tr class="table" style="text-align:center;">
-							<th class = "orangeColor">2일 전</th>
-						</tr>
-					</table>
-					</div>
-					<div class="table" style="width: 15%; float:left;">
-					<table id="setTable1" class="table table-bordered table-striped table-condensed" style="float:left;" cellspacing="0">
-						<tr class="table" style="text-align:center;">
-							<th class = "orange1Color">1일 전</th>
-						</tr>
-					</table>
-					</div>
-					<div class="table" style="width: 15%; float:left;">
-					<table id="setTable2" class="table table-bordered table-striped table-condensed info" style="float:left;" cellspacing="0">
-						<tr class="info" style="text-align:center;">
-							<th class = "orange2Color">오늘</th>
-						</tr>
-					</table>
-					</div>
-					<div class="table" style="width: 15%; float:left;">
-					<table id="setTable3" class="table table-bordered table-striped table-condensed success" style="float:left;" cellspacing="0">
-						<tr class="table" style="text-align:center;">
-							<th class = "orange3Color">1일 후</th>
-						</tr>
-					</table>
-					</div>
-					<div class="table" style="width: 15%; float:left;">
-					<table id="setTable4" class="table table-bordered table-striped table-condensed success" style="float:left;" cellspacing="0">
-						<tr class="table" style="text-align:center;">
-							<th class = "orange4Color">2일 후</th>
+				</div>
+				<div class="table" style="width: 15%; float: left;">
+					<table id="setTable"
+						class="table table-bordered table-striped table-condensed"
+						id="dataTable" cellspacing="0">
+						<tr class="table" style="text-align: center;">
+							<th class="orangeColor">2일 전</th>
 						</tr>
 					</table>
 				</div>
-			</div>
-			<div class="card-body display_chart">
-				<div class="card mb-4">
-                    <div class="card-header"><i class="fas fa-chart-area mr-1"></i>시간별 SMP가격</div>
-                    <div class="card-body"><canvas id="myLineChart2" width="100%" height="30"></canvas></div>
-                    <div class="card-footer small text-muted">※본 SMP예측 분석은 의사 결정에 참고만 하시기 바랍니다.※</div>
-                </div>
+				<div class="table" style="width: 15%; float: left;">
+					<table id="setTable1"
+						class="table table-bordered table-striped table-condensed"
+						style="float: left;" cellspacing="0">
+						<tr class="table" style="text-align: center;">
+							<th class="orange1Color">1일 전</th>
+						</tr>
+					</table>
+				</div>
+				<div class="table" style="width: 15%; float: left;">
+					<table id="setTable2"
+						class="table table-bordered table-striped table-condensed info"
+						style="float: left;" cellspacing="0">
+						<tr class="info" style="text-align: center;">
+							<th class="orange2Color">오늘</th>
+						</tr>
+					</table>
+				</div>
+				<div class="table" style="width: 15%; float: left;">
+					<table id="setTable3"
+						class="table table-bordered table-striped table-condensed success"
+						style="float: left;" cellspacing="0">
+						<tr class="table" style="text-align: center;">
+							<th class="orange3Color">1일 후</th>
+						</tr>
+					</table>
+				</div>
+				<div class="table" style="width: 15%; float: left;">
+					<table id="setTable4"
+						class="table table-bordered table-striped table-condensed success"
+						style="float: left;" cellspacing="0">
+						<tr class="table" style="text-align: center;">
+							<th class="orange4Color">2일 후</th>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 
@@ -318,210 +346,226 @@ td {
 	<script>
 		var str = '';
 		var jsonResult;
-		
-		$.ajax({
-		url : 'http://localhost:9001/re/',
-		type : "get",
-		dataType : "json",
-		success : function(data) {
-			var past2 = [];
-			var past1 = [];
-			var present = [];
-			var future1 = [];
-			var future2 = [];
-			
-			var result = JSON.parse(data);
 
-			for (var i = 0; i < 27; i++) {
-			var table = document.getElementById('setTable');
-			var tr = document.createElement('TR');
-			table.appendChild(tr);
-			var td = document.createElement('TD');
-			td.className = "orangeColor";
-			tr.appendChild(td);
-			td.innerHTML = result[i].past2.toFixed(2);
-			
-			var table = document.getElementById('setTable1');
-			var tr = document.createElement('TR');
-			table.appendChild(tr);
-			var td = document.createElement('TD');
-			td.className = "orange1Color";
-			tr.appendChild(td);
-			td.innerHTML = result[i].past1.toFixed(2);
-			
-			var table = document.getElementById('setTable2');
-			var tr = document.createElement('TR');
-			table.appendChild(tr);
-			var td = document.createElement('TD');
-			td.className = "orange2Color";
-			tr.appendChild(td);
-			td.innerHTML = result[i].present.toFixed(2);
-			
-			var table = document.getElementById('setTable3');
-			var tr = document.createElement('TR');
-			table.appendChild(tr);
-			var td = document.createElement('TD');
-			td.className = "orange3Color";
-			tr.appendChild(td);
-			td.innerHTML = result[i].future1.toFixed(2);
-			
-			var table = document.getElementById('setTable4');
-			var tr = document.createElement('TR');
-			table.appendChild(tr);
-			var td = document.createElement('TD');
-			td.className = "orange4Color";
-			tr.appendChild(td);
-			td.innerHTML = result[i].future2.toFixed(2);
-			
-			past2.push(result[i].past2.toFixed(2));
-			past1.push(result[i].past1.toFixed(2));
-			present.push(result[i].present.toFixed(2));
-			future1.push(result[i].future1.toFixed(2));
-			future2.push(result[i].future2.toFixed(2));
-			}
-			
-			// 차트 
-			Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-			Chart.defaults.global.defaultFontColor = '#292b2c';
-			
-	        var ctx = document.getElementById("myLineChart2");
-	        var myLineChart = new Chart(ctx, {
-				  type: 'line',
-				  
-				  data: {
-				    labels: ["1시","2시","3시","4시","5시","6시","7시","8시","9시","10시","11시","12시","13시",
-				    	"14시","15시","16시","17시","18시","19시","20시","21시","22시","23시","24시","최대","최소","가중평균",],
-				    
-				    	datasets: [{
-						      label: "2일전",
-						      lineTension: 0.3,
-						      backgroundColor: "rgba(255,255,255,0)",
-						      borderColor: "rgba(255, 230, 221,1)",
-						      pointRadius: 5,
-						      pointBackgroundColor: "rgba(255, 230, 221,1)",
-						      pointBorderColor: "rgba(255,255,255,0.8)",
-						      pointHoverRadius: 5,
-						      pointHoverBackgroundColor: "rgba(255, 230, 221,1)",
-						      pointHitRadius: 100,
-						      pointBorderWidth: 5,
-						      data: past2,
-						    },{
-						      label: "1일전",
-						      lineTension: 0.3,
-						      backgroundColor: "rgba(255,255,255,0)",
-						      borderColor: "rgba(255, 205, 187,1)",
-						      pointRadius: 5,
-						      pointBackgroundColor: "rgba(255, 205, 187,1)",
-						      pointBorderColor: "rgba(255,255,255,0.8)",
-						      pointHoverRadius: 5,
-						      pointHoverBackgroundColor: "rgba(255, 205, 187,1)",
-						      pointHitRadius: 80,
-						      pointBorderWidth: 4,
-						      data: past1,
-					    	},{
-						      label: "오늘",
-						      lineTension: 0.3,
-						      backgroundColor: "rgba(255,255,255,0)",
-						      borderColor: "rgba(255, 180, 153,1)",
-						      pointRadius: 5,
-						      pointBackgroundColor: "rgba(255, 180, 153,1)",
-						      pointBorderColor: "rgba(255,255,255,0.8)",
-						      pointHoverRadius: 5,
-						      pointHoverBackgroundColor: "rgba(255, 180, 153,1)",
-						      pointHitRadius: 60,
-						      pointBorderWidth: 3,
-						      data: present,
-				   	 		},{
-						      label: "1일후",
-						      lineTension: 0.3,
-						      backgroundColor: "rgba(255,255,255,0)",
-						      borderColor: "rgba(255, 156, 119,1)",
-						      pointRadius: 5,
-						      pointBackgroundColor: "rgba(255, 156, 119,1)",
-						      pointBorderColor: "rgba(255,255,255,0.8)",
-						      pointHoverRadius: 5,
-						      pointHoverBackgroundColor: "rgba(255, 156, 119,1)",
-						      pointHitRadius: 40,
-						      pointBorderWidth: 2,
-						      data: future1,
-					    	},{
-						      label: "2일후",
-						      lineTension: 0.3,
-						      backgroundColor: "rgba(255,255,255,0)",
-						      borderColor: "rgba(255, 131, 85,1)",
-						      pointRadius: 5,
-						      pointBackgroundColor: "rgba(255, 131, 85,1)",
-						      pointBorderColor: "rgba(255,255,255,0.8)",
-						      pointHoverRadius: 5,
-						      pointHoverBackgroundColor: "rgba(255, 131, 85,1)",
-						      pointHitRadius: 20,
-						      pointBorderWidth: 1,
-						      data: future2,
-					    	}
-				    	],
-						  },
-				  
-				  options: {
-				    scales: {
-				      xAxes: [{
-				        time: {
-				          unit: '시간'
-				        },
-				        gridLines: {
-				          display: true
-				        },
-				        ticks: {
-				          maxTicksLimit: 27
-				        }
-				      }],
-				      yAxes: [{
-				    	 	 ticks: {
-					          min: 0,
-					          max: 100,
-					          maxTicksLimit: 20
-					        },
-			                display: true,
-			                ticks: {
-			                    suggestedMin: 100,
-			                },
-			                scaleLabel: {
-			                    display: true,
-			                    labelString: '금액'
-			                }
-			            }]
-				    },
-				    legend: {
-				      display: true
-				    }
-				  }
+		$
+				.ajax({
+					url : 'http://localhost:9001/re/',
+					type : "get",
+					dataType : "json",
+					success : function(data) {
+						var past2 = [];
+						var past1 = [];
+						var present = [];
+						var future1 = [];
+						var future2 = [];
+
+						var result = JSON.parse(data);
+
+						for (var i = 0; i < 27; i++) {
+							var table = document.getElementById('setTable');
+							var tr = document.createElement('TR');
+							table.appendChild(tr);
+							var td = document.createElement('TD');
+							td.className = "orangeColor";
+							tr.appendChild(td);
+							td.innerHTML = result[i].past2.toFixed(2);
+
+							var table = document.getElementById('setTable1');
+							var tr = document.createElement('TR');
+							table.appendChild(tr);
+							var td = document.createElement('TD');
+							td.className = "orange1Color";
+							tr.appendChild(td);
+							td.innerHTML = result[i].past1.toFixed(2);
+
+							var table = document.getElementById('setTable2');
+							var tr = document.createElement('TR');
+							table.appendChild(tr);
+							var td = document.createElement('TD');
+							td.className = "orange2Color";
+							tr.appendChild(td);
+							td.innerHTML = result[i].present.toFixed(2);
+
+							var table = document.getElementById('setTable3');
+							var tr = document.createElement('TR');
+							table.appendChild(tr);
+							var td = document.createElement('TD');
+							td.className = "orange3Color";
+							tr.appendChild(td);
+							td.innerHTML = result[i].future1.toFixed(2);
+
+							var table = document.getElementById('setTable4');
+							var tr = document.createElement('TR');
+							table.appendChild(tr);
+							var td = document.createElement('TD');
+							td.className = "orange4Color";
+							tr.appendChild(td);
+							td.innerHTML = result[i].future2.toFixed(2);
+
+							past2.push(result[i].past2.toFixed(2));
+							past1.push(result[i].past1.toFixed(2));
+							present.push(result[i].present.toFixed(2));
+							future1.push(result[i].future1.toFixed(2));
+							future2.push(result[i].future2.toFixed(2));
+						}
+
+						// 차트 
+						Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+						Chart.defaults.global.defaultFontColor = '#292b2c';
+
+						var ctx = document.getElementById("myLineChart2");
+						var myLineChart = new Chart(
+								ctx,
+								{
+									type : 'line',
+
+									data : {
+										labels : [ "1시", "2시", "3시", "4시",
+												"5시", "6시", "7시", "8시", "9시",
+												"10시", "11시", "12시", "13시",
+												"14시", "15시", "16시", "17시",
+												"18시", "19시", "20시", "21시",
+												"22시", "23시", "24시", "최대",
+												"최소", "가중평균", ],
+
+										datasets : [
+												{
+													label : "2일전",
+													lineTension : 0.3,
+													backgroundColor : "rgba(255,255,255,0)",
+													borderColor : "rgba(255, 230, 221,1)",
+													pointRadius : 5,
+													pointBackgroundColor : "rgba(255, 230, 221,1)",
+													pointBorderColor : "rgba(255,255,255,0.8)",
+													pointHoverRadius : 5,
+													pointHoverBackgroundColor : "rgba(255, 230, 221,1)",
+													pointHitRadius : 100,
+													pointBorderWidth : 5,
+													data : past2,
+												},
+												{
+													label : "1일전",
+													lineTension : 0.3,
+													backgroundColor : "rgba(255,255,255,0)",
+													borderColor : "rgba(255, 205, 187,1)",
+													pointRadius : 5,
+													pointBackgroundColor : "rgba(255, 205, 187,1)",
+													pointBorderColor : "rgba(255,255,255,0.8)",
+													pointHoverRadius : 5,
+													pointHoverBackgroundColor : "rgba(255, 205, 187,1)",
+													pointHitRadius : 80,
+													pointBorderWidth : 4,
+													data : past1,
+												},
+												{
+													label : "오늘",
+													lineTension : 0.3,
+													backgroundColor : "rgba(255,255,255,0)",
+													borderColor : "rgba(255, 180, 153,1)",
+													pointRadius : 5,
+													pointBackgroundColor : "rgba(255, 180, 153,1)",
+													pointBorderColor : "rgba(255,255,255,0.8)",
+													pointHoverRadius : 5,
+													pointHoverBackgroundColor : "rgba(255, 180, 153,1)",
+													pointHitRadius : 60,
+													pointBorderWidth : 3,
+													data : present,
+												},
+												{
+													label : "1일후",
+													lineTension : 0.3,
+													backgroundColor : "rgba(255,255,255,0)",
+													borderColor : "rgba(255, 156, 119,1)",
+													pointRadius : 5,
+													pointBackgroundColor : "rgba(255, 156, 119,1)",
+													pointBorderColor : "rgba(255,255,255,0.8)",
+													pointHoverRadius : 5,
+													pointHoverBackgroundColor : "rgba(255, 156, 119,1)",
+													pointHitRadius : 40,
+													pointBorderWidth : 2,
+													data : future1,
+												},
+												{
+													label : "2일후",
+													lineTension : 0.3,
+													backgroundColor : "rgba(255,255,255,0)",
+													borderColor : "rgba(255, 131, 85,1)",
+													pointRadius : 5,
+													pointBackgroundColor : "rgba(255, 131, 85,1)",
+													pointBorderColor : "rgba(255,255,255,0.8)",
+													pointHoverRadius : 5,
+													pointHoverBackgroundColor : "rgba(255, 131, 85,1)",
+													pointHitRadius : 20,
+													pointBorderWidth : 1,
+													data : future2,
+												} ],
+									},
+
+									options : {
+										scales : {
+											xAxes : [ {
+												time : {
+													unit : '시간'
+												},
+												gridLines : {
+													display : true
+												},
+												ticks : {
+													maxTicksLimit : 27
+												}
+											} ],
+											yAxes : [ {
+												ticks : {
+													min : 0,
+													max : 100,
+													maxTicksLimit : 20
+												},
+												display : true,
+												ticks : {
+													suggestedMin : 100,
+												},
+												scaleLabel : {
+													display : true,
+													labelString : '금액'
+												}
+											} ]
+										},
+										legend : {
+											display : true
+										}
+									}
+								});
+					},
+					beforeSend : function() {
+						$('.wrap-loading').removeClass('display-none');
+					},
+					complete : function() {
+						$('.wrap-loading').addClass('display-none');
+					}
+
 				});
-			}
-		,beforeSend:function(){
-	        $('.wrap-loading').removeClass('display-none');
-	    }
-	    ,complete:function(){
-	        $('.wrap-loading').addClass('display-none');
-	    }
-		
-		
-		});
-		
-		$(function(){
-		  $('.btn_table').click(function(){
-			  $('.display_chart').hide();
-			  $('.display_table').show();
-		  });
-		  $('.btn_chart').click(function(){
-		    $('.display_table').hide();
-		    $('.display_chart').show();
-		  });
-			  
+
+		$(function() {
+			$('.btn_table').click(function() {
+				$('.display_chart').hide();
+				$('.display_table').show();
+			});
+			$('.btn_chart').click(function() {
+				$('.display_table').hide();
+				$('.display_chart').show();
+			});
+
 		});
 	</script>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js?ver=1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js?ver=1" crossorigin="anonymous"></script>
-    <script src="js/scripts.js?ver=1"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js?ver=1" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js?ver=1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js?ver=1"
+		crossorigin="anonymous"></script>
+	<script src="js/scripts.js?ver=1"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js?ver=1"
+		crossorigin="anonymous"></script>
 	<!-- <script src="assets/demo/current-temp-chart.js?ver=1"></script> -->
 	<script src="assets/demo/datatables-demo.js?ver=1"></script>
 </body>
