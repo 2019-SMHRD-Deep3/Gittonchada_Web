@@ -13,29 +13,6 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <style>
-.btn-primary {
-color: #fff;
-background-color: #FFA500;
-border-color: #fe9b29;
-}
-
-.btn-primary:hover {
-    color: #fff;
-    background-color: #fe9b29;
-    border-color: #FFA500;
-}
-
-a {
-    color: #FFA500;
-    text-decoration: none;
-    background-color: transparent;
-}
-a:hover {
-    color: #fe9b29;
-    text-decoration: underline;
-}
-</style>
     </head>
     <!-- 회원가입 성공 판단여부   -->
 	<script language=javascript>
@@ -43,7 +20,7 @@ a:hover {
 			alert('회원가입 실패');
 		}
 	</script>
-    <body class="bg-primary" style="background-color: rgba(0, 0, 0, 0.11) !important;">
+    <body class="bg-primary" style="background-color: rgba(0, 0, 0, 0.1) !important;">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -103,7 +80,6 @@ a:hover {
 					                 $("#alert-danger").css('display', 'none');
 					            } else {
 					                // 비밀번호 불일치 이벤트 실행
-					                alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
 					            	 $("#alert-success").css('display', 'none');
 					                 $("#alert-danger").css('display', 'inline-block');
 					            }

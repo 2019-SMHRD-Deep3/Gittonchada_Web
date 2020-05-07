@@ -13,29 +13,6 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-<style>
-.btn-primary {
-color: #fff;
-background-color: #FFA500;
-border-color: #fe9b29;
-}
-
-.btn-primary:hover {
-    color: #fff;
-    background-color: #fe9b29;
-    border-color: #FFA500;
-}
-
-a {
-    color: #FFA500;
-    text-decoration: none;
-    background-color: transparent;
-}
-a:hover {
-    color: #fe9b29;
-    text-decoration: underline;
-}
-</style>
     </head>
     <%
       MemberDTO info = (MemberDTO) session.getAttribute("info");
@@ -47,7 +24,7 @@ a:hover {
                  alert('로그인 실패');
       } 
    </script>
-    <body class="bg-primary" style="background-color: rgba(0, 0, 0, 0.11) !important;">
+    <body class="bg-primary" style="background-color: rgba(0, 0, 0, 0.1) !important;">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -63,7 +40,7 @@ a:hover {
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox"><input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" /><label class="custom-control-label" for="rememberPasswordCheck">비밀번호 기억하기</label></div>
                                             </div>
-                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" href="password.jsp">비밀번호를 잊어버리셨나요?</a><button type="submit" class="btn btn-primary" href="#">로그인하기</button></div>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><div class="small">　</div><button type="submit" class="btn btn-primary" href="#">로그인하기</button></div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">

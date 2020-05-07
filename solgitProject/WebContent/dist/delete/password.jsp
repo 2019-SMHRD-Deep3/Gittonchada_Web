@@ -25,11 +25,11 @@
                                         <div class="small mb-3 text-muted">이메일 주소를 입력하면 암호를 재설정할 수 있는 링크를 보내드리겠습니다.</div>
                                         <form>
                                             <div class="form-group"><label class="small mb-1" for="inputEmailAddress">이메일</label><input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="이메일 주소를 입력해주세요." /></div>
-                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" href="login.html">로그인으로 돌아가기</a><a class="btn btn-primary" href="login.html">비밀번호 초기화</a></div>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" href="login.jsp">로그인으로 돌아가기</a><a class="btn btn-primary" href="login.jsp">비밀번호 초기화</a></div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="register.html">계정이 없으신가요? 계정 생성하기</a></div>
+                                        <div class="small"><a href="register.jsp">계정이 없으신가요? 계정 생성하기</a></div>
                                     </div>
                                 </div>
                             </div>
