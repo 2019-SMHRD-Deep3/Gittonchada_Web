@@ -150,6 +150,16 @@ td {
 			<div class="card-header" style="margin-top: 0px; margin-left: 0px;">
 				<h3>발전량 예측</h3>
 			</div>
+			<div class="card mb-4">
+					<div class="card-header display_chart">
+						<i class="fas fa-chart-area mr-1"></i>시간별 일사·일조·발전량
+					</div>
+					<div class="card-body">
+						<canvas id="myLineChart2" width="100%" height="30"></canvas>
+					</div>
+					<div class="card-footer small text-muted">※본 일사·일조·발전량은 머신러닝
+						분석으로 예측한 자료입니다.※</div>
+				</div>
 			<div class="card-header">
 				<i class="fas fa-table mr-1"></i>표(Table)
 			</div>
@@ -188,18 +198,7 @@ td {
 					</table>
 				</div>
 			</div>
-			<div class="card-body display_chart">
-				<div class="card mb-4">
-					<div class="card-header">
-						<i class="fas fa-chart-area mr-1"></i>시간별 일사·일조·발전량
-					</div>
-					<div class="card-body">
-						<canvas id="myLineChart2" width="100%" height="30"></canvas>
-					</div>
-					<div class="card-footer small text-muted">※본 일사·일조·발전량은 머신러닝
-						분석으로 예측한 자료입니다.※</div>
-				</div>
-			</div>
+				
 		</div>
 
 		<!-- Footer -->
