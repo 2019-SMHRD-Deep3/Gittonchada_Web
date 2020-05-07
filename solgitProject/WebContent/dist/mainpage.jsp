@@ -27,7 +27,7 @@
 	         position: absolute;
 	         height: 100%;
 	         width: 100%;
-	         background-color: rgba(0, 0, 0, 0.4);                                                                 
+	         background-color: rgba(0, 0, 0, 0.05);                                                                 
 	         z-index:1;
 		    }
 		    .img .content{
@@ -43,35 +43,58 @@
 		    .title h2 h3 {
 		      display: inline;
 		    }
+		    
+		    .navbar {
+		      @include red-gradient();
+		      .navbar-nav li a {
+		          @include gold-text-gradient;
+		      }
+		      .navbar-nav{ 
+		          a:hover {
+		            @include red-text-gradient();
+		          }
+		          li:hover{
+		            @include gold-gradient();
+		          } 
+		       } 
+			}
+			@media (min-width: 768px) {
+		     .navbar-nav.navbar-center {
+		       position: absolute;
+		       left: 50%;
+		       transform: translatex(-50%);
+		     }
+		}
 		</style>
 	</head>
-
-	<body class="nav-fixed">
+	<body class="sb-nav">
 	<%
       MemberDTO info = (MemberDTO) session.getAttribute("info");
    	%>
 	<!-- 네비게이션바 코드 -->
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+		<nav class="navbar navbar-expand-sm navbar-collapse navbar-dark fixed-top bg-default" font-size="50" font-family="Verdana" x="0" y="100"  style="	background-color: rgba(0, 0, 0, 0.5) !important;">
 			
 			<!-- 회사명, 로고 -->
-			<a class="navbar-brand" href="#"><img src="./assets/img/solgitIcon.png" alt="Logo" style="text-size=5rem; width:40px;">&nbsp;　　솔깃</a>
-			
+			<div class="container-fluid">
+			<div class="navbar-header">
+			<a class="navbar-brand" href="#"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
+			</div>
 			<!-- 반응형 버튼 -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar"><span class="navbar-toggler-icon"></span></button>
 			
 			<!-- 메뉴바 내용 -->
-			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<div class="collapse navbar-collapse" id="collapsibleNavbar" style="width: 200px;">
 				<!-- 메뉴 타이틀 -->
-				<ul class="navbar-nav ml-auto ml-md-3"> <!--  ml-auto ml-md-5 -->
+				<ul class="nav navbar-nav nav-pills nav-justified ml-auto"> <!--  ml-auto ml-md-5 -->
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">데이터 등록</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">데이터 등록</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">인공지능 분석</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">인공지능 분석</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a>
 							<a class="dropdown-item" href="predict_generation.jsp">발전량 예측</a>
@@ -79,14 +102,14 @@
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">정보 공유</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">정보 공유</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="board_notice.jsp">공지사항</a>
 							<a class="dropdown-item" href="board_community.jsp">커뮤니티</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">고객 센터</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">고객 센터</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
 							<a class="dropdown-item" href="customer_faq.jps">FAQ</a>
@@ -116,36 +139,26 @@
 	            </div>
 	            
 				<!-- 메뉴 로그인 등 -->
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">
-	            <ul class="navbar-nav ml-auto ml-md-6">
-	               <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
-	               id="userDropdown" href="#" role="button" data-toggle="dropdown" 
-	               aria-haspopup="true" aria-expanded="true"><i class="fas fa-user fa-fw"></i></a>
-	               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-	                  <%
+				
+				<div class="collapse navbar-collapse" id="collapsibleNavbar" style="width: 5px; flex-direction: row-reverse;">
+					<%
 	                  if (info == null) {
-	                  %>
-	                  <a class="dropdown-item" href="login.jsp">로그인</a> 
-	                  <div class="dropdown-divider"></div>
-	                  <a class="dropdown-item" href="register.jsp">회원가입</a>
-	                  <%
+	                %>
+	            	<a class="btn btn-light" href="login.jsp" style="font-size:15px; margin-left:10px;">로그인</a>
+	            	<a class="btn btn-light" href="register.jsp" style="font-size:15px;">회원가입</a>
+	            	<%
 	                  } else {
-	                  %>
-	                  <a class="dropdown-item" href="LogoutService.do">로그아웃</a>
-	                  <%
+	                %>
+	            	<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
+	            	<%
 	                  }
-	                  %>
-	               </div>
-	               </li>
-	            </ul>
+	                %>
 	            </div>
-			
-	            <!-- 신 로그인, 회원가입 -->
+	            </div>
 				
 		</nav>
 		<!-- 메인 내용 작성 부분 -->
 		<main class="main" role="main">
-		
 		<section>
 			<div class="img">
         		<div class="content title">
@@ -156,19 +169,8 @@
 			<div class="img-cover"></div>
 			</div>
 		</section>
-		
-		<!-- <section>
-			<div class="img">
-        		<div class="content">
-            		<h1>Hello!</h1>
-           			<h2>My name is nunu</h2>
-       			</div>
-        		<div class="img-cover"></div>
-   			</div>
-		</section> -->
 		</main>
 			
-		
 		<!-- Footer -->
 		<div id="layoutAuthentication_footer">
 			<footer class="py-4 bg-light mt-auto"> <!-- fixed-bottom -->
@@ -182,8 +184,6 @@
 			</footer>
 		</div>
 		
-
-	
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

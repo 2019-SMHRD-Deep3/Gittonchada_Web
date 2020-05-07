@@ -13,7 +13,29 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-        
+        <style>
+.btn-primary {
+color: #fff;
+background-color: #FFA500;
+border-color: #fe9b29;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #fe9b29;
+    border-color: #FFA500;
+}
+
+a {
+    color: #FFA500;
+    text-decoration: none;
+    background-color: transparent;
+}
+a:hover {
+    color: #fe9b29;
+    text-decoration: underline;
+}
+</style>
     </head>
     <!-- 회원가입 성공 판단여부   -->
 	<script language=javascript>
@@ -21,7 +43,7 @@
 			alert('회원가입 실패');
 		}
 	</script>
-    <body class="bg-primary">
+    <body class="bg-primary" style="background-color: rgba(0, 0, 0, 0.11) !important;">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>

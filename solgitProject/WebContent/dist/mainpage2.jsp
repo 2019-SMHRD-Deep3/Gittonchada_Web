@@ -65,6 +65,27 @@
 		       transform: translatex(-50%);
 		     }
 		}
+		.btn-primary {
+color: #fff;
+background-color: #FFA500;
+border-color: #fe9b29;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #fe9b29;
+    border-color: #FFA500;
+}
+
+a {
+    color: #FFA500;
+    text-decoration: none;
+    background-color: transparent;
+}
+a:hover {
+    color: #fe9b29;
+    text-decoration: underline;
+}
 		</style>
 	</head>
 	<body class="sb-nav">
@@ -117,26 +138,19 @@
 					</li>
 				</ul>
 				</div>
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<%-- <div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<%
 	            	if (info != null) {
 	            %>
 				<!-- SMP 등 정보전달 -->
 				<div class="navbar-nav" style="margin-left: 150px;"> <!-- ml-auto ml-md-8 -->
 					<span class="nav-link" id="navbar">SMP <% %></span>
-					<span class="nav-link" id="navbar">REC <% %></span>
 					<span class="nav-link" id="navbar">날씨  <% %></span>
 				</div>
 				<%
 	            	}
 	            %>
-	            </div>
-	            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-	            <ul class="navbar-nav ml-auto">
-	            	<li><div  style="color : hotpink;"><%if(info!=null){ %><%=info.getName()%><br>님 환영합니다.
-	               		<%}else {%><%} %></div></li>
-	            </ul>
-	            </div>
+	            </div> --%>
 	            
 				<!-- 메뉴 로그인 등 -->
 				
@@ -146,6 +160,7 @@
 	                %>
 	            	<a class="btn btn-light" href="login.jsp" style="font-size:15px; margin-left:10px;">로그인</a>
 	            	<a class="btn btn-light" href="register.jsp" style="font-size:15px;">회원가입</a>
+	            	
 	            	<%
 	                  } else {
 	                %>
@@ -190,19 +205,6 @@
 			</footer>
 		</div>
 		
-		<!-- <svg xmlns=:http://www.w3.org/200/svg" version"1.1" width="100%">
-			<defs>
-				<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-					<stop offset="0%" style="stop-color:#ff5d62; stop-opacity:1"/>
-					<stop offset="50%" style="stop-color:#ffbc5d; stop-opacity:1"/>
-					<stop offset="100%" style="stop-color:#ffd7cb; stop-opacity:1"/>
-				</linearGradient>
-			</defs>
-			<text fill="url(#grad1)" font-size="50" font-family="Verdana" x="0" y="100">
-			see you next year~!
-			</text>
-		</svg> -->
-	
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
