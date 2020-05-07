@@ -63,7 +63,7 @@ a:hover {
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox"><input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" /><label class="custom-control-label" for="rememberPasswordCheck">비밀번호 기억하기</label></div>
                                             </div>
-                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" href="password.jsp">비밀번호를 잊어버리셨나요?</a><button type="submit" class="btn btn-primary" href="#">로그인하기</button></div>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><div class="small">　</div><button type="submit" class="btn btn-primary" href="#">로그인하기</button></div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">

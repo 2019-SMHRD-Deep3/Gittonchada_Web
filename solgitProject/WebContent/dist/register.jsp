@@ -103,7 +103,6 @@ a:hover {
 					                 $("#alert-danger").css('display', 'none');
 					            } else {
 					                // 비밀번호 불일치 이벤트 실행
-					                alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
 					            	 $("#alert-success").css('display', 'none');
 					                 $("#alert-danger").css('display', 'inline-block');
 					            }
