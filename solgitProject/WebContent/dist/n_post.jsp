@@ -23,13 +23,9 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 	crossorigin="anonymous"></script>
 <style type="text/css">
-.mydiv {
-	padding-left: 15%;
-	padding-right: 15%;
-	padding-top: 5%;
-	padding-bottom: 5%;
+.container-sm {
+	margin-top:150px; 
 }
-
 .write_info {
 	padding-top: 10px;
 }
@@ -51,7 +47,7 @@
 			<!-- 회사명, 로고 -->
 			<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand" href="mainpage2.jsp"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
+			<a class="navbar-brand" href="mainpage.jsp"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
 			</div>
 			<!-- 반응형 버튼 -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -72,7 +68,7 @@
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a>
 							<a class="dropdown-item" href="predict_generation.jsp">발전량 예측</a>
-							<a class="dropdown-item" href="predict_benefit.jsp">수익 예측</a>
+							<a class="dropdown-item" href="predict_benefit.jsp">SMP 예측</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
@@ -83,7 +79,7 @@
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">고객 센터</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">Contact us</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
 							<a class="dropdown-item" href="customer_faq.jsp">고객센터</a>
@@ -116,7 +112,7 @@
 	<div class=container-fluid"">
 		<main>
 
-			<h3>상단에 고정된 내비게이션 바(메뉴바)</h3>
+			<h3></h3>
 
 
 			<!-- 		게시글 시작 -->
@@ -129,14 +125,15 @@
 			%>
 
 
-			<div class="mydiv">
-
+			<div class="card container-sm">
+<br><br>
 				<h2>
 					<%=
 						dto.getNotice_title()
 					%>
 				</h2>
 				<div class='write_info'>
+				<br>
 					<p id='writer'>
 						<%=
 							dto.getNotice_id()
@@ -149,7 +146,7 @@
 					</p>
 				</div>
 				<hr>
-				<div>
+				<div style="height:500px;"><br>
 
 					<p><%=dto.getNotice_content() %></p>
 

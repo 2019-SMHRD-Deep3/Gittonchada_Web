@@ -65,27 +65,6 @@
 		       transform: translatex(-50%);
 		     }
 		}
-		.btn-primary {
-color: #fff;
-background-color: #FFA500;
-border-color: #fe9b29;
-}
-
-.btn-primary:hover {
-    color: #fff;
-    background-color: #fe9b29;
-    border-color: #FFA500;
-}
-
-a {
-    color: #FFA500;
-    text-decoration: none;
-    background-color: transparent;
-}
-a:hover {
-    color: #fe9b29;
-    text-decoration: underline;
-}
 		</style>
 	</head>
 	<body class="sb-nav">
@@ -130,14 +109,34 @@ a:hover {
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">고객 센터</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">Contact us</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
-							<a class="dropdown-item" href="customer_faq.jsp">고객센터</a>
+							<a class="dropdown-item" href="customer_faq.jps">FAQ</a>
 						</div>
 					</li>
 				</ul>
 				</div>
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<%
+	            	if (info != null) {
+	            %>
+				<!-- SMP 등 정보전달 -->
+				<div class="navbar-nav" style="margin-left: 150px;"> <!-- ml-auto ml-md-8 -->
+					<span class="nav-link" id="navbar">SMP <% %></span>
+					<span class="nav-link" id="navbar">REC <% %></span>
+					<span class="nav-link" id="navbar">날씨  <% %></span>
+				</div>
+				<%
+	            	}
+	            %>
+	            </div>
+	            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	            <ul class="navbar-nav ml-auto">
+	            	<li><div  style="color : hotpink;"><%if(info!=null){ %><%=info.getName()%><br>님 환영합니다.
+	               		<%}else {%><%} %></div></li>
+	            </ul>
+	            </div>
 	            
 				<!-- 메뉴 로그인 등 -->
 				
@@ -147,7 +146,6 @@ a:hover {
 	                %>
 	            	<a class="btn btn-light" href="login.jsp" style="font-size:15px; margin-left:10px;">로그인</a>
 	            	<a class="btn btn-light" href="register.jsp" style="font-size:15px;">회원가입</a>
-	            	
 	            	<%
 	                  } else {
 	                %>
@@ -161,7 +159,6 @@ a:hover {
 		</nav>
 		<!-- 메인 내용 작성 부분 -->
 		<main class="main" role="main">
-		
 		<section>
 			<div class="img">
         		<div class="content title">
@@ -172,10 +169,8 @@ a:hover {
 			<div class="img-cover"></div>
 			</div>
 		</section>
-		
 		</main>
 			
-		
 		<!-- Footer -->
 		<div id="layoutAuthentication_footer">
 			<footer class="py-4 bg-light mt-auto"> <!-- fixed-bottom -->

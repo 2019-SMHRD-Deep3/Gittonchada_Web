@@ -1,4 +1,8 @@
+<%@page import="com.model.FileDTO"%>
+<%@page import="com.model.FileDAO"%>
 <%@page import="com.model.MemberDTO"%>
+<%@page import="com.model.NoticeDTO"%>
+<%@page import="com.model.NoticeDAO"%>
 <%@page import="com.model.BoardDTO"%>
 <%@page import="com.model.BoardDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -8,9 +12,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>SOLGIT-솔깃한 정보 공유 플랫폼</title>
@@ -23,16 +27,19 @@
 	crossorigin="anonymous"></script>
 
 <style type="text/css">
-.mytable {
-	padding-left: 15%;
-	padding-right: 15%;
-	padding-top: 5%;
-	padding-bottom: 5%;
+.container-sm {
+	margin-top: 150px;
+	margin-bottom:80px;
 }
 
-/* .my_table {
-	height: 600px;
-} */
+.my_table {
+	height: 550px;
+}
+
+#manager_div {
+	overflow:hidden;
+		height:auto;
+}
 
 a {
 	color: black;
@@ -64,10 +71,6 @@ a {
 .col-auto.my-1 {
 	width: 100%;
 }
-
-html, body {
-	height: 80%;
-}
 </style>
 </head>
 
@@ -84,10 +87,7 @@ html, body {
 		<!-- 회사명, 로고 -->
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="
-
-
-.jsp"><img
+				<a class="navbar-brand" href="mainpage.jsp"><img
 					src="./assets/img/solgit_logo2.png" alt="Logo"
 					style="width: 100px;"></a>
 			</div>
@@ -157,57 +157,106 @@ html, body {
 
 	</nav>
 	<!-- 메인 내용 작성 부분 -->
-	<main>
+	<div class=container-fluid"">
+		<main>
 
-		<h3></h3>
+			<h3></h3>
 
-		<!-- Main jumbotron for a primary marketing message or call to action -->
-		<div class="jumbotron" style="margin-top: 104px; padding: 100px;">
-			<div class="container">
-				<h1>SOLGIT!</h1>
+			<!-- 게시판 생성 -->
+			<div class="card container-sm">
+				<div class="card-header" style="margin-top: 0px; margin-left: 0px;">
+					<h3>데이터 등록</h3>
+				</div>
+				<br> <br>
+				<div class=" input-groupmb-3">
+					<form>
+						<div class="form-row align-items-center">
+							<div class="col-auto my-1">
+								<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+							</div>
+						</div>
+					</form>
+					<div style="float: right; margin-top: 5px;">
+						<button type="button" class="btn btn-info" id="check_ok" style="width: 70px;">확인</button>
+						<button type="button" class="btn btn-info" id="check_no" style="width: 70px;">불가</button>
+					</div>
+				</div>
 				<br>
-				<p>솔깃은 머신러닝 기술을 이용해 데이터를 분석 및 태양광발전량을 예측해주는 서비스입니다.</p>
+
+				<%
+					FileDAO dao = new FileDAO();
+					if (info != null) {
+
+							///////////////// 관리자가 조회했을때
+				%>
+				<div class="my_table" id="manager_div">
+					<table class="table">
+						<thead>
+							<th scope="col" style="text-align:center;">#</th>
+							<th scope="col">파일명</th>
+							<th scope="col">세부사항</th>
+							<th scope="col">상태</th>
+							<th scope="col">작성일</th>
+							<th scope="col" style="text-align:center;">확인</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								ArrayList<FileDTO> allList = dao.allFiles();
+										for (int i = 0; i < allList.size(); i++) {
+							%>
+							<tr id="managerList">
+								<td style="width: 10%; text-align: center;"><%=allList.size() - i%></td>
+								<td style="width: 20%; padding: 10px;"><%=allList.get(i).getFile_name()%></td>
+								<td style="width: 30%; padding: 10px;"><%=allList.get(i).getFile_content()%></td>
+								<td style="width: 10%; padding: 10px;"><%=allList.get(i).getFile_check()%></td>
+								<td style="width: 20%; padding: 10px;"><a id="post"><%=allList.get(i).getFile_date()%></a></td>
+								<td style="width: 10%; padding: 10px; text-align:center;"><input
+									type="checkbox" id="check" name="check" value=<%=allList.get(i).getFile_seq() %> /></td>
+							</tr>
+							<%
+								}}
+							%>
+
+						</tbody>
+					</table>
+				</div>
+				
+				
+
+							
+				</div>
+				<!-- 테이블 끝	 -->
+				<br> <br>
+			<%-- 	<div class="btn-toolbar justify-content-between" role="toolbar"
+					aria-label="Toolbar with button groups">
+					<div class="btn-group" role="group" aria-label="First group"
+						style="margin: auto;">
+						<form action="BoardLoadCon.do">
+							<%
+								if (allList.size() > 10) {
+							%>
+							<button type="submit" name='page_num' value="1"
+								class="btn btn-secondary">1</button>
+							<%
+								}
+							%>
+							<%
+								for (int i = 1; i < 10; i++) {
+											if (list.size() >= 10 * i + 1) {
+												for (int j = i + 1; j <= i + 1; j++) {
+							%>
+							<button type="submit" name='page_num' value="<%=j%>"
+								class="btn btn-secondary"><%=j%></button>
+							<%
+								}
+											}
+										}
+							%>
+						</form>
+					</div>
+				</div> --%>
 			</div>
-		</div>
-		<br>
-		<br>
-		<br>
-		<div class="container">
-			<!-- Example row of columns -->
-			<div class="row">
-				<div class="col-md-4">
-					<h2>업무시간</h2>
-					<br>
-					<p>월 - 금요일: 09:00 ~ 18:00</p>
-					<p>주말 · 공휴일은 쉽니다.</p>
-				</div>
-				<div class="col-md-4">
-					<h2>문의하기</h2>
-					<br>
-					<p>카카오 : solgit</p>
-					<p>이메일 : solgit@naver.com</p>
-					<p>전화번호 : 010-1234-5678</p>
-				</div>
-				<div class="col-md-4">
-					<h2>주소</h2>
-					<br>
-					<p>광주광역시 남구 송암로60 광주CGI센터 2층</p>
-					<img src="./assets/img/solgit_address.PNG" alt="Logo"
-						style="width: 300px;">
-				</div>
-			</div>
-
-
-			<!-- Bootstrap core JavaScript
-    ================================================== -->
-			<!-- Placed at the end of the document so the pages load faster -->
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-			<script src="../../dist/js/bootstrap.min.js"></script>
-			<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-			<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-
 			<!-- 	게시판 끝 -->
 
 			<!-- Footer -->
@@ -223,11 +272,16 @@ html, body {
 					</div>
 				</div>
 			</footer>
-	</main>
+		</main>
 	</div>
+	<%
+		if (info != null) {
+	%>
+	<input type="hidden" value=${info.email } class="infoEmail">
 
-
-
+	<%
+		}
+	%>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		crossorigin="anonymous"></script>
 	<script
@@ -246,6 +300,29 @@ html, body {
 		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 		crossorigin="anonymous"></script>
 	<script src="assets/demo/datatables-demo.js"></script>
+	<script type="text/javascript">
+		
+	var check_list = [];
+	$("input:checkbox[name='check']").click(function(){
+				if($("#check").is(":checked")){
+			     var checked = this.value
+				 console.log(checked); 
+			     check_list.push(checked);
+			      }
+			});
+		$("#check_ok").click(function(){
+			$.ajax({
+				type:"get",
+				url:"CheckLoadCon.do",
+				data:{"check_list":check_list},
+				success:function(result){
+					var as = eval(result);
+					alert("data"+as[0]+"as[1]");
+				}
+			})
+		});
+		
+	</script>
 
 </body>
 </html>

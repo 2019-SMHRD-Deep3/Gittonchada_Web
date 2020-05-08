@@ -62,14 +62,14 @@ public class MemberDAO {
 		try {
 
 			getConnection();
-			String sql = "insert into MEMBER values(member_Seq.nextval,?,?,?,?,?,?)";
+			String sql = "insert into MEMBER values(member_Seq.nextval,?,?,?,?,?,0)";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getEmail());
 			psmt.setString(2, dto.getPw());
 			psmt.setString(3, dto.getBirth());
 			psmt.setString(4, dto.getName());
 			psmt.setString(5, dto.getPhone());
-			psmt.setInt(6, dto.getManager());
+			//psmt.setInt(6, dto.getManager());
 			cnt = psmt.executeUpdate();
 			
 		} catch (SQLException e) {

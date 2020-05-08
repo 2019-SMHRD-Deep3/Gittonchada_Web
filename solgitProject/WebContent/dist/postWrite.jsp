@@ -1,16 +1,13 @@
 <%@page import="com.model.MemberDTO"%>
-<%@page import="com.model.BoardDTO"%>
-<%@page import="com.model.BoardDAO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>SOLGIT-솔깃한 정보 공유 플랫폼</title>
@@ -23,55 +20,18 @@
 	crossorigin="anonymous"></script>
 
 <style type="text/css">
-.mytable {
-	padding-left: 15%;
-	padding-right: 15%;
-	padding-top: 5%;
-	padding-bottom: 5%;
+.container-sm {
+	margin-top: 150px;
 }
-
-/* .my_table {
-	height: 600px;
-} */
 
 a {
 	color: black;
-}
-
-.form-row {
-	float: left;
-}
-
-.form-control {
-	display: inline;
-	width: 95%;
-	/* padding:0;
-	margin:0; */
-}
-
-.custom-select {
-	display: inline;
-	width: 90%;
-	/* 	margin:0;
-	padding:0; */
-}
-
-.btn-info {
-	display: inline;
-	height: 38px;
-}
-
-.col-auto.my-1 {
-	width: 100%;
-}
-
-html, body {
-	height: 80%;
 }
 </style>
 </head>
 
 <body class="nav-fixed">
+	<!-- 네비게이션바 코드 -->
 	<%
 		MemberDTO info = (MemberDTO) session.getAttribute("info");
 	%>
@@ -84,10 +44,7 @@ html, body {
 		<!-- 회사명, 로고 -->
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="
-
-
-.jsp"><img
+				<a class="navbar-brand" href="mainpage.jsp"><img
 					src="./assets/img/solgit_logo2.png" alt="Logo"
 					style="width: 100px;"></a>
 			</div>
@@ -157,77 +114,73 @@ html, body {
 
 	</nav>
 	<!-- 메인 내용 작성 부분 -->
-	<main>
+	<div class=container-fluid"">
+		<main>
 
-		<h3></h3>
-
-		<!-- Main jumbotron for a primary marketing message or call to action -->
-		<div class="jumbotron" style="margin-top: 104px; padding: 100px;">
-			<div class="container">
-				<h1>SOLGIT!</h1>
-				<br>
-				<p>솔깃은 머신러닝 기술을 이용해 데이터를 분석 및 태양광발전량을 예측해주는 서비스입니다.</p>
-			</div>
-		</div>
-		<br>
-		<br>
-		<br>
-		<div class="container">
-			<!-- Example row of columns -->
-			<div class="row">
-				<div class="col-md-4">
-					<h2>업무시간</h2>
-					<br>
-					<p>월 - 금요일: 09:00 ~ 18:00</p>
-					<p>주말 · 공휴일은 쉽니다.</p>
+				<!-- 게시판 생성 -->
+				<div class="card container-sm">
+				<div class="card-header" style="margin-top: 0px; margin-left: 0px;">
+					<h3>공지사항</h3>
 				</div>
-				<div class="col-md-4">
-					<h2>문의하기</h2>
 					<br>
-					<p>카카오 : solgit</p>
-					<p>이메일 : solgit@naver.com</p>
-					<p>전화번호 : 010-1234-5678</p>
+					<!-- 글쓰기 -->
+
+					<form action="PostWriteCon.do">
+						<div class="form-group" style="height: 70px;">
+							<div class="form-group"
+								style="width: 20%; display: block; float: left; margin-right: 2%;">
+								<label for="exampleFormControlInput1">아이디</label> <input
+									type="text" class="form-control" id="exampleFormControlInput1"
+									name="board_id" placeholder="">
+							</div>
+							<div class="form-group"
+								style="width: 20%; display: block; float: left; margin-right: 5%;">
+								<label for="exampleInputPassword1">비밀번호</label> <input
+									type="password" class="form-control" id="exampleInputPassword1"
+									name="board_pw">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlInput1">제목</label> <input
+								type="text" class="form-control" placeholder="제목을 입력하세요"
+								aria-label="Recipient's username"
+								aria-describedby="basic-addon2" name="board_title">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">본문</label>
+							<textarea class="form-control" id="exampleFormControlTextarea1"
+								name="board_content" rows="10" placeholder="내용을 입력하세요"></textarea>
+						</div>
+						<div class="form-group form-check" style="text-align: right;">
+							<input type="checkbox" class="form-check-input"
+								id="exampleCheck1" name="board_lock" value="Y"> <label
+								class="form-check-label" for="exampleCheck1">비밀글로 설정</label>
+						</div>
+						<div class="form-group" style="text-align: center;">
+							<button type="button" class="btn btn-primary"
+								onclick="location.href='board_community.jsp'">뒤로가기</button>
+							<button type="submit" class="btn btn-primary">등록하기</button>
+						</div>
+					</form>
+
 				</div>
-				<div class="col-md-4">
-					<h2>주소</h2>
-					<br>
-					<p>광주광역시 남구 송암로60 광주CGI센터 2층</p>
-					<img src="./assets/img/solgit_address.PNG" alt="Logo"
-						style="width: 300px;">
-				</div>
-			</div>
+				<!-- 	게시판 끝 -->
 
-
-			<!-- Bootstrap core JavaScript
-    ================================================== -->
-			<!-- Placed at the end of the document so the pages load faster -->
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-			<script src="../../dist/js/bootstrap.min.js"></script>
-			<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-			<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-
-			<!-- 	게시판 끝 -->
-
-			<!-- Footer -->
-			<footer class="py-4 bg-light mt-auto fixed-bottom">
-				<div class="container-fluid">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; 2020 © SOLGIT</div>
-						<div>
-							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
-								&amp; Conditions</a>
+				<!-- Footer -->
+				<footer class="py-4 bg-light mt-auto fixed-bottom">
+					<div class="container-fluid">
+						<div
+							class="d-flex align-items-center justify-content-between small">
+							<div class="text-muted">Copyright &copy; 2020 © SOLGIT</div>
+							<div>
+								<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
+									&amp; Conditions</a>
+							</div>
 						</div>
 					</div>
-				</div>
-			</footer>
-	</main>
+				</footer>
+		</main>
 	</div>
-
-
-
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		crossorigin="anonymous"></script>
 	<script
@@ -246,6 +199,10 @@ html, body {
 		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 		crossorigin="anonymous"></script>
 	<script src="assets/demo/datatables-demo.js"></script>
-
+	<!-- 	<script type="text/javascript">
+		$('#btn_submit').click(function() {
+			alert("경고")
+		});
+	</script> -->
 </body>
 </html>

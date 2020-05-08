@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.controller.BoardCommuCon;
 import com.controller.BoardLoadCon;
 import com.controller.BoardNoticeCon;
+import com.controller.CheckLoadCon;
 import com.controller.DevelopInfoCon;
 import com.controller.JoinCon;
 import com.controller.LoginCon;
@@ -44,6 +45,7 @@ public class DoFrontController extends HttpServlet {
 		map.put("BoardCommuCon.do", new BoardCommuCon());
 		map.put("BoardLoadCon.do", new BoardLoadCon());
 		map.put("ReplyDeleteCon.do", new ReplyDeleteCon());
+		map.put("CheckLoadCon.do", new CheckLoadCon());
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
