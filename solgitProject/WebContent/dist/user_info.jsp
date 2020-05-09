@@ -110,11 +110,13 @@
 						$('#inputDate').prop('readOnly','');
 						$("#btnCreate").append('<button type="submit" class="btn btn-primary" id="change">회원정보변경</button>');
 						$('#confirm').hide();
-				      	
+						/* $('#change').on('click', function() {
+							window.location = window.location; 
+						}); */
 					} else {
 						alert("틀림");
 					}
-					
+					 
 					
 					
 				});
