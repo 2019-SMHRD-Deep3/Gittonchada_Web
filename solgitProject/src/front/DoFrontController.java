@@ -13,6 +13,7 @@ import com.controller.BoardCommuCon;
 import com.controller.BoardLoadCon;
 import com.controller.BoardNoticeCon;
 import com.controller.DevelopInfoCon;
+import com.controller.EditCon;
 import com.controller.JoinCon;
 import com.controller.LoginCon;
 import com.controller.LogoutCon;
@@ -34,6 +35,7 @@ public class DoFrontController extends HttpServlet {
 	private void putData() {
 		map.put("LoginService.do", new LoginCon());
 		map.put("JoinService.do", new JoinCon());
+		map.put("EditService.do", new EditCon());
 		map.put("LogoutService.do", new LogoutCon());
 		map.put("PostWriteCon.do", new PostWriteCon());
 		map.put("NoticeWriteCon.do", new NoticeWriteCon());

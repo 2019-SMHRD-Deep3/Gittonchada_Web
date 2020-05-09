@@ -151,6 +151,7 @@ a:hover {
 	            	<%
 	                  } else {
 	                %>
+	                <a class="btn btn-light" href="user_info.jsp">회원정보</a>
 	            	<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
 	            	<%
 	                  }

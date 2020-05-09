@@ -163,10 +163,13 @@ td {
 		<div class="card container-sm"
 			style="margin-top: 150px; margin-bottom: 100px; padding-right: 0px; padding-left: 0px;">
 			<div class="card-header" style="margin-top: 0px; margin-left: 0px;">
-				<h3>발전량 예측</h3>
+				<h3 style="float:left;">발전량 예측</h3>
+				<button style="float:right;" class="btn_table" style="padding: 3px">표</button>
+				<button style="float:right;" class="btn_chart" style="padding: 3px">차트</button>
+				<button style="float:right;" class="btn_all" style="padding: 3px">모두</button>
 			</div>
-			<div class="card mb-4">
-				<div class="card-header display_chart">
+			<div class="card mb-4 display_chart">
+				<div class="card-header">
 					<i class="fas fa-chart-area mr-1"></i>시간별 일사·일조·발전량
 				</div>
 				<div class="card-body">
@@ -175,10 +178,10 @@ td {
 				<div class="card-footer small text-muted">※본 일사·일조·발전량은 머신러닝
 					분석으로 예측한 결과이므로 참고만 하시기 바랍니다.※</div>
 			</div>
-			<div class="card-header">
+			<div class="card-header display_table">
 				<i class="fas fa-table mr-1"></i>표(Table)
 			</div>
-			<div class="card-body">
+			<div class="card-body display_table">
 				<div style="width: 60%; float: left;">
 					<table
 						class="table table-bordered table-striped table-hover table-condensed info"
@@ -517,8 +520,27 @@ td {
 
 										});
 							}
+							
+							
+							
 						});
+		
 		/* }); */
+		$(function() {
+			$('.btn_table').click(function() {
+				$('.display_chart').hide();
+				$('.display_table').show();
+			});
+			$('.btn_chart').click(function() {
+				$('.display_table').hide();
+				$('.display_chart').show();
+			});
+			$('.btn_all').click(function() {
+				$('.display_table').show();
+				$('.display_chart').show();
+			});
+
+		});
 	</script>
 
 
