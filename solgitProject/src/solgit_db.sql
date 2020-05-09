@@ -163,7 +163,7 @@ drop sequence File_seq;
 
 CREATE TABLE Load_File
 (   File_seq          NUMBER            NOT NULL, 
-    File_name         VARCHAR2(20)      NOT NULL, 
+    File_name         VARCHAR2(50)      NOT NULL, 
     File_local        VARCHAR2(50)      NOT NULL,
     File_content      VARCHAR2(1000)    NULL,
     File_date         DATE    NOT NULL, 
@@ -189,3 +189,4 @@ sysdate,
 1
 );
 select * from LOAD_FILE;
+delete from load_file where file_seq=2;

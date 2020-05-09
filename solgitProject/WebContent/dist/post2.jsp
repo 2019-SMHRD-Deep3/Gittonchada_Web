@@ -1,11 +1,9 @@
-<%@page import="com.model.FileDTO"%>
-<%@page import="com.model.FileDAO"%>
 <%@page import="com.model.MemberDTO"%>
-<%@page import="com.model.NoticeDTO"%>
-<%@page import="com.model.NoticeDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.model.ReplyDAO"%>
+<%@page import="com.model.ReplyDTO"%>
 <%@page import="com.model.BoardDTO"%>
 <%@page import="com.model.BoardDAO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -25,45 +23,20 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 	crossorigin="anonymous"></script>
-
 <style type="text/css">
 .container-sm {
 	margin-top:150px; 
 }
-.my_table{
-height:550px;
-}
-a {
-	color: black;
+
+.write_info {
+	padding-top: 10px;
 }
 
-.form-row {
-	float: left;
-}
-
-.form-control {
-	display: inline;
-	width: 95%;
-	/* padding:0;
-	margin:0; */
-}
-
-.custom-select {
-	display: inline;
-	width: 90%;
-	/* 	margin:0;
-	padding:0; */
-}
-
-.btn-info {
-	display: inline;
-	height: 38px;
-}
-
-.col-auto.my-1 {
-	width: 100%;
+#writer {
+	margin: 0px;
 }
 </style>
+
 </head>
 
 <body class="nav-fixed">
@@ -141,142 +114,99 @@ a {
 	<div class=container-fluid"">
 		<main>
 
-			<h3>   </h3>
+			<h3></h3>
 
-			<!-- 게시판 생성 -->
+
+			<!-- 		게시글 시작 -->
+
+			<%
+				int idx = Integer.parseInt(request.getParameter("idx"));
+				System.out.print(idx);
+				BoardDAO dao = new BoardDAO();
+				BoardDTO dto = dao.selectOnePost(idx);
+				ReplyDAO reple_dao = new ReplyDAO();
+				ArrayList<ReplyDTO> reple_list = reple_dao.selectReply(idx);
+			%>
+
+
 			<div class="card container-sm">
-<div class="card-header" style="margin-top: 0px; margin-left: 0px;">
-				<h3>데이터 등록</h3>
-			</div><br><br>
-				<div class=" input-groupmb-3">
-					<form>
-						<div class="form-row align-items-center">
-							<div class="col-auto my-1">
-								<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+<br><br>
+				<h2>
+					<%=dto.getBoard_title()%>
+				</h2>
+				<div class='write_info'>
+				<br>
+					<p id='writer'>
+						<%=dto.getBoard_id()%>
+					</p>
+					<p>
+						<%=dto.getBoard_date()%>
+					</p>
+				</div>
+				<hr>
+				<div style="height:300px;">
+<br>
+					<p><%=dto.getBoard_content()%></p>
 
-							<!-- 	<div class="form-row">
-									<div class="col-md-3 mb-3" style="width: 50px;">
-										<label for="validationCustom04"></label> <select
-											class="custom-select" id="validationCustom04" required>
-											<option selected disabled value="">Choose...</option>
-											<option>제목</option>
-											<option>아이디</option>
-											<option>내용</option>
-										</select>
-									</div>
-									<div class="col-md-6 mb-3" style="width: 600px;">
-										<label for="validationCustom03"></label> <input type="text"
-											class="form-control" id="validationCustom03" required>
-										<div class="invalid-feedback">Please provide a valid
-											city.</div>
-									</div>
-									<button type="button" class="btn btn-info" style="width: 70px;">검색</button>
-								</div> -->
+				</div>
+
+			</div>
+			<!-- 게시글 끝 -->
+			<!-- 댓글 입력창 -->
+			<div class="card container-sm" style="margin-top:1%;"><br>
+				<form>
+					<div class="row"><br>
+						<div class="col-lg-6">
+							<div class="input-group">
+								<input class="form-control" type="text" placeholder="아이디"
+									id="reply_id" name="reply_id" style="width:30%;">
 							</div>
 						</div>
-					</form>
-					<div style="float: right; margin-top: 5px;">
-						<button type="button" class="btn btn-info" style="width: 70px;">등록</button>
+						<div class="col-lg-6">
+							<div class="input-group">
+								<input class="form-control" type="password" placeholder="비밀번호"
+									name="reply_pw" id="reply_pw">
+							</div>
+						</div>
+						<div class="form-group" style="width: 89%; padding: 12px;">
+							<input class="form-control" type="text" placeholder="댓글을 입력해주세요"
+								id="reply_content" name="reply_content"> <input
+								type="hidden" value="<%=idx%>" name="board_idx" id="board_idx">
+						</div>
+						<div class="form-group"
+							style="display: block; float: right; padding: 12px; width: 11%;">
+							<button type="submit" class="btn btn-primary"
+								style="width: 100%;">등록</button>
+						</div>
 					</div>
-				</div><br>
-
-
-				<!-- 테이블 생성 -->
-				<div class="my_table">
-				<table class="table">
-					<thead>
+				</form>
+				<!-- 댓글 내용 -->
+				<div>
+					<table class="table table-sm">
+						<%
+							if (reple_list.size() != 0) {
+								for (int i = 0; i < reple_list.size(); i++) {
+						%>
 						<tr>
-							<th scope="col">#</th>
-							<th scope="col">파일명</th>
-							<th scope="col">세부사항</th>
-							<th scope="col">상태</th>
-							<th scope="col">작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-
-						<% 
-					FileDAO dao = new FileDAO();
-					if(info!=null){
-					ArrayList<FileDTO> list = dao.selectFileList(Integer.parseInt(info.getSeq()));
-					int pageNow = 0;
-					int totalCount = list.size();
-					int listCount = 10;
-					int totalPage = totalCount / listCount;
-					if (totalCount % listCount > 0) {
-						totalPage++;
-					}
-					// 관리자가 조회했을때
-					
-					if (request.getParameter("page_num") != null) {
-						pageNow = Integer.parseInt(request.getParameter("page_num"));
-						int end=listCount*pageNow;
-						if(end>list.size()){
-							end=list.size();}
-						for (int i = listCount * (pageNow - 1); i < end; i++) {
-				%>
-						<tr>
-							<td style="width:10%; text-align:center;"><%=list.size()-i %></td>
-							<td style="width:30%; padding:10px;"><%=list.get(i).getFile_name() %></td>
-							<td style="width:30%; padding:10px;"><%=list.get(i).getFile_content() %></td>
-							<td style="width:10%; padding:10px;"><%=list.get(i).getFile_check() %></td>
-							<td style="width:20%; padding:10px;"><a id="post"><%=list.get(i).getFile_date() %></a></td>
+							<td class="table-active" style="width: 2%;"></td>
+							<td class="table-active" style="width: 10%;"><%=reple_list.get(i).getReply_id()%></td>
+							<td class="table-active" style="width: 65%;"><%=reple_list.get(i).getReply_content()%></td>
+							<td class="table-active" style="width: 15%;"><%=reple_list.get(i).getReply_date()%></td>
+							<td class="table-active" style="width: 8%;">
+							<button type="button" class="btn btn-delete" value="<%=reple_list.get(i).getReply_idx()%>">삭제</button>
+							<%-- <a href="#"
+								onclick="cmDelete(<%=reple_list.get(i).getReply_idx()%>)">삭제</a> --%>
+								</td>
 						</tr>
 						<%
 							}
-							} 
-					else if (list != null) {
-								int end=10;
-								if(list.size()<10){
-									end=list.size();
-								}
-								for (int i = 0; i < end; i++) {
-						%>
-						<tr>
-							<td style="width:10%; text-align:center;"><%=list.size()-i %></td>
-							<td style="width:30%; padding:10px;"><%=list.get(i).getFile_name() %></td>
-							<td style="width:30%; padding:10px;"><%=list.get(i).getFile_content() %></td>
-							<td style="width:10%; padding:10px;"><%=list.get(i).getFile_check() %></td>
-							<td style="width:20%; padding:10px;"><a id="post"><%=list.get(i).getFile_date() %></a></td>
-						</tr>
-						<%
 							}
-							} 
 						%>
-					</tbody>
-				</table></div>
-				<!-- 테이블 끝	 -->
-					<br> <br>
-				<div class="btn-toolbar justify-content-between" role="toolbar"
-					aria-label="Toolbar with button groups">
-					<div class="btn-group" role="group" aria-label="First group"
-						style="margin: auto;">
-						<form action="BoardLoadCon.do">
-							<%
-								if (list.size() > 10) {
-							%>
-							<button type="submit" name='page_num' value="1"
-								class="btn btn-secondary">1</button>
-							<%
-								}
-							%>
-							<%
-								for (int i = 1; i < 10; i++) {
-									if (list.size() >= 10 * i + 1) {
-										for (int j = i + 1; j <= i + 1; j++) {
-							%>
-							<button type="submit" name='page_num' value="<%=j%>"
-								class="btn btn-secondary"><%=j%></button>
-							<%
-								}
-									}
-								}}
-							%>
-						</form>
-					</div>
+					</table>
 				</div>
 			</div>
-			<!-- 	게시판 끝 -->
+			<!-- 댓글 끝 -->
+
 
 			<!-- Footer -->
 			<footer class="py-4 bg-light mt-auto fixed-bottom">
@@ -293,10 +223,9 @@ a {
 			</footer>
 		</main>
 	</div>
-<%if(info!=null){ %>
-	<input type="hidden" value = ${info.email} class="infoEmail">
-	
-	<% }%>
+
+
+
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		crossorigin="anonymous"></script>
 	<script
@@ -315,19 +244,76 @@ a {
 		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 		crossorigin="anonymous"></script>
 	<script src="assets/demo/datatables-demo.js"></script>
+
+	<!-- 	댓글 리스트 -->
 	<script type="text/javascript">
-	$(".btn-info").click(function(){
-		//var info=sessionStorage.getItem("info");
-		var infoEmail = document.querySelector(".infoEmail");
-		//console.log(infoEmail.value);
-		
-		if(infoEmail != null){
-			location.href='load_power.jsp'
-		}else {
-			alert("로그인이 필요한 서비스입니다.");
+		$(".btn btn-primary")
+				.click(
+						function() {
+							$.ajax({
+										type : "post",
+										url : "ReplyReadCon.do",
+										data : "board_idx=" + board_idx,
+										success : function(result) {
+											insertReply()
+										}
+									})
+
+						});
+	<!-- //////////// 댓글 삭제 -->
+	$(".btn btn-delete").click(
+			alert("확인")
+			function(){
+				$.ajax({
+						type:"post",
+						url:"ReplyDeleteCon.do",
+						data:"reply_idx="+reply_idx,
+						success:function(result){
+							insertReply()
+						}
+					});
+				});
+function cmDelete(comment_num){
+	var msg = confirm("댓글을 삭제합니다.");
+	if(msg==true){
+		deleteCmt(comment_num);
+	}else{
+		return false;
+	}
+}
+function deleteCmt(comment_num){
+	$.ajax({
+		type:"post",
+		url:"ReplyDeleteCon.do",
+		data:"reply_idx="+comment_num,
+		success:function(result){
+			insertReply()
 		}
 	});
-	</script>
+}
+function insertReply(){
+	console.log("hi");
+	var reply = $(".table-sm");
+	var reply_list;
+	//reply.empty();
+	if (result.length != 0) {
+		for (var i = 0; i < result.length; i++) {
+			var reply_id = result[i].reply_id;
+			var reply_content = result[i].reply_content;
+			var reply_date = result[i].reply_date;
+			reply_list = '<tr><td class="table-active">'
+					+ reply_id
+					+ '</td><td class="table-active">'
+					+ reply_content
+					+ '</td><td class="table-active">'
+					+ reply_date
+					+ '</td></tr>';
+			reply.append(reply_list);
+		}
+	}
+}
+</script>
+
 
 </body>
 </html>

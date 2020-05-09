@@ -91,4 +91,29 @@ public class FileDAO {
 			close();
 		}return file_list;
 	}
+	// 파일 모든 리스트 불러오기
+	public ArrayList<FileDTO> allFiles(){
+		ArrayList<FileDTO> file_list = new ArrayList<FileDTO>();
+		try {
+			getConnection();
+			String sql = "select * from Load_File order by file_seq desc";
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				int file_seq=rs.getInt(1);
+				String file_name=rs.getString(2);
+				String file_local=rs.getString(3);
+				String file_content=rs.getString(4);
+				String file_date=rs.getString(5);
+				String file_check=rs.getString(6);
+				int member_seq=rs.getInt(7);
+				FileDTO dto = new FileDTO(file_seq, file_name, file_local, file_content, file_date, file_check, member_seq);
+				file_list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}return file_list;
+	}
 }

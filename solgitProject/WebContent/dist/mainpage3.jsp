@@ -15,13 +15,11 @@
 		<link rel="stylesheet" type="text/css" href="css/animate.min.css">
 		<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 		<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-			
 
 		<style>
 			.img{
 	         position: relative;
-	         background-color:rgba(402,55,5,0.5);
-	        /*  background-image: url(./assets/img/mainpage3.jpg); */                                                             
+	         background-image: url(./assets/img/mainpage3.jpg);                                                               
 	         height: 100vh;
 	         background-size: cover;
 		    }
@@ -29,26 +27,48 @@
 	         position: absolute;
 	         height: 100%;
 	         width: 100%;
-			 background-color: rgba(0, 0, 0, 0.4);                                                
+	         background-color: rgba(0, 0, 0, 0.05);                                                                 
 	         z-index:1;
 		    }
 		    .img .content{
 	         position: absolute;
 	         top:50%;
 	         left:50%;
-	         transform: translate(-50%, -50%);    
-	                                                                        
+	         transform: translate(-50%, -50%);                                                                   
 	         font-size:5rem;
 	         color: white;
 	         z-index: 2;
 	         text-align: center;
 		    }
-		    .carousel-inner > .carousel-item > img{ /* width: 640px; */ height: auto; }
+		    .title h2 h3 {
+		      display: inline;
+		    }
+		    
+		    .navbar {
+		      @include red-gradient();
+		      .navbar-nav li a {
+		          @include gold-text-gradient;
+		      }
+		      .navbar-nav{ 
+		          a:hover {
+		            @include red-text-gradient();
+		          }
+		          li:hover{
+		            @include gold-gradient();
+		          } 
+		       } 
+			}
+			@media (min-width: 768px) {
+		     .navbar-nav.navbar-center {
+		       position: absolute;
+		       left: 50%;
+		       transform: translatex(-50%);
+		     }
+		}
 		</style>
 	</head>
-
-<body class="nav-fixed">
-<%
+	<body class="sb-nav">
+	<%
       MemberDTO info = (MemberDTO) session.getAttribute("info");
    	%>
 	<!-- 네비게이션바 코드 -->
@@ -57,7 +77,7 @@
 			<!-- 회사명, 로고 -->
 			<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand" href="mainpage.jsp"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
+			<a class="navbar-brand" href="mainpage2.jsp"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
 			</div>
 			<!-- 반응형 버튼 -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -78,7 +98,7 @@
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a>
 							<a class="dropdown-item" href="predict_generation.jsp">발전량 예측</a>
-							<a class="dropdown-item" href="predict_benefit.jsp">SMP 예측</a>
+							<a class="dropdown-item" href="predict_benefit.jsp">수익 예측</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
@@ -92,11 +112,31 @@
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">Contact us</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
-						<a class="dropdown-item" href="customer_faq.jsp">고객센터</a>
+							<a class="dropdown-item" href="customer_faq.jps">FAQ</a>
 						</div>
 					</li>
 				</ul>
 				</div>
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<%
+	            	if (info != null) {
+	            %>
+				<!-- SMP 등 정보전달 -->
+				<div class="navbar-nav" style="margin-left: 150px;"> <!-- ml-auto ml-md-8 -->
+					<span class="nav-link" id="navbar">SMP <% %></span>
+					<span class="nav-link" id="navbar">REC <% %></span>
+					<span class="nav-link" id="navbar">날씨  <% %></span>
+				</div>
+				<%
+	            	}
+	            %>
+	            </div>
+	            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	            <ul class="navbar-nav ml-auto">
+	            	<li><div  style="color : hotpink;"><%if(info!=null){ %><%=info.getName()%><br>님 환영합니다.
+	               		<%}else {%><%} %></div></li>
+	            </ul>
+	            </div>
 	            
 				<!-- 메뉴 로그인 등 -->
 				
@@ -106,7 +146,6 @@
 	                %>
 	            	<a class="btn btn-light" href="login.jsp" style="font-size:15px; margin-left:10px;">로그인</a>
 	            	<a class="btn btn-light" href="register.jsp" style="font-size:15px;">회원가입</a>
-	            	
 	            	<%
 	                  } else {
 	                %>
@@ -120,54 +159,18 @@
 		</nav>
 		<!-- 메인 내용 작성 부분 -->
 		<main class="main" role="main">
-		
 		<section>
-		<div class="img">
-        		<div class="content">
-			<div class="container" style="color : black; margin-top: 50px;"><h3>SOLGIT 어플 소개</h3></div>
-			<div id="demo" class="carousel slide" data-ride="carousel"> 
-			<div class="carousel-inner"> 
-			<!-- 슬라이드 쇼 --> 
-			<div class="carousel-item active"> 
-			<!--가로--> 
-			<img class="d-block" src="./assets/img/login_page_and.png"> 
-			<div class="carousel-caption d-none d-md-block"> <h5>로그인 화면</h5></div> 
-			</div> 
-			<div class="carousel-item"> 
-			<img class="d-block" src="./assets/img/login_page_and.png"> 
-			</div> 
-			<div class="carousel-item"> 
-			<img class="d-block" src="./assets/img/login_page_and.png"> 
-			</div> <!-- / 슬라이드 쇼 끝 --> <!-- 왼쪽 오른쪽 화살표 버튼 --> <a class="carousel-control-prev" href="#demo" data-slide="prev"> 
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> 
-			<!-- <span>Previous</span> --> </a> 
-			<a class="carousel-control-next" href="#demo" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> 
-			<!-- <span>Next</span> --> </a> 
-			<!-- / 화살표 버튼 끝 --> <!-- 인디케이터 --> 
-			<ul class="carousel-indicators"> 
-			<li data-target="#demo" data-slide-to="0" class="active"></li> 
-			<!--0번부터시작--> 
-			<li data-target="#demo" data-slide-to="1"></li> 
-			<li data-target="#demo" data-slide-to="2"></li> 
-			</ul> <!-- 인디케이터 끝 --> 
+			<div class="img">
+        		<div class="content title">
+					<h2 class="animated infinite pulse">솔깃한 태양광 정보 공유 플랫폼</h2>
+					<div class="dropdown-divider"></div>            		
+           			<h3>SOLGIT에 오신것을 환영합니다.</h3>
 			</div>
-			</div>
-			</div>
+			<div class="img-cover"></div>
 			</div>
 		</section>
-		
-		<!-- <section>
-			<div class="img">
-        		<div class="content">
-            		<h1>Hello!</h1>
-           			<h2>My name is nunu</h2>
-       			</div>
-        		<div class="img-cover"></div>
-   			</div>
-		</section> -->
 		</main>
 			
-		
 		<!-- Footer -->
 		<div id="layoutAuthentication_footer">
 			<footer class="py-4 bg-light mt-auto"> <!-- fixed-bottom -->
@@ -181,10 +184,6 @@
 			</footer>
 		</div>
 		
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
-		<script> $('.carousel').carousel({ interval: 3000 }) </script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

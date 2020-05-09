@@ -24,11 +24,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 	crossorigin="anonymous"></script>
 <style type="text/css">
-.mydiv {
-	padding-left: 15%;
-	padding-right: 15%;
-	padding-top: 5%;
-	padding-bottom: 5%;
+.container-sm {
+	margin-top:150px; 
 }
 
 .write_info {
@@ -43,7 +40,7 @@
 </head>
 
 <body class="nav-fixed">
-		<%
+<%
       MemberDTO info = (MemberDTO) session.getAttribute("info");
    	%>
 	<!-- 네비게이션바 코드 -->
@@ -52,7 +49,7 @@
 			<!-- 회사명, 로고 -->
 			<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand" href="#"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
+			<a class="navbar-brand" href="mainpage.jsp"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
 			</div>
 			<!-- 반응형 버튼 -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -73,7 +70,7 @@
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a>
 							<a class="dropdown-item" href="predict_generation.jsp">발전량 예측</a>
-							<a class="dropdown-item" href="predict_benefit.jsp">수익 예측</a>
+							<a class="dropdown-item" href="predict_benefit.jsp">SMP 예측</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
@@ -84,34 +81,14 @@
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">고객 센터</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">Contact us</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
-							<a class="dropdown-item" href="customer_faq.jps">FAQ</a>
+							<a class="dropdown-item" href="customer_faq.jsp">고객센터</a>
 						</div>
 					</li>
 				</ul>
 				</div>
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<%
-	            	if (info != null) {
-	            %>
-				<!-- SMP 등 정보전달 -->
-				<div class="navbar-nav" style="margin-left: 150px;"> <!-- ml-auto ml-md-8 -->
-					<span class="nav-link" id="navbar">SMP <% %></span>
-					<span class="nav-link" id="navbar">REC <% %></span>
-					<span class="nav-link" id="navbar">날씨  <% %></span>
-				</div>
-				<%
-	            	}
-	            %>
-	            </div>
-	            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-	            <ul class="navbar-nav ml-auto">
-	            	<li><div  style="color : hotpink;"><%if(info!=null){ %><%=info.getName()%><br>님 환영합니다.
-	               		<%}else {%><%} %></div></li>
-	            </ul>
-	            </div>
 	            
 				<!-- 메뉴 로그인 등 -->
 				
@@ -121,6 +98,7 @@
 	                %>
 	            	<a class="btn btn-light" href="login.jsp" style="font-size:15px; margin-left:10px;">로그인</a>
 	            	<a class="btn btn-light" href="register.jsp" style="font-size:15px;">회원가입</a>
+	            	
 	            	<%
 	                  } else {
 	                %>
@@ -130,16 +108,13 @@
 	                %>
 	            </div>
 	            </div>
-			
-	           
-	            
 				
 		</nav>
 	<!-- 메인 내용 작성 부분 -->
 	<div class=container-fluid"">
 		<main>
 
-			<h3>상단에 고정된 내비게이션 바(메뉴바)</h3>
+			<h3></h3>
 
 
 			<!-- 		게시글 시작 -->
@@ -154,12 +129,13 @@
 			%>
 
 
-			<div class="mydiv">
-
+			<div class="card container-sm">
+<br><br>
 				<h2>
 					<%=dto.getBoard_title()%>
 				</h2>
 				<div class='write_info'>
+				<br>
 					<p id='writer'>
 						<%=dto.getBoard_id()%>
 					</p>
@@ -168,8 +144,8 @@
 					</p>
 				</div>
 				<hr>
-				<div>
-
+				<div style="height:300px;">
+<br>
 					<p><%=dto.getBoard_content()%></p>
 
 				</div>
@@ -177,13 +153,13 @@
 			</div>
 			<!-- 게시글 끝 -->
 			<!-- 댓글 입력창 -->
-			<div class="mydiv">
+			<div class="card container-sm" style="margin-top:1%;"><br>
 				<form action="ReplyWriteCon.do">
-					<div class="row">
+					<div class="row"><br>
 						<div class="col-lg-6">
 							<div class="input-group">
 								<input class="form-control" type="text" placeholder="아이디"
-									id="reply_id" name="reply_id">
+									id="reply_id" name="reply_id" style="width:30%;">
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -214,9 +190,9 @@
 						<tr>
 							<td class="table-active" style="width: 2%;"></td>
 							<td class="table-active" style="width: 10%;"><%=reple_list.get(i).getReply_id()%></td>
-							<td class="table-active" style="width: 68%;"><%=reple_list.get(i).getReply_content()%></td>
+							<td class="table-active" style="width: 65%;"><%=reple_list.get(i).getReply_content()%></td>
 							<td class="table-active" style="width: 15%;"><%=reple_list.get(i).getReply_date()%></td>
-							<td class="table-active" style="width: 5%;">
+							<td class="table-active" style="width: 8%;">
 							<button type="button" class="btn btn-delete" value="<%=reple_list.get(i).getReply_idx()%>">삭제</button>
 							<%-- <a href="#"
 								onclick="cmDelete(<%=reple_list.get(i).getReply_idx()%>)">삭제</a> --%>
