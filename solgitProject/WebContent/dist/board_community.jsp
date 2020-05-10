@@ -24,11 +24,13 @@
 
 <style type="text/css">
 .container-sm {
-	margin-top:150px; 
+	margin-top: 150px;
 }
-.my_table{
-height:550px;
+
+.my_table {
+	height: 550px;
 }
+
 a {
 	color: black;
 }
@@ -63,89 +65,109 @@ a {
 </head>
 
 <body class="nav-fixed">
-<%
-      MemberDTO info = (MemberDTO) session.getAttribute("info");
-   	%>
+	<%
+		MemberDTO info = (MemberDTO) session.getAttribute("info");
+	%>
 	<!-- 네비게이션바 코드 -->
-		<nav class="navbar navbar-expand-sm navbar-collapse navbar-dark fixed-top bg-default" font-size="50" font-family="Verdana" x="0" y="100"  style="	background-color: rgba(0, 0, 0, 0.5) !important;">
-			
-			<!-- 회사명, 로고 -->
-			<div class="container-fluid">
+	<nav
+		class="navbar navbar-expand-sm navbar-collapse navbar-dark fixed-top bg-default"
+		font-size="50" font-family="Verdana" x="0" y="100"
+		style="background-color: rgba(0, 0, 0, 0.5) !important;">
+
+		<!-- 회사명, 로고 -->
+		<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand" href="mainpage.jsp"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
+				<a class="navbar-brand" href="mainpage.jsp"><img
+					src="./assets/img/solgit_logo2.png" alt="Logo"
+					style="width: 100px;"></a>
 			</div>
 			<!-- 반응형 버튼 -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#collapsibleNavbar"><span class="navbar-toggler-icon"></span></button>
-			
+				data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
 			<!-- 메뉴바 내용 -->
-			<div class="collapse navbar-collapse" id="collapsibleNavbar" style="width: 200px;">
+			<div class="collapse navbar-collapse" id="collapsibleNavbar"
+				style="width: 200px;">
 				<!-- 메뉴 타이틀 -->
-				<ul class="nav navbar-nav nav-pills nav-justified ml-auto"> <!--  ml-auto ml-md-5 -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">데이터 등록</a>
+				<ul class="nav navbar-nav nav-pills nav-justified ml-auto">
+					<!--  ml-auto ml-md-5 -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown" style="font-size: 20px;">데이터 등록</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
-							<%if(info!=null && info.getManager()==1){ %><a class="dropdown-item" href="board_load_M.jsp">발전이력 확인</a><%} %>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">인공지능 분석</a>
+							<%
+								if (info != null && info.getManager() == 1) {
+							%><a
+								class="dropdown-item" href="board_load_M.jsp">발전이력 확인</a>
+							<%
+								}
+							%>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown" style="font-size: 20px;">인공지능 분석</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a>
-							<a class="dropdown-item" href="predict_generation.jsp">발전량 예측</a>
-							<a class="dropdown-item" href="predict_benefit.jsp">SMP 예측</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">정보 공유</a>
+							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a> <a
+								class="dropdown-item" href="predict_generation.jsp">발전량 예측</a> <a
+								class="dropdown-item" href="predict_benefit.jsp">SMP 예측</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown" style="font-size: 20px;">정보 공유</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="board_notice.jsp">공지사항</a>
-							<a class="dropdown-item" href="board_community.jsp">커뮤니티</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">Contact us</a>
+							<a class="dropdown-item" href="board_notice.jsp">공지사항</a> <a
+								class="dropdown-item" href="board_community.jsp">커뮤니티</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown" style="font-size: 20px;">Contact us</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
-							<a class="dropdown-item" href="customer_faq.jsp">고객센터</a>
-						</div>
-					</li>
+							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a> <a
+								class="dropdown-item" href="customer_faq.jsp">고객센터</a>
+						</div></li>
 				</ul>
-				</div>
-	            
-				<!-- 메뉴 로그인 등 -->
-				
-				<div class="collapse navbar-collapse" id="collapsibleNavbar" style="width: 5px; flex-direction: row-reverse;">
-					<%
-	                  if (info == null) {
-	                %>
-	            	<a class="btn btn-light" href="login.jsp" style="font-size:15px; margin-left:10px;">로그인</a>
-	            	<a class="btn btn-light" href="register.jsp" style="font-size:15px;">회원가입</a>
-	            	
-	            	<%
-	                  } else {
-	                %>
-	                <a class="btn btn-light" href="user_info.jsp" style="font-size:15px; margin-left:10px;">내정보</a>
-	            	<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
-	            	<%
-	                  }
-	                %>
-	            </div>
-	            </div>
-				
-		</nav>
+			</div>
+
+			<!-- 메뉴 로그인 등 -->
+
+			<div class="collapse navbar-collapse" id="collapsibleNavbar"
+				style="width: 5px; flex-direction: row-reverse;">
+				<%
+					if (info == null) {
+				%>
+				<a class="btn btn-light" href="login.jsp"
+					style="font-size: 15px; margin-left: 10px;">로그인</a> <a
+					class="btn btn-light" href="register.jsp" style="font-size: 15px;">회원가입</a>
+
+				<%
+					} else {
+				%>
+				<a class="btn btn-light" href="user_info.jsp"
+					style="font-size: 15px; margin-left: 10px;">내정보</a> <a
+					class="btn btn-light" href="LogoutService.do">로그아웃</a>
+				<%
+					}
+				%>
+			</div>
+		</div>
+
+	</nav>
 	<!-- 메인 내용 작성 부분 -->
 	<div class=container-fluid"">
 		<main>
 
-			<h3>   </h3>
- 			
+			<h3></h3>
+
 			<!-- 게시판 생성 -->
 			<div class="card container-sm">
-<div class="card-header" style="margin-top: 0px; margin-left: 0px;">
-				<h3>커뮤니티</h3>
-			</div><br><br>
+				<div class="card-header" style="margin-top: 0px; margin-left: 0px;">
+					<h3>커뮤니티</h3>
+				</div>
+				<br>
+				<br>
 				<div class=" input-groupmb-3">
 					<form>
 						<div class="form-row align-items-center">
@@ -155,11 +177,12 @@ a {
 								<div class="form-row">
 									<div class="col-md-3 mb-3" style="width: 50px;">
 										<label for="validationCustom04"></label> <select
-											class="custom-select" id="validationCustom04" required>
+											class="custom-select" id="validationCustom04" required
+											onchange="selection();">
 											<option selected disabled value="">Choose...</option>
-											<option>제목</option>
-											<option>아이디</option>
-											<option>내용</option>
+											<option value="title">제목</option>
+											<option value="id">아이디</option>
+											<option value="content">내용</option>
 										</select>
 									</div>
 									<div class="col-md-6 mb-3" style="width: 600px;">
@@ -168,7 +191,7 @@ a {
 										<div class="invalid-feedback">Please provide a valid
 											city.</div>
 									</div>
-									<button type="button" class="btn btn-info" style="width: 70px;">검색</button>
+									<button type="button" class="btn btn-info" id="btn_search" style="width: 70px;">검색</button>
 								</div>
 							</div>
 						</div>
@@ -177,70 +200,72 @@ a {
 						<button type="button" class="btn btn-info" style="width: 70px;"
 							onclick="location.href='postWrite.jsp'">등록</button>
 					</div>
-				</div><br>
+				</div>
+				<br>
 
 
 				<!-- 테이블 생성 -->
 				<div class="my_table">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col" style="text-align: center;">#</th>
-							<th scope="col">제목</th>
-							<th scope="col">작성자</th>
-							<th scope="col">날짜</th>
-						</tr>
-					</thead>
-					<tbody>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col" style="text-align: center;">#</th>
+								<th scope="col">제목</th>
+								<th scope="col">작성자</th>
+								<th scope="col">날짜</th>
+							</tr>
+						</thead>
+						<tbody>
 
-						<%
-							BoardDAO dao = new BoardDAO();
-							ArrayList<BoardDTO> list = dao.selectPost();
-							int pageNow = 0;
-							int totalCount = list.size();
-							int listCount = 10;
-							int totalPage = totalCount / listCount;
-							if (totalCount % listCount > 0) {
-								totalPage++;
-							}
-
-							if (request.getParameter("page_num") != null) {
-								pageNow = Integer.parseInt(request.getParameter("page_num"));
-								int end = listCount * pageNow;
-								if (end > list.size()) {
-									end = list.size();
+							<%
+								BoardDAO dao = new BoardDAO();
+								ArrayList<BoardDTO> list = dao.selectPost();
+								int pageNow = 0;
+								int totalCount = list.size();
+								int listCount = 10;
+								int totalPage = totalCount / listCount;
+								if (totalCount % listCount > 0) {
+									totalPage++;
 								}
-								for (int i = listCount * (pageNow - 1); i < end; i++) {
-						%><tr>
-							<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getBoard_idx()%></td>
-							<td style="width: 50%; padding: 10px;"><a id="post"
-								href="post.jsp?board_idx=<%=list.get(i).getBoard_idx()%>"><%=list.get(i).getBoard_title()%></a></td>
-							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_id()%></td>
-							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_date()%></td>
-						</tr>
-						<%
-							}
-							} else if (list != null) {
-								int end = 10;
-								if (list.size() < 10) {
-									end = list.size();
-								}
-								for (int i = 0; i < end; i++) {
-						%>
-						<tr>
-							<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getBoard_idx()%></td>
-							<td style="width: 50%; padding: 10px;"><a id="post"
-								href="post.jsp?board_idx=<%=list.get(i).getBoard_idx()%>"><%=list.get(i).getBoard_title()%></a></td>
-							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_id()%></td>
-							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_date()%></td>
-						</tr>
-						<%
-							}
-							}
-						%>
 
-					</tbody>
-				</table></div>
+								if (request.getParameter("page_num") != null) {
+									pageNow = Integer.parseInt(request.getParameter("page_num"));
+									int end = listCount * pageNow;
+									if (end > list.size()) {
+										end = list.size();
+									}
+									for (int i = listCount * (pageNow - 1); i < end; i++) {
+							%><tr>
+								<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getBoard_idx()%></td>
+								<td style="width: 50%; padding: 10px;"><a id="post"
+									href="post.jsp?board_idx=<%=list.get(i).getBoard_idx()%>"><%=list.get(i).getBoard_title()%></a></td>
+								<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_id()%></td>
+								<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_date()%></td>
+							</tr>
+							<%
+								}
+								} else if (list != null) {
+									int end = 10;
+									if (list.size() < 10) {
+										end = list.size();
+									}
+									for (int i = 0; i < end; i++) {
+							%>
+							<tr>
+								<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getBoard_idx()%></td>
+								<td style="width: 50%; padding: 10px;"><a id="post"
+									href="post.jsp?board_idx=<%=list.get(i).getBoard_idx()%>"><%=list.get(i).getBoard_title()%></a></td>
+								<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_id()%></td>
+								<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_date()%></td>
+							</tr>
+							<%
+								}
+								}
+							%>
+
+						</tbody>
+					</table>
+				</div>
 				<!-- 테이블 끝	 -->
 				<div class="btn-toolbar justify-content-between" role="toolbar"
 					aria-label="Toolbar with button groups">
@@ -267,7 +292,8 @@ a {
 									}
 								}
 							%>
-						</form><br>
+						</form>
+						<br>
 					</div>
 				</div>
 			</div>
@@ -309,6 +335,25 @@ a {
 		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 		crossorigin="anonymous"></script>
 	<script src="assets/demo/datatables-demo.js"></script>
-
+	<script>
+		//////////////////게시글 검색
+		function selection() {
+			var selectsearch = document.getElementById("validationCustom04").options[document
+					.getElementById("validationCustom04").selectedIndex].value;
+			console.log(selectsearch)
+		}
+		$("#btn_search").click(function(){
+			selection();
+			var findinfo=document.getElementById("validationCustom03").value;
+			$.ajax({
+				type:"post",
+				url:"SearchPostCon.do",
+				data:{"selection":selection,"findinfo":findinfo},
+				success:function(result){
+					
+				}
+			});
+		});
+	</script>
 </body>
 </html>

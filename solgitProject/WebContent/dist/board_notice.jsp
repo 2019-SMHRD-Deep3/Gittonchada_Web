@@ -165,9 +165,9 @@ a {
 										<label for="validationCustom04"></label> <select
 											class="custom-select" id="validationCustom04" required>
 											<option selected disabled value="">Choose...</option>
-											<option>제목</option>
-											<option>아이디</option>
-											<option>내용</option>
+											<option value="title">제목</option>
+											<option value="id">아이디</option>
+											<option value="content">내용</option>
 										</select>
 									</div>
 									<div class="col-md-6 mb-3" style="width: 600px;">

@@ -20,7 +20,7 @@
 		<style>
 			.img{
 	         position: relative;
-	         background-color:rgba(402,55,5,0.5);
+	         background-color:rgba(0,0,0,0);
 	        /*  background-image: url(./assets/img/mainpage3.jpg); */                                                             
 	         height: 100vh;
 	         background-size: cover;
