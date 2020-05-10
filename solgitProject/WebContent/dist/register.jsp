@@ -19,20 +19,20 @@ color: #fff;
 background-color: #FFA500;
 border-color: #fe9b29;
 } */
-.btn-primary:hover {
+/* .btn-primary:hover {
     color: #fff;
     background-color: #fe9b29;
     border-color: #FFA500;
-}
+} */
 /* a {
     color: #FFA500;
     text-decoration: none;
     background-color: transparent;
 } */
-a:hover {
+/* a:hover {
     color: #fe9b29;
     text-decoration: underline;
-}
+} */
 </style>
     </head>
     <!-- 회원가입 성공 판단여부   -->

@@ -287,3 +287,34 @@ notice_seq.nextval,
 '여러분 반갑습니다. <br> 솔깃 서비스에 방문해주셔서 감사합니다. 앞으로도  많은 관심과 성원 부탁드립니다. ^^*',
 sysdate,
 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+--커뮤니티 샘플
+INSERT INTO Board VALUES ( board_idx.nextval, '^^*',  '^^', '100키로 미만 접수 일자', '100키로 미만 접수 일자 늦춰졌다는 소리를 들었는데...<br>진짜인가요??',  sysdate,   1,  '1',  1);
+INSERT INTO Board VALUES ( board_idx.nextval, '태양광',  '123', '고정가격 입찰', '고정가격 입찰하려고 정보 입력중인제 인버터 모델을 아무리 찾아보도 안나오는데 저같은 사업주분들 계실까요?? ㅜㅠ<br>신재생 에너지 센터 전화연결도 안되네요',  sysdate,   1,  '1',  1);
+INSERT INTO Board VALUES ( board_idx.nextval, '어부',  'zxc', '오늘도 좋은 발전량^^', '안녕하세요 <br> 오늘도 다들 좋은 발전량 만드시길 바랍니다~~',  sysdate,   1,  '1',  1);
+INSERT INTO Board VALUES ( board_idx.nextval, '이람보',  '123123', '입찰가', '입찰가 3원이 예를 들어 165랑 167원이 가중치 1.5하니 3천원 차이나는데<br>월 수익 얼마나 차이나는걸까요?',  sysdate,   1,  '1',  1);
+INSERT INTO Board VALUES ( board_idx.nextval, '2020',  '220', '배전반 전원 꺼지는 문제', '혹시 한번씩 배전반 전원이 꺼지는 분 있으신가요?<br>작년에 두번 꺼지더니 오늘 또 꺼졌네요..',  sysdate,   1,  '1',  1);
+INSERT INTO Board VALUES ( board_idx.nextval, '야스옹',  'abc', '주택지원 사업', '주택지원사업으로 태양광을 설치하면 상계거래 가능한가요?<br>태양광 시공사 홈페이지 방문하다가 주택지원사업은 상계거래가 불가능합니다라는 안내가 있던데 참여업체가 아니라서 그러는 건가요??',  sysdate,   1,  '1',  1);
+INSERT INTO Board VALUES ( board_idx.nextval, '고정가격',  'aaa', '2020상반기 입찰가', '2020상반기 100kW이상 1MW이하 장기계약 입찰 평균가 159.178원<br>통계학적으로 계산했습니다ㅋㅋㅋ<br>19년 하반기 평균가 150.473원 경쟁률 11.79:1<br>20년 상반기 예상 경쟁률 7.28:1',  sysdate,   1,  '1',  1);
+INSERT INTO Board VALUES ( board_idx.nextval, '솔라',  'solar', 'ESS 배터리 이용률 질문이요', 'ESS에 배터리 이용률이라는게 정확히 어떤걸 의미하나요??<br> 말 그대로 배터리 차징 몇퍼센트까지 할건지 정하는 건가요??',  sysdate,   1,  '1',  1);
+INSERT INTO Board VALUES ( board_idx.nextval, '태양소리',  '123', 'Rps 설비확인 신청 문의좀요..', '3월 13일에 사용전 검사하고 오늘에서야 rps접수하려고 하는데 한달치 소멸한건가요??? <br> 실제 상업 운전은 3우러 21일인데 기준이 뭔가요??ㅠㅠ<br>사용전 검사일 기준 1달 이후에 설비신청을 넣으시면 1달동안 발전된 REC는 이미 날라갔다고 보면 되나요?',  sysdate,   1,  '1',  1);
+INSERT INTO Board VALUES ( board_idx.nextval, '좋은날',  '111', 'sma 인버터 에러', 'sma인버터 에러뜨고 멈췄습니다ㅠㅠㅠ<br>현재 50키로짜리 인버터 3개, A인버터 2개 1기 발전소, B인버터 1개 1기발전소중 A인버터 2개 에러, A분전반에 콘센트로 연결된 인터넷 모니터링 기기도 전원 다운<br>재부팅해도 인버터 에러메세지 뜨네요.. ',  sysdate,   1,  '1',  1);
+
+
+
+
+
+
+

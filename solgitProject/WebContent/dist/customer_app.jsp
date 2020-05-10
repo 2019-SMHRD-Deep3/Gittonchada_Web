@@ -20,7 +20,7 @@
 		<style>
 			.img{
 	         position: relative;
-	         background-color:rgba(0,0,0,0);
+	         background-color:#F2F2F2;
 	        /*  background-image: url(./assets/img/mainpage3.jpg); */                                                             
 	         height: 100vh;
 	         background-size: cover;
@@ -126,24 +126,39 @@
 		<section>
 		<div class="img">
         		<div class="content">
-			<div class="container" style="color : black; margin-top: 50px;"><h3>SOLGIT 어플 소개</h3></div>
+			<div class="container" style="color : black; margin-top: 80px; margin-bottom:50px; "><h3 style="color:white;"><span style="background-color:#585858; padding:1%;">SOLGIT 어플 소개</span></h3></div>
 			<div id="demo" class="carousel slide" data-ride="carousel"> 
 			<div class="carousel-inner"> 
 			<!-- 슬라이드 쇼 --> 
 			<div class="carousel-item active"> 
 			<!--가로--> 
-			<img class="d-block" src="./assets/img/login_page_and.png"> 
-			<div class="carousel-caption d-none d-md-block"> <h5>로그인 화면</h5></div> 
+			<img class="d-block" src="./assets/img/app.png" style="width:1000px;"> 
+			<div class="carousel-caption d-none d-md-block"> <h5 style="margin-bottom:50px; color:black; !important;">메인 화면</h5></div> 
 			</div> 
 			<div class="carousel-item"> 
-			<img class="d-block" src="./assets/img/login_page_and.png"> 
+			<img class="d-block" src="./assets/img/app1.png" style="width:1000px;">
+			<div class="carousel-caption d-none d-md-block"> <h5 style="margin-bottom:50px; color:black; !important;">메뉴 선택 화면</h5></div> 
 			</div> 
 			<div class="carousel-item"> 
-			<img class="d-block" src="./assets/img/login_page_and.png"> 
-			</div> <!-- / 슬라이드 쇼 끝 --> <!-- 왼쪽 오른쪽 화살표 버튼 --> <a class="carousel-control-prev" href="#demo" data-slide="prev"> 
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> 
+			<img class="d-block" src="./assets/img/app3.png" style="width:1000px;">
+			<div class="carousel-caption d-none d-md-block"> </div> 
+			</div>
+			<div class="carousel-item"> 
+			<img class="d-block" src="./assets/img/app4.png" style="width:1000px;"> 
+			<div class="carousel-caption d-none d-md-block"></div>
+			</div>
+			<div class="carousel-item"> 
+			<img class="d-block" src="./assets/img/app5.png" style="width:1000px;"> 
+			<div class="carousel-caption d-none d-md-block"></div>
+			</div>
+			<div class="carousel-item"> 
+			<img class="d-block" src="./assets/img/app6.png" style="width:1000px;"> 
+			<div class="carousel-caption d-none d-md-block"></div>
+			</div> <!-- / 슬라이드 쇼 끝 --> 
+			<!-- 왼쪽 오른쪽 화살표 버튼 --> <a class="carousel-control-prev" href="#demo" data-slide="prev"> 
+			<span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span> 
 			<!-- <span>Previous</span> --> </a> 
-			<a class="carousel-control-next" href="#demo" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> 
+			<a class="carousel-control-next" href="#demo" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"style="background-color: black;"></span> 
 			<!-- <span>Next</span> --> </a> 
 			<!-- / 화살표 버튼 끝 --> <!-- 인디케이터 --> 
 			<ul class="carousel-indicators"> 
@@ -151,6 +166,10 @@
 			<!--0번부터시작--> 
 			<li data-target="#demo" data-slide-to="1"></li> 
 			<li data-target="#demo" data-slide-to="2"></li> 
+			<li data-target="#demo" data-slide-to="3"></li> 
+			<li data-target="#demo" data-slide-to="4"></li> 
+			<li data-target="#demo" data-slide-to="5"></li> 
+			<li data-target="#demo" data-slide-to="6"></li> 
 			</ul> <!-- 인디케이터 끝 --> 
 			</div>
 			</div>

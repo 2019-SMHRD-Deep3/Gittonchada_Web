@@ -31,7 +31,7 @@
 	margin-top:150px; 
 }
 .my_table{
-height:550px;
+height:530px;
 }
 a {
 	color: black;
@@ -275,7 +275,7 @@ a {
 							%>
 						</form>
 					</div>
-				</div>
+				</div><br>
 			</div>
 			<!-- 	게시판 끝 -->
 

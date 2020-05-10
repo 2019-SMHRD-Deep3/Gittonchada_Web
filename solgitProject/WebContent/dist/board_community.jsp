@@ -28,7 +28,7 @@
 }
 
 .my_table {
-	height: 550px;
+	height: 530px;
 }
 
 a {
@@ -295,7 +295,7 @@ a {
 						</form>
 						<br>
 					</div>
-				</div>
+				</div><br>
 			</div>
 			<!-- 	게시판 끝 -->
 

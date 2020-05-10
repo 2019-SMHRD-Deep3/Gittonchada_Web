@@ -25,7 +25,6 @@ import com.controller.NCheckLoadCon;
 import com.controller.NoticeWriteCon;
 import com.controller.PostWriteCon;
 import com.controller.ReplyDeleteCon;
-import com.controller.ReplyReadCon;
 import com.controller.ReplyWriteCon;
 
 /**
@@ -45,7 +44,7 @@ public class DoFrontController extends HttpServlet {
 		map.put("PostWriteCon.do", new PostWriteCon());
 		map.put("NoticeWriteCon.do", new NoticeWriteCon());
 		map.put("ReplyWriteCon.do", new ReplyWriteCon());
-		map.put("ReplyReadCon.do", new ReplyReadCon());
+	//	map.put("ReplyReadCon.do", new ReplyReadCon());
 		map.put("DevelopInfoCon.do", new DevelopInfoCon());
 		map.put("BoardNoticeCon.do", new BoardNoticeCon());
 		map.put("BoardCommuCon.do", new BoardCommuCon());
