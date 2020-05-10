@@ -61,6 +61,7 @@
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">데이터 등록</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
+							<%if(info!=null && info.getManager()==1){ %><a class="dropdown-item" href="board_load_M.jsp">발전이력 확인</a><%} %>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
@@ -100,6 +101,7 @@
 	            	<%
 	                  } else {
 	                %>
+	                <a class="btn btn-light" href="user_info.jsp" style="font-size:15px; margin-left:10px;">내정보</a>
 	            	<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
 	            	<%
 	                  }
@@ -143,6 +145,9 @@
 						<%=
 							dto.getNotice_date()
 						%>
+						<%if(info!=null && info.getManager()==1){ %>
+						<button type="submit" class="btn btn-default" id="post_delete" value="<%=dto.getNotice_idx() %>"
+							style="margin: 0; padding: 0; float: right;">삭제</button><%} %>
 					</p>
 				</div>
 				<hr>
@@ -193,5 +198,23 @@
 		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 		crossorigin="anonymous"></script>
 	<script src="assets/demo/datatables-demo.js"></script>
+	<script>
+	var post_idx=document.getElementById("post_delete").value;
+	console.log(post_idx);
+	$("#post_delete").click(function(){
+		var check=confirm("정말로 삭제하시겠습니까?");
+		if(check){
+			$.ajax({
+				type:"post",
+				url:"DeleteNoticeCon.do",
+				data:"post_idx="+post_idx,
+				success:function(result){
+					alert("삭제되었습니다.");
+					location.href="board_notice.jsp";
+				}
+			})
+		}
+	});
+	</script>
 </body>
 </html>

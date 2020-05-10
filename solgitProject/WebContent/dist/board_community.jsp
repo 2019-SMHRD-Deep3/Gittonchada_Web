@@ -86,6 +86,7 @@ a {
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">데이터 등록</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
+							<%if(info!=null && info.getManager()==1){ %><a class="dropdown-item" href="board_load_M.jsp">발전이력 확인</a><%} %>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
@@ -125,6 +126,7 @@ a {
 	            	<%
 	                  } else {
 	                %>
+	                <a class="btn btn-light" href="user_info.jsp" style="font-size:15px; margin-left:10px;">내정보</a>
 	            	<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
 	            	<%
 	                  }
@@ -212,7 +214,7 @@ a {
 						%><tr>
 							<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getBoard_idx()%></td>
 							<td style="width: 50%; padding: 10px;"><a id="post"
-								href="post.jsp?idx=<%=list.get(i).getBoard_idx()%>"><%=list.get(i).getBoard_title()%></a></td>
+								href="post.jsp?board_idx=<%=list.get(i).getBoard_idx()%>"><%=list.get(i).getBoard_title()%></a></td>
 							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_id()%></td>
 							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_date()%></td>
 						</tr>
@@ -228,7 +230,7 @@ a {
 						<tr>
 							<td style="width: 10%; padding: 10px; text-align: center;"><%=list.get(i).getBoard_idx()%></td>
 							<td style="width: 50%; padding: 10px;"><a id="post"
-								href="post.jsp?idx=<%=list.get(i).getBoard_idx()%>"><%=list.get(i).getBoard_title()%></a></td>
+								href="post.jsp?board_idx=<%=list.get(i).getBoard_idx()%>"><%=list.get(i).getBoard_title()%></a></td>
 							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_id()%></td>
 							<td style="width: 20%; padding: 10px;"><%=list.get(i).getBoard_date()%></td>
 						</tr>

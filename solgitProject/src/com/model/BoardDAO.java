@@ -136,6 +136,27 @@ public class BoardDAO {
 			}
 			return dto;
 		}
+/////////게시글 삭제
+		public void deletePost(int post_seq) {
+			try {
+				//System.out.println("deletePost"+post_seq);
+				getConnection();
+				String sql1 = "delete from REPLY where Board_Idx=?";
+				psmt=conn.prepareStatement(sql1);
+				psmt.setInt(1, post_seq);
+				rs = psmt.executeQuery();
+				String sql2 = "delete from BOARD where Board_Idx=?";
+				psmt = conn.prepareStatement(sql2);
+				psmt.setInt(1, post_seq);
+				rs = psmt.executeQuery();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			
+		}
 	
 	
 }

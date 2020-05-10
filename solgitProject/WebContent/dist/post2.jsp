@@ -120,7 +120,7 @@
 			<!-- 		게시글 시작 -->
 
 			<%
-				int idx = Integer.parseInt(request.getParameter("idx"));
+				int idx = Integer.parseInt(request.getParameter("board_idx"));
 				System.out.print(idx);
 				BoardDAO dao = new BoardDAO();
 				BoardDTO dto = dao.selectOnePost(idx);
@@ -175,7 +175,7 @@
 						</div>
 						<div class="form-group"
 							style="display: block; float: right; padding: 12px; width: 11%;">
-							<button type="submit" class="btn btn-primary"
+							<button type="submit" class="btn btn-primary" id="reply_button"
 								style="width: 100%;">등록</button>
 						</div>
 					</div>
@@ -247,22 +247,31 @@
 
 	<!-- 	댓글 리스트 -->
 	<script type="text/javascript">
-		$(".btn btn-primary")
+	var reply_id=document.getElementById("reply_id").value;
+	var reply_pw=document.getElementById("reply_pw").value;
+	var reply_content=document.getElementById("reply_content").value;
+	var board_idx=document.getElementById("board_idx").value;
+	var allData = { "reply_id": reply_id, "reply_pw": reply_pw,"reply_content":reply_content,"borad_idx":board_idx };
+	console.log(reply_id);
+	$("#reply_button")
 				.click(
 						function() {
 							$.ajax({
 										type : "post",
 										url : "ReplyReadCon.do",
-										data : "board_idx=" + board_idx,
+										data : allData,
+										dataType:"json",
 										success : function(result) {
-											insertReply()
+											console.log("성공");
+										},error:function(){
+											console.log("에러발생");
 										}
 									})
 
 						});
 	<!-- //////////// 댓글 삭제 -->
-	$(".btn btn-delete").click(
-			alert("확인")
+/* 	$(".btn btn-delete").click(
+			alert("확인");
 			function(){
 				$.ajax({
 						type:"post",
@@ -311,7 +320,7 @@ function insertReply(){
 			reply.append(reply_list);
 		}
 	}
-}
+} */
 </script>
 
 

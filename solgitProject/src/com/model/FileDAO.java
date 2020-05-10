@@ -116,4 +116,36 @@ public class FileDAO {
 			close();
 		}return file_list;
 	}
+
+	public int setFile(int file_seq) {
+		int cnt=0;
+		System.out.println("DAO"+file_seq);
+		try {
+			getConnection();
+			String sql = "UPDATE Load_File SET file_check = '확인완료' WHERE file_seq = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, file_seq);
+			cnt = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}return cnt;
+	}
+
+	public int setNFile(int file_seq) {
+		int cnt=0;
+		System.out.println("DAO"+file_seq);
+		try {
+			getConnection();
+			String sql = "UPDATE Load_File SET file_check = '불가' WHERE file_seq = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, file_seq);
+			cnt = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}return cnt;
+	}
 }

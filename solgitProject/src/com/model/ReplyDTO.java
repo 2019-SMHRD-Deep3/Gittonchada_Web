@@ -21,15 +21,16 @@ public class ReplyDTO {
 		this.board_idx = board_idx;
 		this.member_seq = member_seq;
 	}
-	public ReplyDTO(String reply_id, String reply_pw, String reply_content, int board_idx) {
+	public ReplyDTO(String reply_id, String reply_content, int board_idx, int member_seq) {
 		super();
 		//this.reply_idx = reply_idx;
 		this.reply_id = reply_id;
-		this.reply_pw = reply_pw;
+		//this.reply_pw = reply_pw;
 		this.reply_content = reply_content;
 		//this.reply_date = reply_date;
 		this.board_idx = board_idx;
-		//this.member_seq = member_seq;
+		this.member_seq = member_seq;
+		
 	}
 	
 	public ReplyDTO(int board_idx) {

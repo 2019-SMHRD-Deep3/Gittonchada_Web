@@ -1,6 +1,7 @@
 package front;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -13,10 +14,13 @@ import com.controller.BoardCommuCon;
 import com.controller.BoardLoadCon;
 import com.controller.BoardNoticeCon;
 import com.controller.CheckLoadCon;
+import com.controller.DeleteNoticeCon;
+import com.controller.DeletePostCon;
 import com.controller.DevelopInfoCon;
 import com.controller.JoinCon;
 import com.controller.LoginCon;
 import com.controller.LogoutCon;
+import com.controller.NCheckLoadCon;
 import com.controller.NoticeWriteCon;
 import com.controller.PostWriteCon;
 import com.controller.ReplyDeleteCon;
@@ -46,12 +50,16 @@ public class DoFrontController extends HttpServlet {
 		map.put("BoardLoadCon.do", new BoardLoadCon());
 		map.put("ReplyDeleteCon.do", new ReplyDeleteCon());
 		map.put("CheckLoadCon.do", new CheckLoadCon());
+		map.put("NCheckLoadCon.do", new NCheckLoadCon());
+		map.put("DeletePostCon.do", new DeletePostCon());
+		map.put("DeleteNoticeCon.do", new DeleteNoticeCon());
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-
+		
+		PrintWriter out = response.getWriter();
 		System.out.println("FrontController ¿‘¿Â!");
 		
 		String requestURI = request.getRequestURI();
@@ -61,8 +69,20 @@ public class DoFrontController extends HttpServlet {
 		
 		putData();
 		ICommand iCommand = map.get(resultURL);
-		moveURL = iCommand.execute(request, response);
 		
+		moveURL = iCommand.execute(request, response);
+		if(resultURL.equals("CheckLoadCon.do")) {
+			out.print(moveURL);
+			return;
+		}
+		if(resultURL.equals("NCheckLoadCon.do")) {
+			out.print(moveURL);
+			return;
+		}
+		if(resultURL.equals("ReplyDeleteCon.do")) {
+			out.print(moveURL);
+			return;
+		}
 //		if(iCommand instanceof LoginCon) {
 //            response.getWriter().print(moveURL);
 //         }else {

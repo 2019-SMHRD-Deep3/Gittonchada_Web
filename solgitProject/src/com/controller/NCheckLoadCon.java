@@ -16,14 +16,14 @@ import com.model.FileDTO;
 
 import front.ICommand;
 
-public class CheckLoadCon implements ICommand {
+public class NCheckLoadCon implements ICommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
 		
-		System.out.println("CheckLoadCon 입장");
+		System.out.println("NCheckLoadCon 입장");
 		String[] check_list = request.getParameterValues("check_list[]");
 		ArrayList<FileDTO> all_list = new ArrayList<FileDTO>();
 
@@ -33,7 +33,7 @@ public class CheckLoadCon implements ICommand {
 		for (String i : check_list) {
 			int file_seq = Integer.parseInt(i);
 			System.out.println("Con" + file_seq);
-			int check = dao.setFile(file_seq);
+			int check = dao.setNFile(file_seq);
 			System.out.println(check);
 		}
 		all_list = dao.allFiles();

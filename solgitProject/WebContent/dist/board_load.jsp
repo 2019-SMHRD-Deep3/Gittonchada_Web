@@ -90,6 +90,7 @@ a {
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">데이터 등록</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
+							<%if(info!=null && info.getManager()==1){ %><a class="dropdown-item" href="board_load_M.jsp">발전이력 확인</a><%} %>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
@@ -129,6 +130,7 @@ a {
 	            	<%
 	                  } else {
 	                %>
+	                <a class="btn btn-light" href="user_info.jsp" style="font-size:15px; margin-left:10px;">내정보</a>
 	            	<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
 	            	<%
 	                  }
@@ -206,7 +208,6 @@ a {
 					if (totalCount % listCount > 0) {
 						totalPage++;
 					}
-					// 관리자가 조회했을때
 					
 					if (request.getParameter("page_num") != null) {
 						pageNow = Integer.parseInt(request.getParameter("page_num"));
@@ -219,7 +220,7 @@ a {
 							<td style="width:10%; text-align:center;"><%=list.size()-i %></td>
 							<td style="width:30%; padding:10px;"><%=list.get(i).getFile_name() %></td>
 							<td style="width:30%; padding:10px;"><%=list.get(i).getFile_content() %></td>
-							<td style="width:10%; padding:10px;"><%=list.get(i).getFile_check() %></td>
+							<td style="width:10%; padding:10px; <%if(list.get(i).getFile_check().equals("확인완료")){%>color:blue;<%}else if(list.get(i).getFile_check().equals("불가")){%>color:red;<%}%>"><%=list.get(i).getFile_check() %></td>
 							<td style="width:20%; padding:10px;"><a id="post"><%=list.get(i).getFile_date() %></a></td>
 						</tr>
 						<%
@@ -236,7 +237,7 @@ a {
 							<td style="width:10%; text-align:center;"><%=list.size()-i %></td>
 							<td style="width:30%; padding:10px;"><%=list.get(i).getFile_name() %></td>
 							<td style="width:30%; padding:10px;"><%=list.get(i).getFile_content() %></td>
-							<td style="width:10%; padding:10px;"><%=list.get(i).getFile_check() %></td>
+							<td style="width:10%; padding:10px; <%if(list.get(i).getFile_check().equals("확인완료")){%>color:blue;<%}else if(list.get(i).getFile_check().equals("불가")){%>color:red;<%}%>"><%=list.get(i).getFile_check() %></td>
 							<td style="width:20%; padding:10px;"><a id="post"><%=list.get(i).getFile_date() %></a></td>
 						</tr>
 						<%

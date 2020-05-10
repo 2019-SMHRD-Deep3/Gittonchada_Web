@@ -51,13 +51,13 @@ public class ReplyDAO {
 		try {
 
 			getConnection();
-			String sql = "insert into reply values(reply_seq.NEXTVAL,?,?,?,SYSDATE,?,?)";
+			String sql = "insert into reply values(reply_seq.NEXTVAL,?,0,?,SYSDATE,?,?)";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getReply_id());
-			psmt.setString(2, dto.getReply_pw());
-			psmt.setString(3, dto.getReply_content());
-			psmt.setInt(4, dto.getBoard_idx());
-			psmt.setInt(5, 0);
+			//psmt.setString(2, dto.getReply_pw());
+			psmt.setString(2, dto.getReply_content());
+			psmt.setInt(3, dto.getBoard_idx());
+			psmt.setInt(4, dto.getMember_seq());
 			cnt = psmt.executeUpdate();
 
 		} catch (SQLException e) {

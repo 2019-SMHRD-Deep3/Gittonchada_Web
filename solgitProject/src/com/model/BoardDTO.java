@@ -46,7 +46,10 @@ public class BoardDTO {
 		this.board_content = board_content;
 		this.lock_post = lock_post;
 	}
-
+////////////게시글 삭제
+	public BoardDTO(int post_seq) {
+		this.board_idx=post_seq;
+	}
 	public int getBoard_idx() {
 		return board_idx;
 	}

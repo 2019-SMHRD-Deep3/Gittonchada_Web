@@ -45,18 +45,18 @@ public class ReplyWriteCon implements ICommand {
 		System.out.println("ReplyWriteCon ¿‘¿Â");
 		String reply_id=request.getParameter("reply_id");
 		System.out.println(reply_id);
-		String reply_pw=request.getParameter("reply_pw");
-		System.out.println(reply_pw);
+		int member_seq=Integer.parseInt(request.getParameter("member_seq"));
+		//System.out.println(reply_pw);
 		String reply_content=request.getParameter("reply_content");
 		System.out.println(reply_content);
 		int board_idx=Integer.parseInt(request.getParameter("board_idx"));
 		System.out.println(board_idx);
 
 		
-		ReplyDTO dto = new ReplyDTO(reply_id, reply_pw, reply_content, board_idx);
+		ReplyDTO dto = new ReplyDTO(reply_id, reply_content, board_idx, member_seq);
 		ReplyDAO dao = new ReplyDAO();
 		dao.insertReply(dto);
-		moveURL = "post.jsp?idx="+board_idx;
+		moveURL = "post.jsp?board_idx="+board_idx;
 		return moveURL;
 	}
 

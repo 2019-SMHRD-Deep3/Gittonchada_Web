@@ -124,4 +124,22 @@ public class NoticeDAO {
 				}
 				return dto;
 			}
+
+			public void deleteNotice(int post_idx) {
+				try {
+					//System.out.println("deletePost"+post_seq);
+					getConnection();
+					 String sql = "delete from Notice where Notice_Idx=?";
+					
+					psmt = conn.prepareStatement(sql);
+					psmt.setInt(1, post_idx);
+					rs = psmt.executeQuery();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally {
+					close();
+				}
+				
+			}
 	}

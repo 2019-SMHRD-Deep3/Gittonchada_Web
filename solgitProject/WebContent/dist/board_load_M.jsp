@@ -108,6 +108,7 @@ a {
 						data-toggle="dropdown" style="font-size: 20px;">데이터 등록</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
+							<%if(info!=null && info.getManager()==1){ %><a class="dropdown-item" href="board_load_M.jsp">발전이력 확인</a><%} %>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbardrop"
@@ -148,6 +149,7 @@ a {
 				<%
 					} else {
 				%>
+	                <a class="btn btn-light" href="user_info.jsp" style="font-size:15px; margin-left:10px;">내정보</a>
 				<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
 				<%
 					}
@@ -209,10 +211,10 @@ a {
 								<td style="width: 10%; text-align: center;"><%=allList.size() - i%></td>
 								<td style="width: 20%; padding: 10px;"><%=allList.get(i).getFile_name()%></td>
 								<td style="width: 30%; padding: 10px;"><%=allList.get(i).getFile_content()%></td>
-								<td style="width: 10%; padding: 10px;"><%=allList.get(i).getFile_check()%></td>
+								<td style="width: 10%; padding: 10px; <%if(allList.get(i).getFile_check().equals("확인완료")){%>color:blue;<%}else if(allList.get(i).getFile_check().equals("불가")){%>color:red;<%}%>"><%=allList.get(i).getFile_check()%></td>
 								<td style="width: 20%; padding: 10px;"><a id="post"><%=allList.get(i).getFile_date()%></a></td>
 								<td style="width: 10%; padding: 10px; text-align:center;"><input
-									type="checkbox" id="check" name="check" value=<%=allList.get(i).getFile_seq() %> /></td>
+									type="checkbox" id="check" class = "myCheck" name="check" value=<%=allList.get(i).getFile_seq() %> /></td>
 							</tr>
 							<%
 								}}
@@ -303,21 +305,44 @@ a {
 	<script type="text/javascript">
 		
 	var check_list = [];
-	$("input:checkbox[name='check']").click(function(){
-				if($("#check").is(":checked")){
+	$(".myCheck").click(function(){
+				//if($("#check").is(":checked")){
 			     var checked = this.value
 				 console.log(checked); 
 			     check_list.push(checked);
-			      }
+			    //  }
 			});
 		$("#check_ok").click(function(){
 			$.ajax({
-				type:"get",
+				type:"POST",
 				url:"CheckLoadCon.do",
-				data:{"check_list":check_list},
+				data:{'check_list':check_list},
+				dataType:"json",
+				cache : false,
 				success:function(result){
-					var as = eval(result);
-					alert("data"+as[0]+"as[1]");
+					window.location = window.location;
+					/* var td=$("#managerList");
+					var tr;
+					for(var i=0;i<result.length;i++){
+						
+					console.log(result[i].);
+					} */
+				},error:function(){
+					console.log("erroe발생");
+				}
+			})
+		});
+		$("#check_no").click(function(){
+			$.ajax({
+				type:"POST",
+				url:"NCheckLoadCon.do",
+				data:{'check_list':check_list},
+				dataType:"json",
+				cache : false,
+				success:function(result){
+					window.location = window.location;
+				},error:function(){
+					console.log("error발생");
 				}
 			})
 		});

@@ -133,6 +133,7 @@ a {
 	            	<%
 	                  } else {
 	                %>
+	                <a class="btn btn-light" href="user_info.jsp" style="font-size:15px; margin-left:10px;">내정보</a>
 	            	<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
 	            	<%
 	                  }

@@ -25,7 +25,7 @@
 	crossorigin="anonymous"></script>
 <style type="text/css">
 .container-sm {
-	margin-top:150px; 
+	margin-top: 150px;
 }
 
 .write_info {
@@ -40,76 +40,89 @@
 </head>
 
 <body class="nav-fixed">
-<%
-      MemberDTO info = (MemberDTO) session.getAttribute("info");
-   	%>
+	<%
+		MemberDTO info = (MemberDTO) session.getAttribute("info");
+	%>
 	<!-- 네비게이션바 코드 -->
-		<nav class="navbar navbar-expand-sm navbar-collapse navbar-dark fixed-top bg-default" font-size="50" font-family="Verdana" x="0" y="100"  style="	background-color: rgba(0, 0, 0, 0.5) !important;">
-			
-			<!-- 회사명, 로고 -->
-			<div class="container-fluid">
+	<nav
+		class="navbar navbar-expand-sm navbar-collapse navbar-dark fixed-top bg-default"
+		font-size="50" font-family="Verdana" x="0" y="100"
+		style="background-color: rgba(0, 0, 0, 0.5) !important;">
+
+		<!-- 회사명, 로고 -->
+		<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand" href="mainpage.jsp"><img src="./assets/img/solgit_logo2.png" alt="Logo" style="text-size=5rem; width:100px;"></a>
+				<a class="navbar-brand" href="mainpage.jsp"><img
+					src="./assets/img/solgit_logo2.png" alt="Logo"
+					style="width: 100px;"></a>
 			</div>
 			<!-- 반응형 버튼 -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#collapsibleNavbar"><span class="navbar-toggler-icon"></span></button>
-			
+				data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
 			<!-- 메뉴바 내용 -->
-			<div class="collapse navbar-collapse" id="collapsibleNavbar" style="width: 200px;">
+			<div class="collapse navbar-collapse" id="collapsibleNavbar"
+				style="width: 200px;">
 				<!-- 메뉴 타이틀 -->
-				<ul class="nav navbar-nav nav-pills nav-justified ml-auto"> <!--  ml-auto ml-md-5 -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">데이터 등록</a>
+				<ul class="nav navbar-nav nav-pills nav-justified ml-auto">
+					<!--  ml-auto ml-md-5 -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown" style="font-size: 20px;">데이터 등록</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="board_load.jsp">발전이력 등록</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">인공지능 분석</a>
+							<%if(info!=null && info.getManager()==1){ %><a class="dropdown-item" href="board_load_M.jsp">발전이력 확인</a><%} %>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown" style="font-size: 20px;">인공지능 분석</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a>
-							<a class="dropdown-item" href="predict_generation.jsp">발전량 예측</a>
-							<a class="dropdown-item" href="predict_benefit.jsp">SMP 예측</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">정보 공유</a>
+							<a class="dropdown-item" href="predict_weather.jsp">기상예보</a> <a
+								class="dropdown-item" href="predict_generation.jsp">발전량 예측</a> <a
+								class="dropdown-item" href="predict_benefit.jsp">SMP 예측</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown" style="font-size: 20px;">정보 공유</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="board_notice.jsp">공지사항</a>
-							<a class="dropdown-item" href="board_community.jsp">커뮤니티</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:20px;">Contact us</a>
+							<a class="dropdown-item" href="board_notice.jsp">공지사항</a> <a
+								class="dropdown-item" href="board_community.jsp">커뮤니티</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown" style="font-size: 20px;">Contact us</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a>
-							<a class="dropdown-item" href="customer_faq.jsp">고객센터</a>
-						</div>
-					</li>
+							<a class="dropdown-item" href="customer_app.jsp">앱 지원</a> <a
+								class="dropdown-item" href="customer_faq.jsp">고객센터</a>
+						</div></li>
 				</ul>
-				</div>
-	            
-				<!-- 메뉴 로그인 등 -->
-				
-				<div class="collapse navbar-collapse" id="collapsibleNavbar" style="width: 5px; flex-direction: row-reverse;">
-					<%
-	                  if (info == null) {
-	                %>
-	            	<a class="btn btn-light" href="login.jsp" style="font-size:15px; margin-left:10px;">로그인</a>
-	            	<a class="btn btn-light" href="register.jsp" style="font-size:15px;">회원가입</a>
-	            	
-	            	<%
-	                  } else {
-	                %>
-	            	<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
-	            	<%
-	                  }
-	                %>
-	            </div>
-	            </div>
-				
-		</nav>
+			</div>
+
+			<!-- 메뉴 로그인 등 -->
+
+			<div class="collapse navbar-collapse" id="collapsibleNavbar"
+				style="width: 5px; flex-direction: row-reverse;">
+				<%
+					if (info == null) {
+				%>
+				<a class="btn btn-light" href="login.jsp"
+					style="font-size: 15px; margin-left: 10px;">로그인</a> <a
+					class="btn btn-light" href="register.jsp" style="font-size: 15px;">회원가입</a>
+
+				<%
+					} else {
+				%>
+	                <a class="btn btn-light" href="user_info.jsp" style="font-size:15px; margin-left:10px;">내정보</a>
+				<a class="btn btn-light" href="LogoutService.do">로그아웃</a>
+				<%
+					}
+				%>
+			</div>
+		</div>
+
+	</nav>
 	<!-- 메인 내용 작성 부분 -->
 	<div class=container-fluid"">
 		<main>
@@ -120,7 +133,7 @@
 			<!-- 		게시글 시작 -->
 
 			<%
-				int idx = Integer.parseInt(request.getParameter("idx"));
+				int idx = Integer.parseInt(request.getParameter("board_idx"));
 				System.out.print(idx);
 				BoardDAO dao = new BoardDAO();
 				BoardDTO dto = dao.selectOnePost(idx);
@@ -130,22 +143,24 @@
 
 
 			<div class="card container-sm">
-<br><br>
+				<br> <br>
 				<h2>
 					<%=dto.getBoard_title()%>
 				</h2>
 				<div class='write_info'>
-				<br>
+					<br>
 					<p id='writer'>
 						<%=dto.getBoard_id()%>
 					</p>
 					<p>
 						<%=dto.getBoard_date()%>
+						<button type="submit" class="btn btn-default" id="post_delete"
+							style="margin: 0; padding: 0; float: right;">삭제</button>
 					</p>
 				</div>
 				<hr>
-				<div style="height:300px;">
-<br>
+				<div style="height: 300px;">
+					<br>
 					<p><%=dto.getBoard_content()%></p>
 
 				</div>
@@ -153,19 +168,26 @@
 			</div>
 			<!-- 게시글 끝 -->
 			<!-- 댓글 입력창 -->
-			<div class="card container-sm" style="margin-top:1%;"><br>
+			<div class="card container-sm"
+				style="margin-top: 1%; margin-bottom: 7%;">
+				<br>
+				<%
+					if (info != null) {
+				%>
 				<form action="ReplyWriteCon.do">
-					<div class="row"><br>
+					<div class="row">
+						<br>
 						<div class="col-lg-6">
 							<div class="input-group">
-								<input class="form-control" type="text" placeholder="아이디"
-									id="reply_id" name="reply_id" style="width:30%;">
+								<input class="form-control" type="text"
+									value="<%=info.getEmail()%>" id="reply_id" name="reply_id"
+									style="width: 30%;">
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="input-group">
-								<input class="form-control" type="password" placeholder="비밀번호"
-									name="reply_pw" id="reply_pw">
+								<input class="form-control" type="hidden"
+									value="<%=info.getSeq()%>" name="member_seq" id="member_seq">
 							</div>
 						</div>
 						<div class="form-group" style="width: 89%; padding: 12px;">
@@ -180,6 +202,11 @@
 						</div>
 					</div>
 				</form>
+				<%
+					}else{
+				%>
+				<p style="color:gray;">로그인해주세요<p>
+				<%} %>
 				<!-- 댓글 내용 -->
 				<div>
 					<table class="table table-sm">
@@ -189,14 +216,22 @@
 						%>
 						<tr>
 							<td class="table-active" style="width: 2%;"></td>
-							<td class="table-active" style="width: 10%;"><%=reple_list.get(i).getReply_id()%></td>
-							<td class="table-active" style="width: 65%;"><%=reple_list.get(i).getReply_content()%></td>
+							<td class="table-active" style="width: 15%;"><%=reple_list.get(i).getReply_id()%></td>
+							<td class="table-active" style="width: 60%;"><%=reple_list.get(i).getReply_content()%></td>
 							<td class="table-active" style="width: 15%;"><%=reple_list.get(i).getReply_date()%></td>
-							<td class="table-active" style="width: 8%;">
-							<button type="button" class="btn btn-delete" value="<%=reple_list.get(i).getReply_idx()%>">삭제</button>
-							<%-- <a href="#"
-								onclick="cmDelete(<%=reple_list.get(i).getReply_idx()%>)">삭제</a> --%>
-								</td>
+							<td class="table-active" style="width: 8%; text-align: center;">
+								<%
+									if (info != null && info.getSeq() != null) {
+												int infoSeq = Integer.parseInt(info.getSeq());
+												if (infoSeq == reple_list.get(i).getMember_seq() || info.getManager() == 1) {
+								%><button
+									type="button" class="btn btn-delete" id="reply_idx"
+									value="<%=reple_list.get(i).getReply_idx()%>"
+									style="padding: 0;">삭제</button> <%
+ 	}
+ 			}
+ %>
+							</td>
 						</tr>
 						<%
 							}
@@ -225,7 +260,8 @@
 	</div>
 
 
-
+<input type="hidden" id="post_seq" value="<%=dto.getBoard_idx()%>"/>
+<input type="hidden" id="post_pw" value="<%=dto.getBoard_pw()%>"/>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		crossorigin="anonymous"></script>
 	<script
@@ -247,72 +283,53 @@
 
 	<!-- 	댓글 리스트 -->
 	<script type="text/javascript">
-		$(".btn btn-primary")
-				.click(
-						function() {
-							$.ajax({
-										type : "post",
-										url : "ReplyReadCon.do",
-										data : "board_idx=" + board_idx,
-										success : function(result) {
-											insertReply()
-										}
-									})
-
-						});
 	<!-- //////////// 댓글 삭제 -->
-	$(".btn btn-delete").click(
-			alert("확인")
-			function(){
+		$(".btn-delete").click(function() {
+			var reply_idx = document.getElementById("reply_idx").value;
+			console.log(reply_idx);
+			var check = confirm("댓글을 삭제하시겠습니까?");
+			if (check) {
 				$.ajax({
-						type:"post",
-						url:"ReplyDeleteCon.do",
-						data:"reply_idx="+reply_idx,
-						success:function(result){
-							insertReply()
-						}
-					});
+					type : "post",
+					url : "ReplyDeleteCon.do",
+					data : "reply_idx=" + reply_idx,
+					success : function(result) {
+						window.location = window.location;
+					},
+					error : function() {
+						console.log("에러발생");
+					}
+				})
+			}
+		});
+
+		/* 	///////////////////////게시글 삭제 */
+		var post_seq = document.getElementById("post_seq").value;
+		var pw = document.getElementById("post_pw").value;
+		console.log(post_seq);
+		console.log(pw);
+		
+		$("#post_delete").click(function() {
+			//var input_id = prompt("아이디를 입력하세요 ")
+			var input_pw = prompt("비밀번호를 입력하세요 ")
+			if(input_pw==pw){
+				console.log("성공");
+				$.ajax({
+					type:"post",
+					url:"DeletePostCon.do",
+					data:"post_seq="+post_seq,
+					success:function(){
+						alert("삭제되었습니다.")
+						location.href = "board_community.jsp";
+					}
 				});
-function cmDelete(comment_num){
-	var msg = confirm("댓글을 삭제합니다.");
-	if(msg==true){
-		deleteCmt(comment_num);
-	}else{
-		return false;
-	}
-}
-function deleteCmt(comment_num){
-	$.ajax({
-		type:"post",
-		url:"ReplyDeleteCon.do",
-		data:"reply_idx="+comment_num,
-		success:function(result){
-			insertReply()
-		}
-	});
-}
-function insertReply(){
-	console.log("hi");
-	var reply = $(".table-sm");
-	var reply_list;
-	//reply.empty();
-	if (result.length != 0) {
-		for (var i = 0; i < result.length; i++) {
-			var reply_id = result[i].reply_id;
-			var reply_content = result[i].reply_content;
-			var reply_date = result[i].reply_date;
-			reply_list = '<tr><td class="table-active">'
-					+ reply_id
-					+ '</td><td class="table-active">'
-					+ reply_content
-					+ '</td><td class="table-active">'
-					+ reply_date
-					+ '</td></tr>';
-			reply.append(reply_list);
-		}
-	}
-}
-</script>
+				
+			}else{
+				alert("잘못된 비밀번호입니다.")
+			}
+			
+		});
+	</script>
 
 
 </body>
