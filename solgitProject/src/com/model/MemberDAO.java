@@ -80,6 +80,31 @@ public class MemberDAO {
 		return cnt;
 	}
 	
+	// 회원수정
+		public int edit(MemberDTO dto) {
+
+			int cnt = 0;
+
+			try {
+
+				getConnection();
+				String sql = "UPDATE MEMBER SET MEMBER_Email=?, MEMBER_Birth=?, MEMBER_Name=?, MEMBER_Phone=? WHERE MEMBER_Seq=?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, dto.getEmail());
+				psmt.setString(2, dto.getBirth());
+				psmt.setString(3, dto.getName());
+				psmt.setString(4, dto.getPhone());
+				psmt.setString(5, dto.getSeq());
+				cnt = psmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close();
+			}
+			return cnt;
+		}
+	
 		
 	// 로그인
 	public MemberDTO login(MemberDTO dto) {

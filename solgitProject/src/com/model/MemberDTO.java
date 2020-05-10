@@ -9,7 +9,7 @@ public class MemberDTO {
 	private String phone;
 	private int manager;
 	
-	// 회원정보
+	// 회원정보 // 수정
 	public MemberDTO(String email, String pw, String birth, String name, String phone) {
 		super();
 		this.email = email;
