@@ -65,6 +65,7 @@ CREATE TABLE member
 
 
 
+select * from member;
 INSERT INTO member
 VALUES
     (
@@ -98,15 +99,19 @@ select * from MEMBER where MEMBER_EMAIL='admin@naver.com' and MEMBER_PW='1';
 drop table Notice;
 drop sequence Notice_seq;
 
+
+drop table Notice;
 CREATE TABLE Notice
 (   Notice_Idx         NUMBER            NOT NULL, 
     Notice_ID          VARCHAR2(20)      NOT NULL, 
     Notice_Title       VARCHAR2(100)      NOT NULL, 
-    Notice_Content     VARCHAR2(1000)    NOT NULL, 
+    Notice_Content     VARCHAR2(2000)    NOT NULL, 
     Notice_Date        DATE              NOT NULL, 
     Notice_Hit         NUMBER            NOT NULL,
     CONSTRAINT Notice_PK1 PRIMARY KEY (Notice_Idx)
 );
+
+
 
 CREATE SEQUENCE Notice_SEQ
 START WITH 1

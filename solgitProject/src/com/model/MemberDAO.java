@@ -118,36 +118,38 @@ public class MemberDAO {
 		String l_phone = null;
 		int l_manager;
 
-		try {
-			
-			
+		try {	
 			getConnection();
-
-			String sql = "select * from MEMBER where MEMBER_EMAIL=? and MEMBER_PW=?";
+			String sql = "select * from MEMBER where member_Email= ? and member_PW = ?";
 			psmt = conn.prepareStatement(sql);
-			
 			psmt.setString(1, dto.getEmail());
 			psmt.setString(2, dto.getPw());
 			rs = psmt.executeQuery();
-			
 			if (rs.next()) {
+				System.out.println(rs.getString(1));
 				 rs.getString(1);
 				 rs.getString(2);
-				 rs.getString(3);
 				l_seq = rs.getString("MEMBER_SEQ");
+				System.out.println("1");
 				l_email = rs.getString("MEMBER_EMAIL");
+				System.out.println("2");
 				l_pw = rs.getString("MEMBER_PW");
+				System.out.println("3");
 				l_birth = rs.getString("MEMBER_BIRTH");
+				System.out.println("4");
 				l_name = rs.getString("MEMBER_NAME");
+				System.out.println("5");
 				l_phone = rs.getString("MEMBER_PHONE");
-				l_manager = rs.getInt("MEMBER_MANAGER");
-				
-//				System.out.println(l_seq);
+				System.out.println("6");
+				l_manager = rs.getInt("member_Manager");
+				System.out.println("7");
+				System.out.println(l_seq);
 //				System.out.println(l_phone);
 //				System.out.println(l_manager);
 				info = new MemberDTO(l_seq, l_email, l_pw, l_birth, l_name, l_phone, l_manager);
 //				System.out.println(info.getEmail());
 //				System.out.println(info.getSeq());
+				System.out.println(info.getEmail());
 			}
 			
 		} catch (SQLException e) {
