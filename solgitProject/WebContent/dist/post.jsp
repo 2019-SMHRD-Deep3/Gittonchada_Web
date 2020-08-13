@@ -267,6 +267,8 @@
 
 <input type="hidden" id="post_seq" value="<%=dto.getBoard_idx()%>"/>
 <input type="hidden" id="post_pw" value="<%=dto.getBoard_pw()%>"/>
+<%if(info!=null){ %>
+<input type="hidden" id="info_seq" value="<%=info.getSeq()%>"/><%} %>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		crossorigin="anonymous"></script>
 	<script
@@ -297,6 +299,7 @@
 	
 	function show_reply(){
 		var reply_list;
+		var info=$('#info_seq').val();
 		console.log(board_idx);
 		$.ajax({
 			url : 'ReplyReadCon.do',
@@ -312,9 +315,16 @@
 					reply_list+='<td class="table-active" style="width: 60%;">'+result[i].reply_content+'</td>';
 					reply_list+='<td class="table-active" style="width: 15%;">'+result[i].reply_date+'</td>';
 					reply_list+='<td class="table-active" style="width: 8%; text-align: center;">';
+					
+					if (info != null) {
+						//console.log("info는"+info)
+						//int infoSeq = Integer.parseInt(info.getSeq());
+						if (info == result[i].member_seq || info == 1) {
+					
 					reply_list+='<button type="button" class="btn btn-delete" id="reply_idx" value="'+result[i].reply_idx+'"style="padding: 0;" onclick="reply_delete('+result[i].reply_idx+')">';
 					reply_list+='삭제'
 					reply_list+='</button>'
+						}}
 					reply_list+='</td>'
 					reply_list+="</tr>";
 					
