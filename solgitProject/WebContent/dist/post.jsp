@@ -138,7 +138,7 @@
 				BoardDAO dao = new BoardDAO();
 				BoardDTO dto = dao.selectOnePost(idx);
 				ReplyDAO reple_dao = new ReplyDAO();
-				ArrayList<ReplyDTO> reple_list = reple_dao.selectReply(idx);
+				ArrayList<ReplyDTO> reply_list = reple_dao.selectReply(idx);
 			%>
 
 
@@ -171,10 +171,45 @@
 			<div class="card container-sm"
 				style="margin-top: 1%; margin-bottom: 7%;">
 				<br>
+				
+			
+				<!-- 댓글 내용 -->
+				<div>
+					<table class="table table-sm">
+						 <%-- <%
+							if (reply_list.size() != 0) {
+								for (int i = 0; i < reply_list.size(); i++) {
+						%>
+						<tr>
+							<td class="table-active" style="width: 2%;"></td>
+							<td class="table-active" style="width: 15%;"><%=reply_list.get(i).getReply_id()%></td>
+							<td class="table-active" style="width: 60%;"><%=reply_list.get(i).getReply_content()%></td>
+							<td class="table-active" style="width: 15%;"><%=reply_list.get(i).getReply_date()%></td>
+							<td class="table-active" style="width: 8%; text-align: center;">
+								<%
+									if (info != null && info.getSeq() != null) {
+												int infoSeq = Integer.parseInt(info.getSeq());
+												if (infoSeq == reply_list.get(i).getMember_seq() || info.getManager() == 1) {
+								%><button
+									type="button" class="btn btn-delete" id="reply_idx" onclick="reply_delete(<%=reply_list.get(i).getReply_idx() %>)"
+									value="<%=reply_list.get(i).getReply_idx()%>"
+									style="padding: 0;">삭제</button> <%
+ 	}
+ 			}
+ %>
+							</td>
+						</tr>
+						<%
+							}
+							}
+						%>  --%>
+					</table>
+				</div>
+				
 				<%
 					if (info != null) {
 				%>
-				<form action="ReplyWriteCon.do">
+			<!-- 	<form action="ReplyWriteCon.do"> -->
 					<div class="row">
 						<br>
 						<div class="col-lg-6">
@@ -197,48 +232,18 @@
 						</div>
 						<div class="form-group"
 							style="display: block; float: right; padding: 12px; width: 11%;">
-							<button type="submit" class="btn btn-primary"
+							<button type="submit" class="btn btn-primary" onclick='insert_reply()'
 								style="width: 100%;">등록</button>
 						</div>
-					</div>
-				</form>
-				<%
+							<%
 					}else{
 				%>
 				<p style="color:gray;">로그인해주세요<p>
 				<%} %>
-				<!-- 댓글 내용 -->
-				<div>
-					<table class="table table-sm">
-						<%
-							if (reple_list.size() != 0) {
-								for (int i = 0; i < reple_list.size(); i++) {
-						%>
-						<tr>
-							<td class="table-active" style="width: 2%;"></td>
-							<td class="table-active" style="width: 15%;"><%=reple_list.get(i).getReply_id()%></td>
-							<td class="table-active" style="width: 60%;"><%=reple_list.get(i).getReply_content()%></td>
-							<td class="table-active" style="width: 15%;"><%=reple_list.get(i).getReply_date()%></td>
-							<td class="table-active" style="width: 8%; text-align: center;">
-								<%
-									if (info != null && info.getSeq() != null) {
-												int infoSeq = Integer.parseInt(info.getSeq());
-												if (infoSeq == reple_list.get(i).getMember_seq() || info.getManager() == 1) {
-								%><button
-									type="button" class="btn btn-delete" id="reply_idx"
-									value="<%=reple_list.get(i).getReply_idx()%>"
-									style="padding: 0;">삭제</button> <%
- 	}
- 			}
- %>
-							</td>
-						</tr>
-						<%
-							}
-							}
-						%>
-					</table>
-				</div>
+					</div>
+				<!-- </form> -->
+				
+				
 			</div>
 			<!-- 댓글 끝 -->
 
@@ -283,25 +288,91 @@
 
 	<!-- 	댓글 리스트 -->
 	<script type="text/javascript">
-	<!-- //////////// 댓글 삭제 -->
-		$(".btn-delete").click(function() {
-			var reply_idx = document.getElementById("reply_idx").value;
-			console.log(reply_idx);
-			var check = confirm("댓글을 삭제하시겠습니까?");
-			if (check) {
-				$.ajax({
-					type : "post",
-					url : "ReplyDeleteCon.do",
-					data : "reply_idx=" + reply_idx,
-					success : function(result) {
-						window.location = window.location;
-					},
-					error : function() {
-						console.log("에러발생");
-					}
-				})
+	////////////////////////// 댓글 리스트
+	var reply_table = $('.table-sm');
+	var board_idx = <%=idx%>;
+	$(document).ready(function(){
+		show_reply();
+	});
+	
+	function show_reply(){
+		var reply_list;
+		console.log(board_idx);
+		$.ajax({
+			url : 'ReplyReadCon.do',
+			type : "post",
+			data : 'board_idx='+board_idx,
+			dataType:'json',
+			success: function(result){
+				//alert("댓글 가져오기 성공");
+				for(var i=0;i<result.length;i++){
+					reply_list+="<tr>";
+					reply_list+='<td class="table-active" style="width: 2%;"></td>';
+					reply_list+='<td class="table-active" style="width: 15%;">'+result[i].reply_id+'</td>';
+					reply_list+='<td class="table-active" style="width: 60%;">'+result[i].reply_content+'</td>';
+					reply_list+='<td class="table-active" style="width: 15%;">'+result[i].reply_date+'</td>';
+					reply_list+='<td class="table-active" style="width: 8%; text-align: center;">';
+					reply_list+='<button type="button" class="btn btn-delete" id="reply_idx" value="'+result[i].reply_idx+'"style="padding: 0;" onclick="reply_delete('+result[i].reply_idx+')">';
+					reply_list+='삭제'
+					reply_list+='</button>'
+					reply_list+='</td>'
+					reply_list+="</tr>";
+					
+				}
+				reply_table.text("");
+				reply_table.append(reply_list);
+			},
+			error: function(){
+				alert("댓글 가져오기 실패");
+			}
+		})
+	};
+	///////////////////////// 댓글 달기
+	
+	function insert_reply(){
+		//var insert_reply = $('.table-sm');
+		var reply_id = $('#reply_id').val();
+		var member_seq = $('#member_seq').val();
+		var board_idx = $('#board_idx').val();
+		var reply_content = $('#reply_content').val();
+		var reply_list;
+		$.ajax({
+			url : 'ReplyWriteCon.do',
+			type : "post",
+			data :{"reply_id":reply_id,
+				"member_seq":member_seq,
+				"board_idx":board_idx,
+				"reply_content":reply_content},
+			dataType:'json',
+			success : function(result){
+				
+				//alert("전송 성공");
+				show_reply();
+				$('#reply_content').val('');
+			},
+			error : function(result){
+				alert("전송 실패");
 			}
 		});
+	};
+	<!-- //////////// 댓글 삭제 -->
+		function reply_delete(idx){
+			console.log(idx);
+			$.ajax({
+				url : 'ReplyDeleteCon.do',
+				type : 'post',
+				data : "reply_idx="+idx,
+				dataType : 'json',
+				success: function(result){
+					alert("삭제 성공");
+					show_reply();
+					
+				},
+				error:function(){
+					alert("삭제 실패");
+				}
+			});
+		};
 
 		/* 	///////////////////////게시글 삭제 */
 		var post_seq = document.getElementById("post_seq").value;

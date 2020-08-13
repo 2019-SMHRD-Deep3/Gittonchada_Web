@@ -23,12 +23,13 @@ public class ReplyDeleteCon implements ICommand {
 		int reply_idx = Integer.parseInt(request.getParameter("reply_idx"));
 		ReplyDAO dao = new ReplyDAO();
 		int board_idx = dao.deleteReply(reply_idx);
+		System.out.println("reply_idx : "+reply_idx);
 		
 		ArrayList<ReplyDTO> reply_list=dao.selectReply(board_idx);
 		//System.out.println(reply_list.size());
 		Gson gson = new Gson();
 		String value = gson.toJson(reply_list);
-		//System.out.println(value);
+		System.out.println("value : "+value);
 		return value;
 	}
 

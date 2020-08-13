@@ -16,7 +16,7 @@ import com.model.ReplyDAO;
 import com.model.ReplyDTO;
 import com.model.ReplyDTO;
 
-public class ReplyWriteCon implements ICommand {
+public class ReplyReadCon implements ICommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -44,20 +44,22 @@ public class ReplyWriteCon implements ICommand {
 //		}else {
 //			System.out.println("실패");
 //		}
-		System.out.println("ReplyWriteCon 입장");
-		String reply_id=request.getParameter("reply_id");
-		System.out.println("reply_id : "+reply_id);
-		int member_seq=Integer.parseInt(request.getParameter("member_seq"));
-		System.out.println("member_seq : "+member_seq);
-		String reply_content=request.getParameter("reply_content");
-		System.out.println("reply_content:"+reply_content);
+		System.out.println("ReplyReadCon 입장");
+		/*
+		 * String reply_id=request.getParameter("reply_id");
+		 * System.out.println("reply_id : "+reply_id); int
+		 * member_seq=Integer.parseInt(request.getParameter("member_seq"));
+		 * System.out.println("member_seq : "+member_seq); String
+		 * reply_content=request.getParameter("reply_content");
+		 * System.out.println("reply_content:"+reply_content);
+		 */
 		int board_idx=Integer.parseInt(request.getParameter("board_idx"));
 		System.out.println("board_idx : "+board_idx);
 
 		
-		ReplyDTO dto = new ReplyDTO(reply_id, reply_content, board_idx, member_seq);
+		//ReplyDTO dto = new ReplyDTO(board_idx);
 		ReplyDAO dao = new ReplyDAO();
-		dao.insertReply(dto);
+		//dao.selectReply(board_idx);
 		
 		Gson gson = new Gson();
 		moveURL = gson.toJson(dao.selectReply(board_idx));

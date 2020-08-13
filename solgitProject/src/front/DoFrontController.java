@@ -25,6 +25,7 @@ import com.controller.NCheckLoadCon;
 import com.controller.NoticeWriteCon;
 import com.controller.PostWriteCon;
 import com.controller.ReplyDeleteCon;
+import com.controller.ReplyReadCon;
 import com.controller.ReplyWriteCon;
 
 /**
@@ -44,7 +45,7 @@ public class DoFrontController extends HttpServlet {
 		map.put("PostWriteCon.do", new PostWriteCon());
 		map.put("NoticeWriteCon.do", new NoticeWriteCon());
 		map.put("ReplyWriteCon.do", new ReplyWriteCon());
-	//	map.put("ReplyReadCon.do", new ReplyReadCon());
+		map.put("ReplyReadCon.do", new ReplyReadCon());
 		map.put("DevelopInfoCon.do", new DevelopInfoCon());
 		map.put("BoardNoticeCon.do", new BoardNoticeCon());
 		map.put("BoardCommuCon.do", new BoardCommuCon());
@@ -67,7 +68,7 @@ public class DoFrontController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String resultURL = requestURI.substring(contextPath.length() + 6);
 		String moveURL = null;
-		
+		System.out.println(resultURL);
 		putData();
 		ICommand iCommand = map.get(resultURL);
 		
@@ -82,6 +83,17 @@ public class DoFrontController extends HttpServlet {
 		}
 		if(resultURL.equals("ReplyDeleteCon.do")) {
 			out.print(moveURL);
+			//System.out.println(moveURL);
+			return;
+		}
+		if(resultURL.equals("ReplyWriteCon.do")) {
+			out.print(moveURL);
+			System.out.println(moveURL);
+			return;
+		}
+		if(resultURL.equals("ReplyReadCon.do")) {
+			out.print(moveURL);
+			System.out.println(moveURL);
 			return;
 		}
 //		if(iCommand instanceof LoginCon) {

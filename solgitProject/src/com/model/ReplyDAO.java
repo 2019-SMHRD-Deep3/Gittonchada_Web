@@ -18,8 +18,8 @@ public class ReplyDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String db_url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String db_id = "solgit";
-			String db_pw = "solgit";
+			String db_id = "hr";
+			String db_pw = "hr";
 			conn = DriverManager.getConnection(db_url, db_id, db_pw);
 
 		} catch (ClassNotFoundException e) {
@@ -49,7 +49,10 @@ public class ReplyDAO {
 		
 		int cnt=0;
 		try {
-
+			//System.out.println(dto.getReply_content());
+			//System.out.println(dto.getBoard_idx());
+			//System.out.println(dto.getReply_id());
+			//System.out.println(dto.getMember_seq());
 			getConnection();
 			String sql = "insert into reply values(reply_seq.NEXTVAL,?,0,?,SYSDATE,?,?)";
 			psmt = conn.prepareStatement(sql);
